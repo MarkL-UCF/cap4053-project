@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 
@@ -7,9 +8,7 @@ public class playerController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    private float horizontalMov;
-    private float verticalMov;
-    private Vector2 curVel;
+    private Vector2 moveInput;
     
     [SerializeField]
     private float moveSpeed = 3f;
@@ -25,26 +24,20 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.horizontalMov = Input.GetAxis("Horizontal"); // X input
-        this.verticalMov = Input.GetAxis("Vertical"); // Y input
+        //Raw only allows -1, 0, or 1
+        //Will prevent issues that may arise from controller use
 
-        this.curVel = this.rb.velocity; //get the current velocity
+        moveInput.x = Input.GetAxisRaw("Horizontal"); // X input
+        moveInput.y = Input.GetAxisRaw("Vertical"); // Y input
+
+        //Prevent weird behavior causing fast diagonal movement
+        //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
+        moveInput.Normalize();
     }
 
     private void FixedUpdate()
     {
-        if(this.horizontalMov != 0)
-        {
-            //change X velocity without affecting Y velocity
-            this.rb.velocity = new Vector2(this.horizontalMov * this.moveSpeed, this.curVel.y);
-        }
-
-        /*
-        if(this.verticalMov != 0)
-        {
-            //change X velocity without affecting Y velocity
-            this.rb.velocity = new Vector2(curVel.x, this.verticalMov * this.moveSpeed);
-        }
-        */
+        //Apply the input to velocity
+        rb.velocity = moveInput * moveSpeed;
     }
 }
