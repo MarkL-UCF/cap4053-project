@@ -7,22 +7,37 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    
 
     private Vector2 moveInput;
     
+
     [SerializeField]
     private float moveSpeed = 3f;
     //Note: could change move speed through items in the future
 
-    // Start is called before the first frame update
+    //Start is called before the first frame update
     void Start()
     {
-        //removes the need to call it every frame
-        this.rb = GetComponent<Rigidbody2D>();
+        //instantiate components
+        rb = GetComponent<Rigidbody2D>();
+        
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
+    {
+        MovementInputHandler();
+    }
+
+    private void FixedUpdate()
+    {
+        //Apply the input to velocity
+        rb.velocity = moveInput * moveSpeed;
+    }
+
+    //Handles the player's movement inputs
+    void MovementInputHandler()
     {
         //Raw only allows -1, 0, or 1
         //Will prevent issues that may arise from controller use
@@ -33,11 +48,5 @@ public class playerController : MonoBehaviour
         //Prevent weird behavior causing fast diagonal movement
         //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
         moveInput.Normalize();
-    }
-
-    private void FixedUpdate()
-    {
-        //Apply the input to velocity
-        rb.velocity = moveInput * moveSpeed;
     }
 }
