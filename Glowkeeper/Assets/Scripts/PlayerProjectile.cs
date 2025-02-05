@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +23,10 @@ public class PlayerProjectile : MonoBehaviour
     }
 
     //Destroy self on collision
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this);
+        Debug.Log("Object collided with");
+        Destroy(gameObject);
     }
 }
     
