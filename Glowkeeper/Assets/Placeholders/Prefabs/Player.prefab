@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f578f4076053ba34abd8e74f4bda82b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 4219328329492726958, guid: 80f1d4e354f93b04eb601854b9eddcbf, type: 3}
+  BulletOrigin: {fileID: 6109787847050635117}
+  canFire: 0
+  firerate: 1
+  projectileSpeed: 3
 --- !u!1 &1405832945968565066
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +208,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 903405603
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 493cef9a7702a6b458980412699da20e, type: 3}

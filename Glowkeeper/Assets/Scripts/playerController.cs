@@ -4,7 +4,7 @@ using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     
