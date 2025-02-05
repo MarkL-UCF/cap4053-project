@@ -7,8 +7,6 @@ public class PlayerProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 direction;
     private Vector3 rotation;
-
-    public GameObject Player;
     public Vector3 mousePos;
     public float projectileSpeed;
 

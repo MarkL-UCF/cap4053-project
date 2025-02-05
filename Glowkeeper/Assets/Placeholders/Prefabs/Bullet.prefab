@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4992831698698201376}
   - component: {fileID: 5341630012581636736}
   - component: {fileID: 3539215217265270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1a0c792c1193842a1c51c72fb2ef52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7425270538560333250, guid: 4aaa9f5da204eba4c88b8101c3873f5b, type: 3}
   mousePos: {x: 0, y: 0, z: 0}
   projectileSpeed: 0
 --- !u!50 &5341630012581636736
@@ -124,7 +123,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -144,7 +143,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
