@@ -27,6 +27,17 @@ public class PlayerProjectile : MonoBehaviour
     {
         Debug.Log("Object collided with");
         Destroy(gameObject);
+
+        // added tag to the enemy object
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // destroy the enemy when hit by a projectile
+            Destroy(gameObject);
+
+            // destroy the projectile as well
+            Destroy(collision.gameObject);
+        }
+
     }
 }
     
