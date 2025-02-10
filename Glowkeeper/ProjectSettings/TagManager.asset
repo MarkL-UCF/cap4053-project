@@ -41,9 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Flame
+    uniqueID: 2331175981
+    locked: 0
   - name: Player
     uniqueID: 2128252873
     locked: 0
   - name: Player Projectile
     uniqueID: 1823724539
+    locked: 0
+  - name: Light
+    uniqueID: 2314786403
     locked: 0
