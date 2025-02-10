@@ -9,10 +9,9 @@ public class PlayerWeapon : MonoBehaviour
     private Camera cam;
     public GameObject bullet;
     public Transform BulletOrigin;
-    public bool canFire;
-    private float timer;
-    public float firerate = 1;
-    public float projectileSpeed = 3;
+    private float lastShotTime = 0f;
+    public float firerate = 0.02f;
+    public float projectileSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,7 @@ public class PlayerWeapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rotZ); //Perform the rotation
 
         //Left click to fire
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.time > lastShotTime + firerate)
             Fire();
     }
 
@@ -39,27 +38,16 @@ public class PlayerWeapon : MonoBehaviour
     void Fire()
     {
         //Reset canFire if enough time has passed
-        if (!canFire)
-        {
-            timer += Time.deltaTime;
-            if(timer > firerate)
-            {
-                canFire = true;
-                timer = 0;
-            }
-        }
+        
+        
+        //Create a bullet object
+        GameObject InstantiatedBullet = Instantiate(bullet, BulletOrigin.position, Quaternion.identity);
 
-        if(canFire == true) //Only fire if off cooldown
-        {
-            canFire = false;
+        //Pass on needed values to the bullet's script
+        var bulletScript = InstantiatedBullet.GetComponent<PlayerProjectile>();
+        bulletScript.mousePos = mousePos;
+        bulletScript.projectileSpeed = projectileSpeed;
 
-            //Create a bullet object
-            GameObject InstantiatedBullet = Instantiate(bullet, BulletOrigin.position, Quaternion.identity);
-
-            //Pass on needed values to the bullet's script
-            var bulletScript = InstantiatedBullet.GetComponent<PlayerProjectile>();
-            bulletScript.mousePos = mousePos;
-            bulletScript.projectileSpeed = projectileSpeed;
-        }
+        lastShotTime = Time.time;
     }
 }
