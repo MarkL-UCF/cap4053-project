@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePos: {x: 0, y: 0, z: 0}
-  projectileSpeed: 0
+  projectileSpeed: 100
 --- !u!50 &5341630012581636736
 Rigidbody2D:
   serializedVersion: 4

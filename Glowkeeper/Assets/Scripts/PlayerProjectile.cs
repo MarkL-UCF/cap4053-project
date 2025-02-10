@@ -9,7 +9,8 @@ public class PlayerProjectile : MonoBehaviour
     private Vector3 direction;
     private Vector3 rotation;
     public Vector3 mousePos;
-    public float projectileSpeed;
+    public float projectileSpeed = 300f;
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,17 @@ public class PlayerProjectile : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+    }
+
+    private void Update()
+    {
+        
+        //Destroy self after a few seconds if it doesn't collide
+        timer += Time.deltaTime;
+        if (timer > 7)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //Destroy self on collision
