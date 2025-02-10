@@ -18,12 +18,12 @@ public class LightHealth : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void alterLight(float maxFuel, float fuel)
+    public void AlterLight(float maxFuel, float fuel)
     {
         fuelLoss = maxFuel - fuel;
         fuelDiff = fuelLoss - fuelDiff;
 
-        Primarylight.falloffIntensity += fuelDiff;
+        Primarylight.falloffIntensity -= fuelDiff;
 
         
 
