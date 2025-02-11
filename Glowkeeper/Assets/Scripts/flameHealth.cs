@@ -9,6 +9,7 @@ public class flameHealth : MonoBehaviour
 {
     //flame health
     public float flameFuel;
+    public float prevFuel;
 
     //max flame health
     public float maxFlameFuel;
@@ -16,7 +17,7 @@ public class flameHealth : MonoBehaviour
     public Image fuelBar;
 
  
-   
+    LightHealth primaryLight;
 
     
     
@@ -24,20 +25,34 @@ public class flameHealth : MonoBehaviour
     void Start()
     {
         maxFlameFuel = flameFuel;
-        
-        
+        prevFuel = flameFuel;
+        primaryLight = GameObject.FindGameObjectWithTag("PrimeLight").GetComponent<LightHealth>();  
     }
 
     // Update is called once per frame
     void Update()
     {
         fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
-        
-        
-        if(flameFuel < 0)
+
+        if(flameFuel < prevFuel)
+        {
+            prevFuel = flameFuel;
+            ChangeLights();
+        }
+
+        KillFlame();
+    }
+
+
+    void ChangeLights()
+    {
+        primaryLight.AlterLight(maxFlameFuel, flameFuel);
+    }
+    void KillFlame()
+    {
+        if(flameFuel <= 0)
         {
             Destroy(gameObject);
         }
     }
-
 }
