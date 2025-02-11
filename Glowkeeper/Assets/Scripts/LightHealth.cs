@@ -13,6 +13,7 @@ public class LightHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Primarylight = GetComponent<Light2D>();
         Primarylight.falloffIntensity = 0f;
 
     }
