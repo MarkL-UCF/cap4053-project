@@ -15,9 +15,9 @@ public class ProjectileScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the projectile hits the player
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Flame"))
         {
-            Debug.Log("Player hit!");
+            Debug.Log("Flame hit!");
             // TODO: Implement player damage logic
             Destroy(gameObject); // Destroy the projectile on impact
         }
