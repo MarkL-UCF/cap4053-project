@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3832657607847789090}
   - component: {fileID: 3674361035135512281}
   - component: {fileID: 7232912345465446280}
-  - component: {fileID: -2219586422794260493}
+  - component: {fileID: 4869802284587117363}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 2128252873
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 551d1d778534d45548c59c60793039d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8300a7a5b19bd4d44be43afeb7efa2d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-2219586422794260493
+--- !u!114 &4869802284587117363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,10 +168,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7869933524185208323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abfa0fa4a1d54382af8bed446dd5936, type: 3}
+  m_Script: {fileID: 11500000, guid: 9604deea02eaf43878318d3132cd43d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.8
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
-  fireRate: 2
-  projectileSpeed: 5
+  fireRate: 4
+  projectileSpeed: 2
