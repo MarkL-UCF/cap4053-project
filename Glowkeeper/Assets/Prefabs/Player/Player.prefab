@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4219328329492726958, guid: 80f1d4e354f93b04eb601854b9eddcbf, type: 3}
   BulletOrigin: {fileID: 6109787847050635117}
-  canFire: 0
   firerate: 1
   projectileSpeed: 3
 --- !u!1 &1405832945968565066
@@ -150,7 +149,7 @@ GameObject:
   - component: {fileID: -1251975644720218028}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
