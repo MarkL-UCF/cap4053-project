@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Flame
+  - Atlas (Enemy)
   layers:
   - Default
   - TransparentFX
