@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9083143595259225273}
   - component: {fileID: 4607980876541714375}
   - component: {fileID: 7492130582670040234}
-  - component: {fileID: -1948581610362910297}
+  - component: {fileID: 4960277548807244074}
   m_Layer: 0
   m_Name: PHFlame
   m_TagString: Untagged
@@ -122,9 +122,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004999995, y: 0.275}
+  m_Offset: {x: 0.004999995, y: 0.28}
   serializedVersion: 2
-  m_Radius: 0.255
+  m_Radius: 0.18
 --- !u!114 &4607980876541714375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flameFuel: 100
+  prevFuel: 0
   maxFlameFuel: 100
   fuelBar: {fileID: 0}
 --- !u!114 &7492130582670040234
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc46830003f3f7e47bc713b534db12de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &-1948581610362910297
+--- !u!50 &4960277548807244074
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -226,9 +227,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.397
+  m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.8401432, b: 0.33018857, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000002decf28ac98fda7efbd3b36c63d6f889
@@ -271,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6947173776555554094}
   - component: {fileID: 4560281229618096620}
+  - component: {fileID: 3846640583890816730}
   - component: {fileID: 5188951414757124095}
   m_Layer: 0
   m_Name: PrimaryLight
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -332,8 +334,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 8
+  m_PointLightInnerRadius: 4
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -344,6 +346,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3846640583890816730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849955940361165542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5dea9b91bb59340b07b163526b168d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5188951414757124095
 MonoBehaviour:
   m_ObjectHideFlags: 0
