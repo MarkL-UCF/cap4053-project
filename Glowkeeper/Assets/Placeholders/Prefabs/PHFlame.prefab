@@ -137,9 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8964d9ba9d78ee4498b8c986c782db37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameFuel: 100
+  flameFuel: 1000
   prevFuel: 0
-  maxFlameFuel: 100
+  maxFlameFuel: 1000
   fuelBar: {fileID: 0}
 --- !u!114 &7492130582670040234
 MonoBehaviour:

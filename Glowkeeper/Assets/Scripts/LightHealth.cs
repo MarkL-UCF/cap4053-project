@@ -20,12 +20,12 @@ public class LightHealth : MonoBehaviour
     // Update is called once per frame
     public void AlterLight(float maxFuel, float fuel)
     {
-        Primarylight.pointLightOuterRadius = (fuel * 0.09f);
-        Primarylight.pointLightInnerRadius = (fuel * 0.05f);
+        Primarylight.pointLightOuterRadius = (fuel * 0.0096f);
+        Primarylight.pointLightInnerRadius = (fuel * 0.005f);
 
         if(fuel < 50)
         {
-            Primarylight.intensity = (fuel * 0.02f);
+            Primarylight.intensity = (fuel * 0.002f);
         }
         else
         {
