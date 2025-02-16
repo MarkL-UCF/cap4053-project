@@ -6,14 +6,13 @@ using UnityEngine.Rendering.Universal;
 public class LightHealth : MonoBehaviour
 {
     private Light2D Primarylight;
-    private float fuelLoss;
-    private float fuelDiff = 0;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
         Primarylight = GetComponent<Light2D>();
+
         Primarylight.falloffIntensity = 0f;
 
     }
@@ -21,12 +20,9 @@ public class LightHealth : MonoBehaviour
     // Update is called once per frame
     public void AlterLight(float maxFuel, float fuel)
     {
-        fuelLoss = maxFuel - fuel;
-        fuelDiff = fuelLoss - fuelDiff;
+        Primarylight.pointLightOuterRadius = (fuel * 0.1f);
 
-        Primarylight.falloffIntensity -= fuelDiff;
 
-        
 
     }
 }

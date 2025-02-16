@@ -34,7 +34,7 @@ public class flameHealth : MonoBehaviour
     {
         fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
 
-        if(flameFuel < prevFuel)
+        if(flameFuel < prevFuel || flameFuel > prevFuel)
         {
             prevFuel = flameFuel;
             ChangeLights();
