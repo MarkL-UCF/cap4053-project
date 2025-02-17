@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    
+    private SpriteRenderer sprite;
 
     private Vector2 moveInput;
     
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         
     }
 
@@ -44,6 +45,17 @@ public class PlayerController : MonoBehaviour
 
         moveInput.x = Input.GetAxisRaw("Horizontal"); // X input
         moveInput.y = Input.GetAxisRaw("Vertical"); // Y input
+
+        //Handle which direction the sprite faces
+        if(moveInput.x > 0) //Face right
+        {
+            sprite.flipX = false;
+        }
+        else if(moveInput.x < 0) //Face left
+        {
+            sprite.flipX = true;
+        }
+        //No horizontal movement just uses whatever the set direction was last
 
         //Prevent weird behavior causing fast diagonal movement
         //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
