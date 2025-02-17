@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Flame not found! Make sure the player has the 'Player' tag.");
+            Debug.LogError("Flame not found! Make sure the flame has the 'Flame' tag.");
         }
 
 
