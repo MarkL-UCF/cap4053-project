@@ -48,6 +48,14 @@ public class flameHealth : MonoBehaviour
     {
         primaryLight.AlterLight(maxFlameFuel, flameFuel);
     }
+
+    public void FlameDamage(int amount)
+    {
+        flameFuel -= amount;
+
+        //checks if flame is dead
+        KillFlame();
+    }
     void KillFlame()
     {
         if(flameFuel <= 0)
@@ -55,4 +63,5 @@ public class flameHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

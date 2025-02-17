@@ -18,7 +18,9 @@ public class ProjectileScript : MonoBehaviour
         if (collision.CompareTag("Flame"))
         {
             Debug.Log("Flame hit!");
-            // TODO: Implement player damage logic
+            // TODO: Implement Flame damage logic
+            flameHealth Flame = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
+            Flame.FlameDamage(100);
             Destroy(gameObject); // Destroy the projectile on impact
         }
        
