@@ -13,12 +13,14 @@ public class RoomManager : MonoBehaviour
     private BoxCollider2D trigger;
 
     public EnemyAtlas enemyAtlas;
+    public WaveAtlas waveAtlas;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>();
         enemyAtlas = GameObject.FindGameObjectWithTag("Atlas (Enemy)").GetComponent <EnemyAtlas>();
+        waveAtlas = GameObject.FindGameObjectWithTag("Atlas (Wave)").GetComponent<WaveAtlas>();
         trigger = this.GetComponent<BoxCollider2D>();
     }
 
@@ -42,9 +44,16 @@ public class RoomManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("3 seconds have passed, starting encounter now...");
 
+        /*
         GameObject InstantiatedEnemy1 = Instantiate(enemyAtlas.eAtlas[1], spawn1.transform.position, spawn1.transform.rotation);
         GameObject InstantiatedEnemy2 = Instantiate(enemyAtlas.eAtlas[1], spawn2.transform.position, spawn2.transform.rotation);
         GameObject InstantiatedEnemy3 = Instantiate(enemyAtlas.eAtlas[0], spawn3.transform.position, spawn3.transform.rotation);
         GameObject InstantiatedEnemy4 = Instantiate(enemyAtlas.eAtlas[2], spawn4.transform.position, spawn4.transform.rotation);
+        */
+
+        GameObject InstantiatedEnemy1 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s1[0]], spawn1.transform.position, spawn1.transform.rotation);
+        GameObject InstantiatedEnemy2 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s2[0]], spawn2.transform.position, spawn2.transform.rotation);
+        GameObject InstantiatedEnemy3 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s3[0]], spawn3.transform.position, spawn3.transform.rotation);
+        GameObject InstantiatedEnemy4 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s4[0]], spawn4.transform.position, spawn4.transform.rotation);
     }
 }

@@ -17,7 +17,7 @@ public class WavesReader : MonoBehaviour
     void ReadCSV()
     {
         //Note: if the file path changes, you need to edit it here
-        //Also note: the file can not be open in any other software when running the game (ex: Excel)
+        //Also note: DO NOT EDIT THE CSV WITH EXCEL, IT WILL BREAK THE FORMATTING
         StreamReader sr = new StreamReader("Data/waves.csv");
         bool EOF = false;
         while (!EOF)
@@ -29,7 +29,7 @@ public class WavesReader : MonoBehaviour
                 break;
             }
             var vals = line.Split(',');
-            //get data here
+            
 
             //format of waves.csv
 
