@@ -11,6 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     public Transform BulletOrigin;
     private float lastShotTime = 0f;
     public float firerate = 0.02f;
+    public float spread;
     public float projectileSpeed;
 
     // Start is called before the first frame update
