@@ -13,7 +13,6 @@ public class RoomManager : MonoBehaviour
 
     public List<GameObject> activeEnemies = new List<GameObject>();
 
-    private BoxCollider2D PlayerCollider;
     private BoxCollider2D trigger;
 
     public EnemyAtlas enemyAtlas;
@@ -22,7 +21,6 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>();
         enemyAtlas = GameObject.FindGameObjectWithTag("Atlas (Enemy)").GetComponent <EnemyAtlas>();
         waveAtlas = GameObject.FindGameObjectWithTag("Atlas (Wave)").GetComponent<WaveAtlas>();
         trigger = this.GetComponent<BoxCollider2D>();
@@ -35,11 +33,14 @@ public class RoomManager : MonoBehaviour
     }
 
     //Check for collision to start the encounter
-    private void OnTriggerEnter2D(Collider2D PlayerCollider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
+        if(collider.CompareTag("Player"))
+        {
             Debug.Log("Encounter triggered");
             trigger.enabled = false; //remove collider for runtime efficiency
             StartCoroutine(DoEncounter());
+        }
     }
 
     //Perform the actual encounter
