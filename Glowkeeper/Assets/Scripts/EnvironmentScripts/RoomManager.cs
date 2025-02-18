@@ -8,6 +8,10 @@ public class RoomManager : MonoBehaviour
     public GameObject spawn2;
     public GameObject spawn3;
     public GameObject spawn4;
+    public GameObject spawn5;
+    public GameObject spawn6;
+
+    public List<GameObject> activeEnemies = new List<GameObject>();
 
     private BoxCollider2D PlayerCollider;
     private BoxCollider2D trigger;
@@ -44,6 +48,9 @@ public class RoomManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("3 seconds have passed, starting encounter now...");
 
+        int waveID = Random.Range(0, waveAtlas.f1PoolSize);
+        Debug.Log("Selected Wave ID: " + waveID);
+
         /*
         GameObject InstantiatedEnemy1 = Instantiate(enemyAtlas.eAtlas[1], spawn1.transform.position, spawn1.transform.rotation);
         GameObject InstantiatedEnemy2 = Instantiate(enemyAtlas.eAtlas[1], spawn2.transform.position, spawn2.transform.rotation);
@@ -51,9 +58,81 @@ public class RoomManager : MonoBehaviour
         GameObject InstantiatedEnemy4 = Instantiate(enemyAtlas.eAtlas[2], spawn4.transform.position, spawn4.transform.rotation);
         */
 
-        GameObject InstantiatedEnemy1 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s1[0]], spawn1.transform.position, spawn1.transform.rotation);
-        GameObject InstantiatedEnemy2 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s2[0]], spawn2.transform.position, spawn2.transform.rotation);
-        GameObject InstantiatedEnemy3 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s3[0]], spawn3.transform.position, spawn3.transform.rotation);
-        GameObject InstantiatedEnemy4 = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s4[0]], spawn4.transform.position, spawn4.transform.rotation);
+        GameObject enemy; 
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s2[waveID]], spawn2.transform.position, spawn2.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s3[waveID]], spawn3.transform.position, spawn3.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s4[waveID]], spawn4.transform.position, spawn4.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s5[waveID]], spawn5.transform.position, spawn5.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s6[waveID]], spawn6.transform.position, spawn6.transform.rotation);
+        activeEnemies.Add(enemy);
+
+        //wait for the enemies to be defeated
+        while (activeEnemies.Count > 0)
+        {
+            //check for null to see if enemy is destroyed
+            activeEnemies.RemoveAll(enemy => enemy == null);
+
+            //wait a frame before checking again
+            yield return null;
+        }
+
+        Debug.Log("Enemies cleared, spawning second wave...");
+
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s2[waveID]], spawn2.transform.position, spawn2.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s3[waveID]], spawn3.transform.position, spawn3.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s4[waveID]], spawn4.transform.position, spawn4.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s5[waveID]], spawn5.transform.position, spawn5.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s6[waveID]], spawn6.transform.position, spawn6.transform.rotation);
+        activeEnemies.Add(enemy);
+
+        //wait for the enemies to be defeated
+        while (activeEnemies.Count > 0)
+        {
+            //check for null to see if enemy is destroyed
+            activeEnemies.RemoveAll(enemy => enemy == null);
+
+            //wait a frame before checking again
+            yield return null;
+        }
+
+        Debug.Log("Enemies cleared, spawning final wave...");
+
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s2[waveID]], spawn2.transform.position, spawn2.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s3[waveID]], spawn3.transform.position, spawn3.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s4[waveID]], spawn4.transform.position, spawn4.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s5[waveID]], spawn5.transform.position, spawn5.transform.rotation);
+        activeEnemies.Add(enemy);
+        enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s6[waveID]], spawn6.transform.position, spawn6.transform.rotation);
+        activeEnemies.Add(enemy);
+
+        //wait for the enemies to be defeated
+        while (activeEnemies.Count > 0)
+        {
+            //check for null to see if enemy is destroyed
+            activeEnemies.RemoveAll(enemy => enemy == null);
+
+            //wait a frame before checking again
+            yield return null;
+        }
+
+        Debug.Log("Room Complete");
     }
+
 }
