@@ -19,7 +19,7 @@ public class Enemy2 : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            Debug.LogError("Flame not found! Make sure the player has the 'Flame' tag.");
         }
 
         // Start shooting projectiles at intervals
