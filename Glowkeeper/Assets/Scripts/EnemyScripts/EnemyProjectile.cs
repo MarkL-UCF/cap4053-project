@@ -23,6 +23,11 @@ public class ProjectileScript : MonoBehaviour
             Flame.FlameDamage(100);
             Destroy(gameObject); // Destroy the projectile on impact
         }
+        else if(collision.CompareTag("PlayerProjectile"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
        
     }
 }
