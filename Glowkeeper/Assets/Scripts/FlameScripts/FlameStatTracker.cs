@@ -20,6 +20,7 @@ public class FlameStatTracker : MonoBehaviour
         
     }
 
+    // Store fuel at the end of room
     void StoreFuel(float fuel)
     {
         flameFuel = fuel; 

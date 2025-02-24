@@ -6,9 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Flame
-  - PrimeLight
   - Atlas (Enemy)
   - Atlas (Wave)
+  - Player Light
+  - Light Ring (75%)
+  - Light Ring (50%)
+  - Light Ring (25%)
+  - Global Stat Tracker (Flame)
   layers:
   - Default
   - TransparentFX
