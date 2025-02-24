@@ -11,18 +11,28 @@ public class RoomManager : MonoBehaviour
     public GameObject spawn5;
     public GameObject spawn6;
 
+    private GameObject roomManager;
+
+    public GameObject flamePrefab;
+    public GameObject flame;
+    public GameObject flameAnchor;
+
     public List<GameObject> activeEnemies = new List<GameObject>();
 
     private BoxCollider2D trigger;
 
+
     public EnemyAtlas enemyAtlas;
     public WaveAtlas waveAtlas;
+    public flameHealth flameHP;
 
     // Start is called before the first frame update
     void Start()
     {
+        roomManager = gameObject;
         enemyAtlas = GameObject.FindGameObjectWithTag("Atlas (Enemy)").GetComponent <EnemyAtlas>();
         waveAtlas = GameObject.FindGameObjectWithTag("Atlas (Wave)").GetComponent<WaveAtlas>();
+        flameAnchor = roomManager.transform.Find("Flame Anchor").gameObject;
         trigger = this.GetComponent<BoxCollider2D>();
     }
 
@@ -46,6 +56,9 @@ public class RoomManager : MonoBehaviour
     //Perform the actual encounter
     IEnumerator DoEncounter()
     {
+        flame = Instantiate(flamePrefab, flameAnchor.transform.position, flameAnchor.transform.rotation);
+        //to do: set this script as the room manager in the instantiated flame
+
         yield return new WaitForSeconds(3);
         Debug.Log("3 seconds have passed, starting encounter now...");
 
@@ -134,6 +147,8 @@ public class RoomManager : MonoBehaviour
         }
 
         Debug.Log("Room Complete");
+
+
     }
 
 }

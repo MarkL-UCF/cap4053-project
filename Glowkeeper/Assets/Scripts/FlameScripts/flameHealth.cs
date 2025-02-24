@@ -14,19 +14,23 @@ public class flameHealth : MonoBehaviour
     //max flame health
     public float maxFlameFuel;
     
-    public Image fuelBar;
-
- 
-    LightHealth primaryLight;
-
+    public Image fuelBar; //To Do: move fuelBar related stuff to FlameStatTracker so it persists inbetween rooms
+    public LightLevelManager LLM;
+    public RoomManager roomManager;
+    public FlameStatTracker FlameStats;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        maxFlameFuel = flameFuel;
+        FlameStats = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
+
+        //import stored stats into instantiated object
+        flameFuel = FlameStats.flameFuel;
+        maxFlameFuel = FlameStats.maxFlameFuel;
         prevFuel = flameFuel;
-        primaryLight = GameObject.FindGameObjectWithTag("PrimeLight").GetComponent<LightHealth>();  
+
+        LLM = GameObject.FindGameObjectWithTag("Flame").GetComponent<LightLevelManager>();  
     }
 
     // Update is called once per frame
@@ -46,7 +50,7 @@ public class flameHealth : MonoBehaviour
 
     void ChangeLights()
     {
-        primaryLight.AlterLight(maxFlameFuel, flameFuel);
+        LLM.AlterLight(maxFlameFuel, flameFuel);
     }
 
     public void FlameDamage(int amount)
