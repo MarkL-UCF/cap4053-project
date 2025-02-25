@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScript : MonoBehaviour
+public class enemy_player_attack : MonoBehaviour
 {
     public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
     public int damageAmount = 10; // Damage per second
@@ -26,14 +26,14 @@ public class EnemyScript : MonoBehaviour
         agent.speed = moveSpeed;
 
         // Find the player GameObject by tag
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
             flame = playerObj.transform;
         }
         else
         {
-            Debug.LogError("Flame not found! Make sure the flame has the 'Flame' tag.");
+            Debug.LogError("Player not found! Make sure the flame has the 'Player' tag.");
         }
     }
 
@@ -49,13 +49,13 @@ public class EnemyScript : MonoBehaviour
     // Continuously damage the flame while touching it
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Flame") && Time.time >= nextDamageTime)
+        if (collision.gameObject.CompareTag("Player") && Time.time >= nextDamageTime)
         {
             flameHealth flameScript = collision.gameObject.GetComponent<flameHealth>();
             if (flameScript != null)
             {
                 flameScript.FlameDamage(damageAmount);
-                Debug.Log("Enemy is draining the flame's health!");
+                Debug.Log("Enemy is draining the player's health!");
                 nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
             }
         }
