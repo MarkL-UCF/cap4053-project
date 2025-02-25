@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3539215217265270}
   m_Layer: 7
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1a0c792c1193842a1c51c72fb2ef52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0, z: 0}
-  projectileSpeed: 100
+  projectileSize: 1
 --- !u!50 &5341630012581636736
 Rigidbody2D:
   serializedVersion: 4

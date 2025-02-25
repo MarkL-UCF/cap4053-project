@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public float moveSpeed = 0.8f; // Speed of the enemy
+    public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
     public int damageAmount = 10; // Damage per second
     public float damageRate = 1f; // Time between damage ticks
     private Transform flame; // Reference to the player
-    private Rigidbody2D rb;
     private float nextDamageTime = 0f; // Timer for damage application
+
+    [SerializeField] Transform target;
+
+    NavMeshAgent agent;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.mass = 1000f;
+        // Set up the NavMeshAgent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        // Adjust the agent's speed based on the moveSpeed variable
+        agent.speed = moveSpeed;
 
         // Find the player GameObject by tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
@@ -28,12 +37,12 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (flame != null)
         {
-            Vector2 direction = (flame.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
+            // Set the destination to the flame's position using the NavMeshAgent
+            agent.SetDestination(flame.position);
         }
     }
 

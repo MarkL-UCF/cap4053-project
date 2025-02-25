@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -10,8 +11,11 @@ public class PlayerWeapon : MonoBehaviour
     public GameObject bullet;
     public Transform BulletOrigin;
     private float lastShotTime = 0f;
-    public float firerate = 0.02f;
+    public float firerate;
+    public float numProjectiles;
+    public float spread;
     public float projectileSpeed;
+    public float projectileSize;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +27,8 @@ public class PlayerWeapon : MonoBehaviour
     void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //Get the mouse position
-        Vector3 aimRotation = mousePos - transform.position; //Get rotation vector
 
-        float rotZ = Mathf.Atan2(aimRotation.y, aimRotation.x) * Mathf.Rad2Deg; // Calculate angle
-
-        transform.rotation = Quaternion.Euler(0, 0, rotZ); //Perform the rotation
-
-        //Left click to fire
+        //Left click to fire, check that enough time has passed since last
         if (Input.GetMouseButton(0) && Time.time > lastShotTime + firerate)
             Fire();
     }
@@ -37,17 +36,36 @@ public class PlayerWeapon : MonoBehaviour
     //Handles firing the weapon
     void Fire()
     {
-        //Reset canFire if enough time has passed
-        
-        
+
+        Vector3 gunPos = transform.position;
+        var direction = new Vector2(mousePos.x - gunPos.x, mousePos.y - gunPos.y);
+        transform.up = direction;
+
+        //apply bullet spread
+        float selectedSpread = Random.Range(-spread, spread);
+        BulletOrigin.localRotation = Quaternion.Euler(new Vector3(BulletOrigin.localRotation.x, BulletOrigin.localRotation.y, selectedSpread));
         //Create a bullet object
-        GameObject InstantiatedBullet = Instantiate(bullet, BulletOrigin.position, Quaternion.identity);
+        for (int i = 0; i < numProjectiles; i++)
+        {
+            
+            if (i != 0)//adjust angle/spread if more than one bullet
+            {
+                BulletOrigin.localRotation = Quaternion.Euler(new Vector3(BulletOrigin.localRotation.x, BulletOrigin.localRotation.y, selectedSpread + (5*i)));
+            }
+            //create bullet
+            GameObject InstantiatedBullet = Instantiate(bullet, BulletOrigin.position, BulletOrigin.rotation);
+            
+            //set the projectile's speed
+            InstantiatedBullet.GetComponent<Rigidbody2D>().velocity = BulletOrigin.up.normalized * projectileSpeed;
 
-        //Pass on needed values to the bullet's script
-        var bulletScript = InstantiatedBullet.GetComponent<PlayerProjectile>();
-        bulletScript.mousePos = mousePos;
-        bulletScript.projectileSpeed = projectileSpeed;
+            //Pass on needed values to the bullet's script
+            var bulletScript = InstantiatedBullet.GetComponent<PlayerProjectile>();
+            bulletScript.projectileSize = projectileSize;
+            
+        }
 
+        //start cooldown
         lastShotTime = Time.time;
     }
 }
+
