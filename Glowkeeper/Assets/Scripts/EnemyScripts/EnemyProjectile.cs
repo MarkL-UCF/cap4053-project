@@ -25,6 +25,8 @@ public class ProjectileScript : MonoBehaviour
         }
         else if(collision.CompareTag("Player")){
             Debug.Log("Player hit!");
+            playerHealth Player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerHealth>();
+            Player.PlayerDamage(0.5f);
             Destroy(gameObject); 
         }
         else if(collision.CompareTag("PlayerProjectile"))
