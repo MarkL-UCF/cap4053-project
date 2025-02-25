@@ -11,18 +11,27 @@ public class RoomManager : MonoBehaviour
     public GameObject spawn5;
     public GameObject spawn6;
 
+    public GameObject flamePrefab;
+    public GameObject flame;
+    public GameObject flameAnchor;
+
     public List<GameObject> activeEnemies = new List<GameObject>();
 
     private BoxCollider2D trigger;
 
+
     public EnemyAtlas enemyAtlas;
     public WaveAtlas waveAtlas;
+    public flameHealth flameHP;
+    public FlameStatTracker flameStatTracker;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyAtlas = GameObject.FindGameObjectWithTag("Atlas (Enemy)").GetComponent <EnemyAtlas>();
         waveAtlas = GameObject.FindGameObjectWithTag("Atlas (Wave)").GetComponent<WaveAtlas>();
+        flameStatTracker = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
+        flameAnchor = gameObject.transform.Find("Anchors").transform.Find("Flame Anchor").gameObject;
         trigger = this.GetComponent<BoxCollider2D>();
     }
 
@@ -46,6 +55,19 @@ public class RoomManager : MonoBehaviour
     //Perform the actual encounter
     IEnumerator DoEncounter()
     {
+        //instantiate flame is it has not been extinguished
+        if(flameStatTracker.isExtinguished == false)
+        {
+            flame = Instantiate(flamePrefab, flameAnchor.transform.position, flameAnchor.transform.rotation);
+            flameHP = flame.GetComponent<flameHealth>();
+            flameHP.roomManager = this;
+
+            yield return null; //force the flame to fully instantiate before calling anything on it
+
+            flameHP.ChangeLights(); //update light level based on previous values
+        }
+        
+
         yield return new WaitForSeconds(3);
         Debug.Log("3 seconds have passed, starting encounter now...");
 
@@ -133,7 +155,14 @@ public class RoomManager : MonoBehaviour
             yield return null;
         }
 
+        if(flameStatTracker.isExtinguished == false)
+        {
+            flameHP.DespawnFlame();
+        }
+
         Debug.Log("Room Complete");
+
+        
     }
 
 }
