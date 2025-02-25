@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8760053133113983754}
   m_Layer: 0
   m_Name: Light 50%
-  m_TagString: Untagged
+  m_TagString: Light Ring (50%)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8447610619320554617}
   m_Layer: 0
   m_Name: Light 25%
-  m_TagString: Untagged
+  m_TagString: Light Ring (25%)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 4948515273043907140}
   m_Layer: 0
   m_Name: Light 75%
-  m_TagString: Untagged
+  m_TagString: Light Ring (75%)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,11 +258,11 @@ GameObject:
   - component: {fileID: 3698420933037792519}
   - component: {fileID: 9083143595259225273}
   - component: {fileID: 4607980876541714375}
-  - component: {fileID: 7492130582670040234}
   - component: {fileID: 4960277548807244074}
+  - component: {fileID: 6182074088904927938}
   m_Layer: 0
   m_Name: PHFlame
-  m_TagString: Untagged
+  m_TagString: Flame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 7043194760107580043}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.004, y: -0.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -384,22 +384,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8964d9ba9d78ee4498b8c986c782db37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameFuel: 1000
+  flameFuel: 0
   prevFuel: 0
-  maxFlameFuel: 1000
+  maxFlameFuel: 0
   fuelBar: {fileID: 0}
---- !u!114 &7492130582670040234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7043194760107580043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc46830003f3f7e47bc713b534db12de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  LLM: {fileID: 0}
+  roomManager: {fileID: 0}
+  FlameStats: {fileID: 0}
 --- !u!50 &4960277548807244074
 Rigidbody2D:
   serializedVersion: 4
@@ -427,3 +418,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &6182074088904927938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043194760107580043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5dea9b91bb59340b07b163526b168d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

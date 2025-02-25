@@ -24,19 +24,20 @@ public class flameHealth : MonoBehaviour
     void Start()
     {
         FlameStats = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
+        LLM = GameObject.FindGameObjectWithTag("Flame").GetComponent<LightLevelManager>();
 
         //import stored stats into instantiated object
         flameFuel = FlameStats.flameFuel;
         maxFlameFuel = FlameStats.maxFlameFuel;
         prevFuel = flameFuel;
 
-        LLM = GameObject.FindGameObjectWithTag("Flame").GetComponent<LightLevelManager>();  
+        //Debug.Log("Flame Instantiated");
     }
 
     // Update is called once per frame
     void Update()
     {
-        fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
+        //fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
 
         if(flameFuel < prevFuel || flameFuel > prevFuel)
         {
@@ -48,9 +49,9 @@ public class flameHealth : MonoBehaviour
     }
 
 
-    void ChangeLights()
+    public void ChangeLights()
     {
-        LLM.AlterLight(maxFlameFuel, flameFuel);
+        LLM.AlterLight(flameFuel, maxFlameFuel);
     }
 
     public void FlameDamage(int amount)
@@ -60,12 +61,26 @@ public class flameHealth : MonoBehaviour
         //checks if flame is dead
         KillFlame();
     }
+
+    //Called when flame runs out of fuel
     void KillFlame()
     {
         if(flameFuel <= 0)
         {
-            Destroy(gameObject);
+            FlameStats.isExtinguished = true; //prevent later rooms from reinstantiating the flame
+            LLM.AlterLight(0, 1); //turn out the lights
+            Destroy(gameObject); //destroy the instantiated game object
         }
+    }
+
+    //Called at the end of wave 
+    public void DespawnFlame()
+    {
+        FlameStats.flameFuel = flameFuel; //record fuel
+
+        LLM.AlterLight(1, 1); //restore light to how it is out of combat
+
+        Destroy(gameObject); //destroy the instantiated game object
     }
 
 }
