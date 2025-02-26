@@ -6,21 +6,25 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Vector3 direction;
-    private Vector3 rotation;
-    public Vector3 mousePos;
-    public float projectileSpeed = 300f;
+
+    public float projectileSize = 1;
     private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        Vector3 direction = mousePos - transform.position;
-        Vector3 rotation = transform.position - mousePos;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed;
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+        //Handles scaling projectile
+        if (projectileSize != 1)
+        {
+            transform.localScale = (new Vector3(1, 1, 1)) * projectileSize;
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        
     }
 
     private void Update()
@@ -47,6 +51,14 @@ public class PlayerProjectile : MonoBehaviour
             Destroy(gameObject);
 
             // destroy the projectile as well
+            Destroy(collision.gameObject);
+        }
+        //tag enemy projectile object
+        else if(collision.gameObject.CompareTag("EnemyProjectile"))//if two opposing projectiles collide, they cancel each other
+        {
+            //destroy player projectile on impact
+            Destroy(gameObject);
+            //destroy enemy projectile
             Destroy(collision.gameObject);
         }
 

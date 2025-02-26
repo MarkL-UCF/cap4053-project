@@ -55,7 +55,12 @@ public class playerHealth : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+    }
 
+    public void PlayerDamage(float amount)
+    {
+        health -= amount;
+        
         //checks if player is dead
         if (health <= 0)
         {

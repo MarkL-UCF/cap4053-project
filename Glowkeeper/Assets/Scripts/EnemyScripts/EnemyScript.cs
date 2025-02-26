@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public float moveSpeed = 0.8f; // Speed of the enemy
-    public GameObject projectilePrefab; // Projectile Prefab
-    public float fireRate = 1f; // Time between shots
-    public float projectileSpeed = 2f; // Speed of the projectile
+    public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
+    public int damageAmount = 10; // Damage per second
+    public float damageRate = 1f; // Time between damage ticks
     private Transform flame; // Reference to the player
-    private Rigidbody2D rb;
+    private float nextDamageTime = 0f; // Timer for damage application
+
+    [SerializeField] Transform target;
+
+    NavMeshAgent agent;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        // Set up the NavMeshAgent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
 
-        rb.mass = 1000f; 
-        
+        // Adjust the agent's speed based on the moveSpeed variable
+        agent.speed = moveSpeed;
+
         // Find the player GameObject by tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
         if (playerObj != null)
@@ -25,19 +33,31 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Flame not found! Make sure the player has the 'Player' tag.");
+            Debug.LogError("Flame not found! Make sure the flame has the 'Flame' tag.");
         }
-
-
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (flame != null)
         {
-            Vector2 direction = (flame.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
+            // Set the destination to the flame's position using the NavMeshAgent
+            agent.SetDestination(flame.position);
         }
     }
 
+    // Continuously damage the flame while touching it
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Flame") && Time.time >= nextDamageTime)
+        {
+            flameHealth flameScript = collision.gameObject.GetComponent<flameHealth>();
+            if (flameScript != null)
+            {
+                flameScript.FlameDamage(damageAmount);
+                Debug.Log("Enemy is draining the flame's health!");
+                nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
+            }
+        }
+    }
 }
