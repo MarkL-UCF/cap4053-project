@@ -8,6 +8,7 @@ public class AbilityTemplate : PlayerAbility
      public override void Activate(GameObject parent)
      {
           //apply change
+
           
      }      
      public override void BeginCooldown(GameObject parent)

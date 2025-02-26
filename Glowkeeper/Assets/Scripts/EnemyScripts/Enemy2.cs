@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
+    public float moveSpeed = 0.8f; // Speed of the enemy
     public GameObject projectilePrefab; // Projectile Prefab
     public float fireRate = 2f; // Time between shots
     public float projectileSpeed = 3f; // Speed of the projectile
