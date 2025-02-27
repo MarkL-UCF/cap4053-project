@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
+    public Boolean isShadow;
+    public float enemyHealth;
+    public float moveSpeed = 0.8f; // Speed of the enemy
     public GameObject projectilePrefab; // Projectile Prefab
     public float fireRate = 2f; // Time between shots
     public float projectileSpeed = 3f; // Speed of the projectile
@@ -26,6 +30,16 @@ public class Enemy2 : MonoBehaviour
         InvokeRepeating("Shoot", 1f, fireRate);
     }
 
+    public void EnemyDamage(int amount)
+    {
+        enemyHealth -= amount;
+
+        //checks if player is dead
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);//destroys player object
+        }
+    }
     void Shoot()
     {
         if (flame != null)
