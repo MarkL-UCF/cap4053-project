@@ -15,6 +15,8 @@ public class RoomManager : MonoBehaviour
     public GameObject flame;
     public GameObject flameAnchor;
 
+    public List<GameObject> doors = new List<GameObject>();
+
     public List<GameObject> activeEnemies = new List<GameObject>();
 
     private BoxCollider2D trigger;
@@ -55,6 +57,13 @@ public class RoomManager : MonoBehaviour
     //Perform the actual encounter
     IEnumerator DoEncounter()
     {
+        //lock all doors
+        foreach(GameObject door in doors)
+        {
+            DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
+            doorScript.LockDoor();
+        }
+
         //instantiate flame is it has not been extinguished
         if(flameStatTracker.isExtinguished == false)
         {
@@ -158,6 +167,13 @@ public class RoomManager : MonoBehaviour
         if(flameStatTracker.isExtinguished == false)
         {
             flameHP.DespawnFlame();
+        }
+
+        //unlock all doors
+        foreach (GameObject door in doors)
+        {
+            DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
+            doorScript.UnlockDoor();
         }
 
         Debug.Log("Room Complete");
