@@ -6,10 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Flame
-  - PrimeLight
-  - EnemyProjectile
-  - Flash
-  - PlayerProjectile
+  - Atlas (Enemy)
+  - Atlas (Wave)
+  - Player Light
+  - Light Ring (75%)
+  - Light Ring (50%)
+  - Light Ring (25%)
+  - Global Stat Tracker (Flame)
   layers:
   - Default
   - TransparentFX
@@ -44,6 +47,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Environment Background
+    uniqueID: 4037720595
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

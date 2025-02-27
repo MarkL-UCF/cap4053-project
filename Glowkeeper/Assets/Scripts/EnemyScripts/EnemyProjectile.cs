@@ -15,13 +15,19 @@ public class ProjectileScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the projectile hits the player
-        if (collision.CompareTag("Flame"))
+        if (collision.CompareTag("Flame") )
         {
             Debug.Log("Flame hit!");
             // TODO: Implement Flame damage logic
             flameHealth Flame = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
             Flame.FlameDamage(100);
             Destroy(gameObject); // Destroy the projectile on impact
+        }
+        else if(collision.CompareTag("Player")){
+            Debug.Log("Player hit!");
+            playerHealth Player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerHealth>();
+            Player.PlayerDamage(0.5f);
+            Destroy(gameObject); 
         }
         else if(collision.CompareTag("PlayerProjectile"))
         {

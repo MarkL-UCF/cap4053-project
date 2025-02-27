@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3832657607847789090}
   - component: {fileID: 3674361035135512281}
   - component: {fileID: 7232912345465446280}
-  - component: {fileID: -2219586422794260493}
+  - component: {fileID: 4869802284587117363}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: Enemy_range_flame
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.17, y: 0.41, z: 0}
-  m_LocalScale: {x: 1.6303, y: 1.6112, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 2128252873
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 551d1d778534d45548c59c60793039d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4d2390e368bc4320a2fe921f465cd69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 6.546875, y: 9.296875}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-2219586422794260493
+--- !u!114 &4869802284587117363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,12 +168,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7869933524185208323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abfa0fa4a1d54382af8bed446dd5936, type: 3}
+  m_Script: {fileID: 11500000, guid: 9604deea02eaf43878318d3132cd43d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isShadow: 1
   enemyHealth: 0
   moveSpeed: 0.8
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
-  fireRate: 2
-  projectileSpeed: 5
+  fireRate: 4
+  projectileSpeed: 2
