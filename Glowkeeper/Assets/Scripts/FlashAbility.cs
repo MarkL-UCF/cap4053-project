@@ -6,14 +6,14 @@ using UnityEngine.Rendering.Universal;
 [CreateAssetMenu]
 public class FlashAbility : PlayerAbility
 {
-    Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
-    EnemyScript Enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
-    Enemy2 Enemy2 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy2>();
-
+   
     public float lastUse = 0f;
     public override void Activate(GameObject parent)
     {
         Debug.Log("Ability Activated!");
+        Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
+        EnemyScript Enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
+        Enemy2 Enemy2 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy2>();
         //apply change
         Flash.intensity = 10;
 
@@ -31,6 +31,9 @@ public class FlashAbility : PlayerAbility
     }
     public override void BeginCooldown(GameObject parent)
     {
+        Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
+        EnemyScript Enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
+        Enemy2 Enemy2 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy2>();
         Flash.intensity = 0;
         //set back to normal
         Enemy1.moveSpeed += 0.3f;
