@@ -6,41 +6,56 @@ using UnityEngine.Rendering.Universal;
 [CreateAssetMenu]
 public class FlashAbility : PlayerAbility
 {
-   
-    public float lastUse = 0f;
+
+    private GameObject[] Enemies;
+
     public override void Activate(GameObject parent)
     {
         Debug.Log("Ability Activated!");
+
         Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
-        EnemyScript Enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
-        Enemy2 Enemy2 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy2>();
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
         //apply change
-        Flash.intensity = 10;
+        Flash.enabled = true;
 
         //Enemies are slowed/slower fire rate
-        Enemy1.moveSpeed -= 0.3f;
-        Enemy2.moveSpeed -= 0.3f;
+        foreach (GameObject enemy in Enemies)
+        {
+            EnemyScript enemy1 = enemy.GetComponent<EnemyScript>();
+            Enemy2 enemy2 = enemy.gameObject.GetComponent<Enemy2>();
+            enemy1.moveSpeed -= 0.8f;
+            enemy2.moveSpeed -= 0.8f;
+            enemy1.fireRate += 0.8f;
+            enemy2.fireRate += 0.8f;
 
-        Enemy1.fireRate += 0.5f;
-        Enemy2.fireRate += 0.5f;
 
-        lastUse = Time.time;
+            if(enemy1.isShadow)
+            {
+                enemy1.EnemyDamage(2);
+            }
+            if (enemy2.isShadow)
+            {
+                enemy2.EnemyDamage(2);
+            }
 
-        
+        }
 
     }
     public override void BeginCooldown(GameObject parent)
     {
-        Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
-        EnemyScript Enemy1 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
-        Enemy2 Enemy2 = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy2>();
-        Flash.intensity = 0;
-        //set back to normal
-        Enemy1.moveSpeed += 0.3f;
-        Enemy2.moveSpeed += 0.3f;
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        Enemy1.fireRate -= 0.5f;
-        Enemy2.fireRate -= 0.5f;
+        //Set back to normal stats
+        foreach (GameObject enemy in Enemies)
+        {
+            EnemyScript enemy1 = enemy.GetComponent<EnemyScript>();
+            Enemy2 enemy2 = enemy.gameObject.GetComponent<Enemy2>();
+            enemy1.moveSpeed += 0.8f;
+            enemy2.moveSpeed += 0.8f;
+            enemy1.fireRate -= 0.8f;
+            enemy2.fireRate -= 0.8f;
+        }
 
 
     }

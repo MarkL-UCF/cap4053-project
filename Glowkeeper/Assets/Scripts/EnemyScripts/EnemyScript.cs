@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public Boolean isShadow;
+    public float enemyHealth;
     public float moveSpeed = 0.8f; // Speed of the enemy
     public GameObject projectilePrefab; // Projectile Prefab
     public float fireRate = 1f; // Time between shots
@@ -29,6 +32,16 @@ public class EnemyScript : MonoBehaviour
         }
 
 
+    }
+    public void EnemyDamage(int amount)
+    {
+        enemyHealth -= amount;
+
+        //checks if player is dead
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);//destroys player object
+        }
     }
 
     void FixedUpdate()

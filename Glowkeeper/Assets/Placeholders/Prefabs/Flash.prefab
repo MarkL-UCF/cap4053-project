@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4895298116677002477}
   - component: {fileID: 4898069440810651397}
+  - component: {fileID: 662297884172313436}
   m_Layer: 0
   m_Name: Flash
   m_TagString: Flash
@@ -82,3 +83,16 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &662297884172313436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199095775820569140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6f6ac84157f245b91c7e445f62229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
