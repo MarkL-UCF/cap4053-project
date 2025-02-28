@@ -540,8 +540,10 @@ MonoBehaviour:
   flamePrefab: {fileID: 7043194760107580043, guid: b64cd41127d22954bb570f143b7b3691, type: 3}
   flame: {fileID: 0}
   flameAnchor: {fileID: 0}
+  warnIcon: {fileID: 5761336596183413124, guid: 31da0c7cca64ea34199b68898e922f91, type: 3}
   doors: []
   activeEnemies: []
+  activeWarnings: []
   enemyAtlas: {fileID: 0}
   waveAtlas: {fileID: 0}
   flameHP: {fileID: 0}
