@@ -8,7 +8,7 @@ public class enemy_player_attack : MonoBehaviour
     public float enemyHealth;
     public float maxEnemyHealth;
     public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
-    public int damageAmount = 10; // Damage per second
+    public float damageAmount = 0.5f; // Damage per second
     public float damageRate = 1f; // Time between damage ticks
     private Transform flame; // Reference to the player
     private float nextDamageTime = 0f; // Timer for damage application
@@ -65,10 +65,10 @@ public class enemy_player_attack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && Time.time >= nextDamageTime)
         {
-            flameHealth flameScript = collision.gameObject.GetComponent<flameHealth>();
-            if (flameScript != null)
+            playerHealth playerScript = collision.gameObject.GetComponent<playerHealth>();
+            if (playerScript != null)
             {
-                flameScript.FlameDamage(damageAmount);
+                playerScript.PlayerDamage(damageAmount);
                 Debug.Log("Enemy is draining the player's health!");
                 nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
             }
