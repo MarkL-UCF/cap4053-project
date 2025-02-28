@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
+    public float enemyHealth;
+    public float maxEnemyHealth;
+    public float moveSpeed; // Speed of the enemy, adjusted for a slower movement
     public int damageAmount = 10; // Damage per second
     public float damageRate = 1f; // Time between damage ticks
     private Transform flame; // Reference to the player
@@ -17,6 +20,8 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
+
         // Set up the NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -43,6 +48,17 @@ public class EnemyScript : MonoBehaviour
         {
             // Set the destination to the flame's position using the NavMeshAgent
             agent.SetDestination(flame.position);
+        }
+    }
+
+    public void EnemyDamage(int amount)
+    {
+        enemyHealth -= amount;
+
+        //checks if player is dead
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);//destroys player object
         }
     }
 

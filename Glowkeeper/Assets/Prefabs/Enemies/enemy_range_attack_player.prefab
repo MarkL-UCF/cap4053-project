@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 990180331360646447}
   m_Layer: 0
   m_Name: enemy_range_attack_player
-  m_TagString: Untagged
+  m_TagString: EnemyPlayerR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c323a7bebfd641978dcd7ace992ec05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 0
+  maxEnemyHealth: 10
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
   fireRate: 2
   projectileSpeed: 3

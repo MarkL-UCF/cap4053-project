@@ -8,6 +8,7 @@ public class AbilityHolder : MonoBehaviour
     public PlayerAbility ability;
     float cooldownTime;
     float activeTime;
+    float lastTime = 0f;
 
     enum AbilityState
     {
@@ -24,7 +25,7 @@ public class AbilityHolder : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                if (Input.GetKeyDown(key))
+                if (Input.GetKeyDown(key) && Time.time > lastTime + cooldownTime)
                 {
                     ability.Activate(gameObject);
                     state = AbilityState.active;
@@ -41,14 +42,11 @@ public class AbilityHolder : MonoBehaviour
                     ability.BeginCooldown(gameObject);
                     state = AbilityState.cooldown;
                     cooldownTime = ability.cooldownTime;
+                    lastTime = Time.time;
                 }
                 break;
             case AbilityState.cooldown:
-                if (cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                }
-                else
+                if(Time.time > lastTime + cooldownTime)
                 {
                     state = AbilityState.ready;
                 }

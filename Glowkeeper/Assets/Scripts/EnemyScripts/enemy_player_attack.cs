@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class enemy_player_attack : MonoBehaviour
 {
+    public float enemyHealth;
+    public float maxEnemyHealth;
     public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
     public int damageAmount = 10; // Damage per second
     public float damageRate = 1f; // Time between damage ticks
@@ -17,6 +19,7 @@ public class enemy_player_attack : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
         // Set up the NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -34,6 +37,17 @@ public class enemy_player_attack : MonoBehaviour
         else
         {
             Debug.LogError("Player not found! Make sure the flame has the 'Player' tag.");
+        }
+    }
+
+    public void EnemyDamage(int amount)
+    {
+        enemyHealth -= amount;
+
+        //checks if player is dead
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);//destroys player object
         }
     }
 

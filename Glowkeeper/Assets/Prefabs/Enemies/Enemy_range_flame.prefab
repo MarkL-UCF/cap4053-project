@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4869802284587117363}
   m_Layer: 8
   m_Name: Enemy_range_flame
-  m_TagString: Enemy
+  m_TagString: EnemyRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9604deea02eaf43878318d3132cd43d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isShadow: 1
   enemyHealth: 0
+  maxEnemyHealth: 10
   moveSpeed: 0.8
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
   fireRate: 4

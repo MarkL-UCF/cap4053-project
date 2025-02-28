@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
-    public Boolean isShadow;
     public float enemyHealth;
+    public float maxEnemyHealth;
     public float moveSpeed = 0.8f; // Speed of the enemy
     public GameObject projectilePrefab; // Projectile Prefab
     public float fireRate = 2f; // Time between shots
@@ -15,6 +15,8 @@ public class Enemy2 : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
+
         // Find the player GameObject by tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
         if (playerObj != null)

@@ -5,8 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class FlashScript : MonoBehaviour
 {
-    float lastUse = 0f;
-    public float timer;
+    
+    public float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class FlashScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 3)
+        if (timer > .5)
         {
             gameObject.GetComponent<Light2D>().enabled = false;
         }

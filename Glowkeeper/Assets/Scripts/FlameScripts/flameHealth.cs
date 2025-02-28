@@ -37,7 +37,7 @@ public class flameHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
+        fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
 
         if(flameFuel < prevFuel || flameFuel > prevFuel)
         {

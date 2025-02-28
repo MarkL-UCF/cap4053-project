@@ -45,13 +45,46 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
 
         // added tag to the enemy object
+
+        //Enemy Shadow Close
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // destroy the enemy when hit by a projectile
             Destroy(gameObject);
 
             // destroy the projectile as well
-            Destroy(collision.gameObject);
+            EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
+            enemy.EnemyDamage(2);
+        }
+        //Enemy Shadow Range
+        if (collision.gameObject.CompareTag("EnemyRange"))
+        {
+            // destroy the enemy when hit by a projectile
+            Destroy(gameObject);
+
+            // destroy the projectile as well
+            Enemy2 enemy = collision.gameObject.GetComponent<Enemy2>();
+            enemy.EnemyDamage(2);
+        }
+        //Enemy Player Close
+        if (collision.gameObject.CompareTag("EnemyPlayer"))
+        {
+            // destroy the enemy when hit by a projectile
+            Destroy(gameObject);
+
+            // destroy the projectile as well
+            enemy_player_attack enemy = collision.gameObject.GetComponent<enemy_player_attack>();
+            enemy.EnemyDamage(2);
+        }
+        //Enemy Player Range
+        if (collision.gameObject.CompareTag("EnemyPlayerR"))
+        {
+            // destroy the enemy when hit by a projectile
+            Destroy(gameObject);
+
+            // destroy the projectile as well
+            enemy_range_player enemy = collision.gameObject.GetComponent<enemy_range_player>();
+            enemy.EnemyDamage(2);
         }
         //tag enemy projectile object
         else if(collision.gameObject.CompareTag("EnemyProjectile"))//if two opposing projectiles collide, they cancel each other

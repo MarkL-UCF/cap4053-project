@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class enemy_range_player : MonoBehaviour
 {
+    public float enemyHealth;
+    public float maxEnemyHealth;
     public GameObject projectilePrefab; // Projectile Prefab
     public float fireRate = 2f; // Time between shots
     public float projectileSpeed = 3f; // Speed of the projectile
@@ -11,6 +13,7 @@ public class enemy_range_player : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
         // Find the player GameObject by tag
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -24,6 +27,17 @@ public class enemy_range_player : MonoBehaviour
 
         // Start shooting projectiles at intervals
         InvokeRepeating("Shoot", 1f, fireRate);
+    }
+
+    public void EnemyDamage(int amount)
+    {
+        enemyHealth -= amount;
+
+        //checks if player is dead
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);//destroys player object
+        }
     }
 
     void Shoot()
