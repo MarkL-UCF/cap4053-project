@@ -175,7 +175,7 @@ MonoBehaviour:
   enemyHealth: 0
   maxEnemyHealth: 10
   moveSpeed: 0.3
-  damageAmount: 10
+  damageAmount: 0.5
   damageRate: 1
   target: {fileID: 0}
 --- !u!195 &6917799632264577526
