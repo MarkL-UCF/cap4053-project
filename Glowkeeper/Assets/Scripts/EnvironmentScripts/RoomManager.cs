@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -15,9 +16,12 @@ public class RoomManager : MonoBehaviour
     public GameObject flame;
     public GameObject flameAnchor;
 
+    public GameObject warnIcon;
+
     public List<GameObject> doors = new List<GameObject>();
 
     public List<GameObject> activeEnemies = new List<GameObject>();
+    public List<GameObject> activeWarnings = new List<GameObject>();
 
     private BoxCollider2D trigger;
 
@@ -75,20 +79,54 @@ public class RoomManager : MonoBehaviour
 
             flameHP.ChangeLights(); //update light level based on previous values
         }
-        
-
-        yield return new WaitForSeconds(3);
-        Debug.Log("3 seconds have passed, starting encounter now...");
 
         int waveID = Random.Range(0, waveAtlas.f1PoolSize);
         Debug.Log("Selected Wave ID: " + waveID);
+        GameObject warn;
 
-        /*
-        GameObject InstantiatedEnemy1 = Instantiate(enemyAtlas.eAtlas[1], spawn1.transform.position, spawn1.transform.rotation);
-        GameObject InstantiatedEnemy2 = Instantiate(enemyAtlas.eAtlas[1], spawn2.transform.position, spawn2.transform.rotation);
-        GameObject InstantiatedEnemy3 = Instantiate(enemyAtlas.eAtlas[0], spawn3.transform.position, spawn3.transform.rotation);
-        GameObject InstantiatedEnemy4 = Instantiate(enemyAtlas.eAtlas[2], spawn4.transform.position, spawn4.transform.rotation);
-        */
+        if ((int)waveAtlas.f1w1s1[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn1.transform.position, spawn1.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w1s2[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn2.transform.position, spawn2.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w1s3[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn3.transform.position, spawn3.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w1s4[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn4.transform.position, spawn4.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w1s5[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn5.transform.position, spawn5.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w1s6[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn6.transform.position, spawn6.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+
+
+
+        yield return new WaitForSeconds(3);
+        //Debug.Log("3 seconds have passed, starting encounter now...");
+
+        foreach (GameObject warning in activeWarnings)
+        {
+            Destroy(warning);
+        }
+        
+
+        
 
         GameObject enemy; 
         enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w1s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
@@ -115,6 +153,44 @@ public class RoomManager : MonoBehaviour
         }
 
         Debug.Log("Enemies cleared, spawning second wave...");
+        if ((int)waveAtlas.f1w2s1[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn1.transform.position, spawn1.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w2s2[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn2.transform.position, spawn2.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w2s3[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn3.transform.position, spawn3.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w2s4[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn4.transform.position, spawn4.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w2s5[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn5.transform.position, spawn5.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w2s6[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn6.transform.position, spawn6.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+
+
+        yield return new WaitForSeconds(3);
+
+        foreach (GameObject warning in activeWarnings)
+        {
+            Destroy(warning);
+        }
 
         enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w2s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
         activeEnemies.Add(enemy);
@@ -140,6 +216,44 @@ public class RoomManager : MonoBehaviour
         }
 
         Debug.Log("Enemies cleared, spawning final wave...");
+
+        if ((int)waveAtlas.f1w3s1[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn1.transform.position, spawn1.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w3s2[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn2.transform.position, spawn2.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w3s3[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn3.transform.position, spawn3.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w3s4[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn4.transform.position, spawn4.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w3s5[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn5.transform.position, spawn5.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+        if ((int)waveAtlas.f1w3s6[waveID] != 0)
+        {
+            warn = Instantiate(warnIcon, spawn6.transform.position, spawn6.transform.rotation);
+            activeWarnings.Add(warn);
+        }
+
+        yield return new WaitForSeconds(3);
+
+        foreach (GameObject warning in activeWarnings)
+        {
+            Destroy(warning);
+        }
 
         enemy = Instantiate(enemyAtlas.eAtlas[(int)waveAtlas.f1w3s1[waveID]], spawn1.transform.position, spawn1.transform.rotation);
         activeEnemies.Add(enemy);
