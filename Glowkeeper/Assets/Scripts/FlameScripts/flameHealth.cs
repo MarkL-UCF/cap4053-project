@@ -77,7 +77,7 @@ public class flameHealth : MonoBehaviour
     {
         if(flameFuel <= 0)
         {
-            //Update();
+            //Update(); //This causes stack overflow errors, why is it here?
             FlameStats.isExtinguished = true; //prevent later rooms from reinstantiating the flame
             LLM.AlterLight(0, 1); //turn out the lights
             Destroy(gameObject); //destroy the instantiated game object
