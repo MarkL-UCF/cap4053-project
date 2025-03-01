@@ -13,6 +13,11 @@ TagManager:
   - Light Ring (50%)
   - Light Ring (25%)
   - Global Stat Tracker (Flame)
+  - EnemyPlayerR
+  - Flash
+  - EnemyPlayer
+  - PlayerProjectile
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
