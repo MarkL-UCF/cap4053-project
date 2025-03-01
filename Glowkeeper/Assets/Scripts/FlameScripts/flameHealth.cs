@@ -37,15 +37,25 @@ public class flameHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
+        //Unless the fuel bar is active as an UI element, do not uncomment this or it will break a lot of things
+        //fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
 
-        if(flameFuel < prevFuel || flameFuel > prevFuel)
+        if(flameFuel != prevFuel)
         {
+            Debug.Log("Statement Ran");
             prevFuel = flameFuel;
             ChangeLights();
         }
 
         KillFlame();
+
+        
+        if (Input.GetKeyDown(KeyCode.K))
+            DebugHeal();
+
+        if(Input.GetKeyDown(KeyCode.L))
+            DebugDamage();
+        
     }
 
 
@@ -67,7 +77,7 @@ public class flameHealth : MonoBehaviour
     {
         if(flameFuel <= 0)
         {
-            Update();
+            //Update();
             FlameStats.isExtinguished = true; //prevent later rooms from reinstantiating the flame
             LLM.AlterLight(0, 1); //turn out the lights
             Destroy(gameObject); //destroy the instantiated game object
@@ -84,4 +94,17 @@ public class flameHealth : MonoBehaviour
         Destroy(gameObject); //destroy the instantiated game object
     }
 
+    
+    public void DebugHeal()
+    {
+        flameFuel += 250;
+        Debug.Log("Flame debug healed");
+    }
+
+    public void DebugDamage()
+    {
+        flameFuel -= 250;
+        Debug.Log("Flame debug damaged");
+    }
+    
 }

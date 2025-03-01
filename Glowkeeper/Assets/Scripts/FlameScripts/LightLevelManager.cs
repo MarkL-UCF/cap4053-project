@@ -26,9 +26,9 @@ public class LightLevelManager : MonoBehaviour
     {
         float fuelLevel = Mathf.Clamp(fuel / maxFuelHealth, 0, 1);
 
-        //Debug.Log("Fuel percentage is " + fuelLevel);
+        Debug.Log("Fuel percentage is " + fuelLevel);
 
-        if (fuelLevel == 0)
+        if (fuelLevel <= 0)
         {
             //Debug.Log("Light Level = 0%");
             lightFull.SetActive(false);
