@@ -64,6 +64,7 @@ public class playerHealth : MonoBehaviour
         //checks if player is dead
         if (health <= 0)
         {
+            Update();
             Destroy(gameObject);//destroys player object
         }
     }
