@@ -67,6 +67,7 @@ public class flameHealth : MonoBehaviour
     {
         if(flameFuel <= 0)
         {
+            Update();
             FlameStats.isExtinguished = true; //prevent later rooms from reinstantiating the flame
             LLM.AlterLight(0, 1); //turn out the lights
             Destroy(gameObject); //destroy the instantiated game object

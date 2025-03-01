@@ -11,12 +11,12 @@ public class FlameAttack : MonoBehaviour
     public float projectileSpeed;
     float timer = 0f;
     private float lastShotTime = 0f;
-    flameHealth flameHealth = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
+    
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        flameHealth flameHealth = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
         if (shooterOn)
         {
             Vector3 shootDirection1 = new Vector3(1, 0, 0).normalized;
@@ -63,8 +63,7 @@ public class FlameAttack : MonoBehaviour
                 projRb4.velocity = shootDirection4 * projectileSpeed;
             }
 
-            flameHealth.FlameDamage(10);
-            timer = 0f;
+            flameHealth.FlameDamage(25);
         }
     }
 }
