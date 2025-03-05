@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class AbilityHolder : MonoBehaviour
 {
     public PlayerAbility ability;
+    public Image CoolDownBar;
+    public Image CoolLabel;
     float cooldownTime;
     float activeTime;
     float lastTime = 0f;
@@ -20,6 +23,11 @@ public class AbilityHolder : MonoBehaviour
 
     public KeyCode key;
 
+    private void Start()
+    {
+        CoolDownBar.enabled = false;
+        CoolLabel.enabled = false;
+    }
     void Update()
     {
         switch (state)
@@ -41,14 +49,20 @@ public class AbilityHolder : MonoBehaviour
                 {
                     ability.BeginCooldown(gameObject);
                     state = AbilityState.cooldown;
+                    CoolDownBar.enabled = true;
+                    CoolLabel.enabled= true;
                     cooldownTime = ability.cooldownTime;
                     lastTime = Time.time;
                 }
                 break;
             case AbilityState.cooldown:
-                if(Time.time > lastTime + cooldownTime)
+                
+                CoolDownBar.fillAmount = Mathf.Clamp(1 - (Time.time/(lastTime + cooldownTime)), 0, 1);
+                if (Time.time > lastTime + cooldownTime)
                 {
                     state = AbilityState.ready;
+                    CoolDownBar.enabled = false;
+                    CoolLabel.enabled= false;
                 }
                 break;
 
