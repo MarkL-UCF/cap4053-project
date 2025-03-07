@@ -19,6 +19,7 @@ TagManager:
   - EnemyRange
   - EnemyPlayerR
   - EnemyPlayer
+  - Metrics
   layers:
   - Default
   - TransparentFX
