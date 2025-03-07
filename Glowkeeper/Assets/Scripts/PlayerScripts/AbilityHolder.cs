@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,15 @@ using UnityEngine.UI;
 
 public class AbilityHolder : MonoBehaviour
 {
+    public Boolean newAbilityPickup;
+    public PlayerAbility newAbility;
     public PlayerAbility ability;
     public Image CoolDownBar;
     public Image CoolLabel;
     float cooldownTime;
     float activeTime;
     float lastTime = 0f;
+    float timer;
 
     enum AbilityState
     {
@@ -27,13 +31,25 @@ public class AbilityHolder : MonoBehaviour
     {
         CoolDownBar.enabled = false;
         CoolLabel.enabled = false;
+        newAbilityPickup = false;
+        timer = 0;
     }
     void Update()
     {
+       if(newAbilityPickup && ability == null)
+       {
+            ability = newAbility;
+            newAbilityPickup=false;
+       }
         switch (state)
         {
             case AbilityState.ready:
-                if (Input.GetKeyDown(key) && Time.time > lastTime + cooldownTime)
+                if(newAbilityPickup)
+                {
+                    ability = newAbility;
+                    newAbilityPickup=false;
+                }
+                if (Input.GetKeyDown(key) && timer <= 0)
                 {
                     ability.Activate(gameObject);
                     state = AbilityState.active;
@@ -52,17 +68,24 @@ public class AbilityHolder : MonoBehaviour
                     CoolDownBar.enabled = true;
                     CoolLabel.enabled= true;
                     cooldownTime = ability.cooldownTime;
-                    lastTime = Time.time;
+                    timer = cooldownTime;
+                    
                 }
                 break;
             case AbilityState.cooldown:
                 
-                CoolDownBar.fillAmount = Mathf.Clamp(1 - (Time.time/(lastTime + cooldownTime)), 0, 1);
-                if (Time.time > lastTime + cooldownTime)
+                CoolDownBar.fillAmount = Mathf.Clamp((timer/cooldownTime), 0, 1);
+                timer -= Time.deltaTime;
+                if (timer <= 0)
                 {
                     state = AbilityState.ready;
                     CoolDownBar.enabled = false;
                     CoolLabel.enabled= false;
+                    if(newAbilityPickup)
+                    {
+                        ability = newAbility;
+                        newAbilityPickup = false;
+                    }
                 }
                 break;
 

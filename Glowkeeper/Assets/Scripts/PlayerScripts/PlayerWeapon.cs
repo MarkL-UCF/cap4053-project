@@ -11,11 +11,12 @@ public class PlayerWeapon : MonoBehaviour
     public GameObject bullet;
     public Transform BulletOrigin;
     private float lastShotTime = 0f;
-    public float firerate;
-    public float numProjectiles;
-    public float spread;
-    public float projectileSpeed;
-    public float projectileSize;
+    public int damage = 2;
+    public float firerate = 1;
+    public float numProjectiles = 1;
+    public float spread = 5;
+    public float projectileSpeed = 5;
+    public float projectileSize = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,7 @@ public class PlayerWeapon : MonoBehaviour
             //Pass on needed values to the bullet's script
             var bulletScript = InstantiatedBullet.GetComponent<PlayerProjectile>();
             bulletScript.projectileSize = projectileSize;
+            bulletScript.damage = damage;
             
         }
 

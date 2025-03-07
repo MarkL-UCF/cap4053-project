@@ -8,6 +8,7 @@ public class PlayerProjectile : MonoBehaviour
     private Rigidbody2D rb;
 
     public float projectileSize = 1;
+    public int damage = 2;
     private float timer;
 
     // Start is called before the first frame update
@@ -54,7 +55,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //Enemy Shadow Range
         if (collision.gameObject.CompareTag("EnemyRange"))
@@ -64,7 +65,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             Enemy2 enemy = collision.gameObject.GetComponent<Enemy2>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //Enemy Player Close
         if (collision.gameObject.CompareTag("EnemyPlayer"))
@@ -74,7 +75,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             enemy_player_attack enemy = collision.gameObject.GetComponent<enemy_player_attack>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //Enemy Player Range
         if (collision.gameObject.CompareTag("EnemyPlayerR"))
@@ -84,7 +85,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             enemy_range_player enemy = collision.gameObject.GetComponent<enemy_range_player>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //tag enemy projectile object
         else if(collision.gameObject.CompareTag("EnemyProjectile"))//if two opposing projectiles collide, they cancel each other

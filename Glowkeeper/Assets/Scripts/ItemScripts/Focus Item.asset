@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1663377667917c04bb041457bd41e277, type: 3}
-  m_Name: FlashAbility
+  m_Script: {fileID: 11500000, guid: c2c96704de501ee49b3cc070f1c165d0, type: 3}
+  m_Name: Focus Item
   m_EditorClassIdentifier: 
-  name: 
-  cooldownTime: 10
-  activeTime: 4

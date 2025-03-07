@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8294286923613264444}
   m_Layer: 6
   m_Name: RotatePoint
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4219328329492726958, guid: 80f1d4e354f93b04eb601854b9eddcbf, type: 3}
   BulletOrigin: {fileID: 6109787847050635117}
+  damage: 2
   firerate: 1
   numProjectiles: 1
   spread: 5
@@ -233,6 +234,7 @@ GameObject:
   - component: {fileID: -4806861419266515040}
   - component: {fileID: -1251975644720218028}
   - component: {fileID: 6208874654227237474}
+  - component: {fileID: 3415201235581177163}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -428,5 +430,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87c2da103e0daa44928278e6e3e196c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 17f7fdb32bebc1e4287b0ca36469ec69, type: 2}
+  ability: {fileID: 0}
+  CoolDownBar: {fileID: 0}
+  CoolLabel: {fileID: 0}
   key: 32
+--- !u!114 &3415201235581177163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7425270538560333250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bd94360813d624281c9ba7e5f1e959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentItem: {fileID: 0}
+  newPickup: 0
+  StartFirerate: 1
+  StartNumProjectiles: 1
+  StartSpread: 5
+  StartProjectileSpeed: 5
+  StartProjectileSize: 1
