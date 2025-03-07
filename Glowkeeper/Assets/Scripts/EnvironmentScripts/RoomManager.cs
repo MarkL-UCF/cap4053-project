@@ -31,6 +31,8 @@ public class RoomManager : MonoBehaviour
     public flameHealth flameHP;
     public FlameStatTracker flameStatTracker;
 
+    public Metrics metrics;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class RoomManager : MonoBehaviour
         flameStatTracker = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
         flameAnchor = gameObject.transform.Find("Anchors").transform.Find("Flame Anchor").gameObject;
         trigger = this.GetComponent<BoxCollider2D>();
+        metrics = GameObject.FindGameObjectWithTag("Metrics").GetComponent<Metrics>();
     }
 
     // Update is called once per frame
@@ -61,6 +64,8 @@ public class RoomManager : MonoBehaviour
     //Perform the actual encounter
     IEnumerator DoEncounter()
     {
+        metrics.newRoom(); //print to metrics file
+
         //lock all doors
         foreach(GameObject door in doors)
         {
