@@ -10,7 +10,7 @@ public class enemy_player_attack : MonoBehaviour
     public float moveSpeed = 0.2f; // Speed of the enemy, adjusted for a slower movement
     public float damageAmount = 0.5f; // Damage per second
     public float damageRate = 1f; // Time between damage ticks
-    private Transform flame; // Reference to the player
+    private Transform player; // Reference to the player
     private float nextDamageTime = 0f; // Timer for damage application
 
     [SerializeField] Transform target;
@@ -32,7 +32,7 @@ public class enemy_player_attack : MonoBehaviour
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
-            flame = playerObj.transform;
+            player = playerObj.transform;
         }
         else
         {
@@ -53,10 +53,10 @@ public class enemy_player_attack : MonoBehaviour
 
     void Update()
     {
-        if (flame != null)
+        if (player != null)
         {
             // Set the destination to the flame's position using the NavMeshAgent
-            agent.SetDestination(flame.position);
+            agent.SetDestination(player.position);
         }
     }
 

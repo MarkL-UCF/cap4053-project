@@ -48,14 +48,33 @@ public class PlayerProjectile : MonoBehaviour
         // added tag to the enemy object
 
         //Enemy Shadow Close
-        if (collision.gameObject.CompareTag("Enemy"))
+       if (collision.gameObject.CompareTag("Enemy"))
         {
-            // destroy the enemy when hit by a projectile
-            Destroy(gameObject);
+            // for all the enemies with the tag enemy
+            ShadowSplitter shadowEnemy = collision.gameObject.GetComponent<ShadowSplitter>();
+            EnemyScript normalEnemy = collision.gameObject.GetComponent<EnemyScript>();
+            SmallerSplitter smallEnemy = collision.gameObject.GetComponent<SmallerSplitter>();
 
-            // destroy the projectile as well
-            EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
-            enemy.EnemyDamage(damage);
+            // Apply damage if the enemy script exists
+            if (shadowEnemy != null)
+            {
+                shadowEnemy.EnemyDamage(damage);
+            }
+            else if (normalEnemy != null)
+            {
+                normalEnemy.EnemyDamage(damage);
+            }
+            else if (smallEnemy != null)
+            {
+                smallEnemy.EnemyDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("Enemy tagged object found, but no valid enemy script attached!");
+            }
+
+            // Destroy the projectile after applying damage
+            Destroy(gameObject);
         }
         //Enemy Shadow Range
         if (collision.gameObject.CompareTag("EnemyRange"))
