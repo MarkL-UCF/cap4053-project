@@ -99,7 +99,7 @@ public class PlayerWeapon : MonoBehaviour
         firerate = Mathf.Clamp((baseFirerate + firerateFlat) * firerateScalar, .05f, 10);
         numProjectiles = Mathf.Min((baseProjectiles + numProjectilesFlat), 1);
         spread = Mathf.Clamp((baseSpread + spreadFlat) * spreadScalar, 0, 180);
-        projectileSpeed = Mathf.Min((baseProjectileSpeed + projectileSpeedFlat) * projectileSpeedScalar, 0.5f);
+        projectileSpeed = Mathf.Clamp((baseProjectileSpeed + projectileSpeedFlat) * projectileSpeedScalar, 0.5f, 15);
         projectileSize = Mathf.Clamp((baseProjectileSize + projectileSizeFlat) * projectileSizeScalar, 0.1f, 3);
     }
 }
