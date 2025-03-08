@@ -12,6 +12,11 @@ public class FlashAbility : PlayerAbility
     private GameObject[] EnemiesPlayer;
     private GameObject[] EnemiesPlayerR;
 
+    public override void Info()
+    {
+        Name = "Flash Bang";
+        StatDescription = "Press Spacebar to Activate<br>Stuns enemies and damages shadow monsters";
+    }
     public override void Activate(GameObject parent)
     {
         Debug.Log("Ability Activated!");
