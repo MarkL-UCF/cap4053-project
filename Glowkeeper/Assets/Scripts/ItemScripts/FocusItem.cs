@@ -6,12 +6,22 @@ using UnityEngine;
 public class FocusItem : PlayerItems
 {
     //Precise!
+
+    public override void Info()
+    {
+        Name = "FocusLens";
+        StatDescription = "+Damage<br>+Accuracy<br>-Size<br>";
+    }
     public override void Activate(GameObject parent)
     {
+        Name = "FocusLens";
+        StatDescription = "+Damage<br>+Accuracy<br>-Size<br>";
+
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-        Weapon.damage = 3;
-        Weapon.spread = 1;
-        Weapon.projectileSize = 0.75f;
+        Weapon.damageFlat += 1;
+        Weapon.spreadFlat -= 4;
+        Weapon.projectileSizeFlat -= 0.25f;
+        Weapon.UpdateStats();
 
     }
 }

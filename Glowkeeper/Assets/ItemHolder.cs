@@ -5,42 +5,53 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
+    
     public PlayerItems CurrentItem;
+    public PlayerItems[] Items;
+    int numItems;
     public Boolean newPickup;
-    public float StartFirerate;
-    public float StartNumProjectiles;
-    public float StartSpread;
-    public float StartProjectileSpeed;
-    public float StartProjectileSize;
 
     private void Start()
     {
-        //Store Base Stat Values
-        var playerWeapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-        StartFirerate = playerWeapon.firerate;
-        StartNumProjectiles = playerWeapon.numProjectiles;
-        StartSpread = playerWeapon.spread;
-        StartProjectileSpeed = playerWeapon.projectileSpeed;
-        StartProjectileSize = playerWeapon.projectileSize;
-
         newPickup = false;
-}
+        Items = new PlayerItems[10];
+        numItems = 0;
+    }
     // Update is called once per frame
     void Update()
     {
         if (newPickup)
         {
-            //reset stats before applying new item stats
-            var playerWeapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-            playerWeapon.firerate = StartFirerate;
-            playerWeapon.numProjectiles = StartNumProjectiles;
-            playerWeapon.spread = StartSpread;
-            playerWeapon.projectileSpeed = StartProjectileSpeed;
-            playerWeapon.projectileSize = StartProjectileSize;
+            CurrentItem.Info();
 
-            CurrentItem.Activate(gameObject);
 
-            newPickup = false;
+            if (numItems == 0)
+            {
+                Items[0] = CurrentItem;
+                CurrentItem.Activate(gameObject);
+                newPickup = false;
+                numItems = 1;
+            }
+            else
+            {
+                for (int i = 0; i < numItems; i++)
+                {
+                    if (CurrentItem.name == Items[i].name)
+                    {
+                        newPickup = false;
+                        return;
+                    }
+                    else if (i == numItems - 1)
+                    {
+                        Items[i+1] = CurrentItem;
+                        CurrentItem.Activate(gameObject);
+                        newPickup = false;
+                        numItems++;
+                    }
+
+                }
+            }
         }
     }
+    
 }

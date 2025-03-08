@@ -6,12 +6,23 @@ using UnityEngine;
 public class RedItem : PlayerItems
 {
     //Low Frequency!
+
+    public override void Info()
+    {
+        Name = "RedLens";
+        StatDescription = "+Damage<br>-Fire Rate<br>-Speed<br>+Size<br>";
+    }
     public override void Activate(GameObject parent) 
     {
+        Name = "RedLens";
+        StatDescription = "+Damage<br>-Fire Rate<br>-Speed<br>+Size<br>";
+
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-        Weapon.projectileSize = 2f;
-        Weapon.damage = 3;
-        Weapon.projectileSpeed = 4;
-        Weapon.firerate = 1.25f;
+
+        Weapon.projectileSizeFlat += .33f;
+        Weapon.projectileSpeedFlat -= .2f;
+        Weapon.firerateFlat += .25f;
+        Weapon.damageFlat += .5f;
+        Weapon.UpdateStats();
     }
 }

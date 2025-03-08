@@ -8,7 +8,7 @@ public class PlayerProjectile : MonoBehaviour
     private Rigidbody2D rb;
 
     public float projectileSize = 1;
-    public int damage = 2;
+    public float damage = 2;
     private float timer;
 
     // Start is called before the first frame update
