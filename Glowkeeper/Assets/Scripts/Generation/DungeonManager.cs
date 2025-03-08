@@ -9,11 +9,11 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private int maxRooms = 20;
     [SerializeField] private int minRooms = 18;
 
-    int roomWidth = 10;
-    int roomHeight = 10;
+    [SerializeField] int roomWidth = 15;
+    [SerializeField] int roomHeight = 10;
 
-    int gridSizeX = 15;
-    int gridSizeY = 15;
+    [SerializeField] int gridSizeX = 4;
+    [SerializeField] int gridSizeY = 4;
 
     private List<GameObject> roomObjects = new List<GameObject>();
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
@@ -74,6 +74,12 @@ public class DungeonManager : MonoBehaviour
     {
         int x = roomIndex.x;
         int y = roomIndex.y;
+
+        if (x >= gridSizeX || y >= gridSizeY || x < 0 || y < 0)
+            return false;
+        if (roomGrid[x, y] != 0)
+            return false;
+
 
         if (roomCount >= maxRooms)
             return false;
