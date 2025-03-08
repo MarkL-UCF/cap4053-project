@@ -26,18 +26,18 @@ public class PlayerWeapon : MonoBehaviour
     public float projectileSpeed;
     public float projectileSize;
 
-    public float damageFlat;
-    public float firerateFlat;
-    public int numProjectilesFlat;
-    public float spreadFlat;
-    public float projectileSpeedFlat;
-    public float projectileSizeFlat;
+    public float damageFlat = 0;
+    public float firerateFlat = 0;
+    public int numProjectilesFlat = 0;
+    public float spreadFlat = 0;
+    public float projectileSpeedFlat = 0;
+    public float projectileSizeFlat = 0;
 
-    public float damageScalar;
-    public float firerateScalar;
-    public float spreadScalar;
-    public float projectileSpeedScalar;
-    public float projectileSizeScalar;
+    public float damageScalar = 1;
+    public float firerateScalar = 1;
+    public float spreadScalar = 1;
+    public float projectileSpeedScalar = 1;
+    public float projectileSizeScalar = 1;
 
 
     // Start is called before the first frame update
@@ -100,7 +100,7 @@ public class PlayerWeapon : MonoBehaviour
         numProjectiles = Mathf.Min((baseProjectiles + numProjectilesFlat), 1);
         spread = Mathf.Clamp((baseSpread + spreadFlat) * spreadScalar, 0, 180);
         projectileSpeed = Mathf.Min((baseProjectileSpeed + projectileSpeedFlat) * projectileSpeedScalar, 0.5f);
-        projectileSize = Mathf.Min((baseProjectileSize + projectileSizeFlat) * projectileSizeScalar, 0.1f, 3);
+        projectileSize = Mathf.Clamp((baseProjectileSize + projectileSizeFlat) * projectileSizeScalar, 0.1f, 3);
     }
 }
 
