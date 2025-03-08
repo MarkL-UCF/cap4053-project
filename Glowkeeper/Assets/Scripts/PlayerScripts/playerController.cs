@@ -13,8 +13,12 @@ public class PlayerController : MonoBehaviour
     
 
     [SerializeField]
-    private float moveSpeed = 3f;
-    //Note: could change move speed through items in the future
+    public float baseMoveSpeed = 3f;
+
+    private float movespeed;
+
+    public float movespeedFlat = 0;
+    public float movespeedScalar = 1;
 
     //Start is called before the first frame update
     void Start()
@@ -22,7 +26,7 @@ public class PlayerController : MonoBehaviour
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        
+        UpdateStats();
     }
 
     //Update is called once per frame
@@ -34,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Apply the input to velocity
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * movespeed;
     }
 
     //Handles the player's movement inputs
@@ -60,5 +64,10 @@ public class PlayerController : MonoBehaviour
         //Prevent weird behavior causing fast diagonal movement
         //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
         moveInput.Normalize();
+    }
+
+    void UpdateStats()
+    {
+        movespeed = Mathf.Min((baseMoveSpeed + movespeedFlat) * movespeedScalar, 0.5f, 7);
     }
 }

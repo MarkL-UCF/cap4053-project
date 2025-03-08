@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
+    
     public PlayerItems CurrentItem;
     public PlayerItems[] Items;
     public Boolean newPickup;
@@ -38,4 +39,5 @@ public class ItemHolder : MonoBehaviour
             }
         }
     }
+    
 }
