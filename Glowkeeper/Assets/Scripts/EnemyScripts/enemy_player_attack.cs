@@ -40,7 +40,7 @@ public class enemy_player_attack : MonoBehaviour
         }
     }
 
-    public void EnemyDamage(int amount)
+    public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
 

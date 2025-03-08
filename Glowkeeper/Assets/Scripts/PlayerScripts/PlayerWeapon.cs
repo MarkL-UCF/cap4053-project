@@ -54,7 +54,9 @@ public class PlayerWeapon : MonoBehaviour
 
         //Left click to fire, check that enough time has passed since last
         if (Input.GetMouseButton(0) && Time.time > lastShotTime + firerate)
+        {
             Fire();
+        }
     }
 
     //Handles firing the weapon
@@ -94,7 +96,7 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     //Runs stat calculations, call whenever the stats change
-    void UpdateStats() {
+    public void UpdateStats() {
         damage = Mathf.Min((baseDamage + damageFlat) * damageScalar, .5f);
         firerate = Mathf.Clamp((baseFirerate + firerateFlat) * firerateScalar, .05f, 10);
         numProjectiles = Mathf.Min((baseProjectiles + numProjectilesFlat), 1);

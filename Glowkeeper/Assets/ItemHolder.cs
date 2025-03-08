@@ -6,41 +6,36 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour
 {
     public PlayerItems CurrentItem;
+    public PlayerItems[] Items;
     public Boolean newPickup;
-    public float StartFirerate;
-    public float StartNumProjectiles;
-    public float StartSpread;
-    public float StartProjectileSpeed;
-    public float StartProjectileSize;
 
     private void Start()
     {
-        //Store Base Stat Values
-        var playerWeapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-        StartFirerate = playerWeapon.firerate;
-        StartNumProjectiles = playerWeapon.numProjectiles;
-        StartSpread = playerWeapon.spread;
-        StartProjectileSpeed = playerWeapon.projectileSpeed;
-        StartProjectileSize = playerWeapon.projectileSize;
-
         newPickup = false;
-}
+    }
     // Update is called once per frame
     void Update()
     {
         if (newPickup)
         {
-            //reset stats before applying new item stats
-            var playerWeapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
-            playerWeapon.firerate = StartFirerate;
-            playerWeapon.numProjectiles = StartNumProjectiles;
-            playerWeapon.spread = StartSpread;
-            playerWeapon.projectileSpeed = StartProjectileSpeed;
-            playerWeapon.projectileSize = StartProjectileSize;
+            int i = 0;
+            CurrentItem.Info();
 
-            CurrentItem.Activate(gameObject);
+            
+            for (i = 0; i < Items.Length; i++)
+            {
+                if (CurrentItem.Name == Items[i].Name)
+                {
+                    newPickup = false;
+                }
+                else if (i == Items.Length - 1)
+                {
+                    Items[i + 1] = CurrentItem;
+                    CurrentItem.Activate(gameObject);
+                    newPickup = false;
+                }
 
-            newPickup = false;
+            }
         }
     }
 }

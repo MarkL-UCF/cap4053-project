@@ -51,7 +51,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    public void EnemyDamage(int amount)
+    public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
 

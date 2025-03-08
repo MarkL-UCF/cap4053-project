@@ -37,7 +37,7 @@ public class enemy_range_player : MonoBehaviour
         InvokeRepeating("Shoot", 1f, fireRate);
     }
 
-    public void EnemyDamage(int amount)
+    public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
         if (enemyHealth <= 0)

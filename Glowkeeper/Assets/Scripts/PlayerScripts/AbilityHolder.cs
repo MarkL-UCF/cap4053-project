@@ -14,7 +14,6 @@ public class AbilityHolder : MonoBehaviour
     public Image CoolLabel;
     float cooldownTime;
     float activeTime;
-    float lastTime = 0f;
     float timer;
 
     enum AbilityState
