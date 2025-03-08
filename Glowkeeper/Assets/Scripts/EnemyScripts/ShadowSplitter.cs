@@ -32,7 +32,7 @@ public class ShadowSplitter : MonoBehaviour
         }
     }
 
-    public void EnemyDamage(int amount)
+    public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
 
@@ -43,6 +43,7 @@ public class ShadowSplitter : MonoBehaviour
         }
 
     }
+
 
     void SplitIntoSmallerVersions()
     {

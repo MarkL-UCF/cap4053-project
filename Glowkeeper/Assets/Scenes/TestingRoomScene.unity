@@ -602,6 +602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2219586422794260493, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
+      propertyPath: maxEnemyHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5826527396066537132, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.714916
@@ -1019,6 +1023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887840838976916236, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
+      propertyPath: enemyHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1883280103273873207, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.62
@@ -1202,10 +1210,14 @@ PrefabInstance:
     - target: {fileID: -2219586422794260493, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 988009399}
+      objectReference: {fileID: 0}
     - target: {fileID: -2219586422794260493, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
       propertyPath: damageAmount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2219586422794260493, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
+      propertyPath: maxEnemyHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5826527396066537132, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1548,6 +1560,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 887840838976916236, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
+      propertyPath: enemyHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1883280103273873207, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.33
@@ -1677,3 +1693,4 @@ SceneRoots:
   - {fileID: 472246870}
   - {fileID: 4338404893768048371}
   - {fileID: 1511585607}
+  - {fileID: 1938547569}

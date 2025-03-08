@@ -33,18 +33,14 @@ public class SmallerSplitter : MonoBehaviour
         }
     }
 
-    public void EnemyDamage(int amount)
+  public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
-        Debug.Log("🔥 Splitter took damage! Current Health: " + enemyHealth);
-
-        if (enemyHealth <= 0) 
+        if (enemyHealth <= 0)
         {
-            Debug.Log("💀 Splitter destroyed!");
             Destroy(gameObject);
         }
     }
-
     public void SetPlayerTarget(Transform target)
     {
         player = target;
