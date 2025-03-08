@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
 
     private Vector2 moveInput;
+
+    private Animator animator;
+
+    private const string _horizontal = "Horizontal";
+    private const string _vertical = "Vertical";
     
 
     [SerializeField]
@@ -21,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         
     }
 
@@ -46,19 +51,11 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal"); // X input
         moveInput.y = Input.GetAxisRaw("Vertical"); // Y input
 
-        //Handle which direction the sprite faces
-        if(moveInput.x > 0) //Face right
-        {
-            sprite.flipX = false;
-        }
-        else if(moveInput.x < 0) //Face left
-        {
-            sprite.flipX = true;
-        }
-        //No horizontal movement just uses whatever the set direction was last
-
         //Prevent weird behavior causing fast diagonal movement
         //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
         moveInput.Normalize();
+
+        animator.SetFloat(_horizontal, moveInput.x);
+        animator.SetFloat(_vertical, moveInput.y);
     }
 }
