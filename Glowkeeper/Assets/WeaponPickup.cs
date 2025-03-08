@@ -7,6 +7,7 @@ public class WeaponPickup : MonoBehaviour
     public PlayerItems itemScript;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
             ItemHolder item = collision.gameObject.GetComponent<ItemHolder>();

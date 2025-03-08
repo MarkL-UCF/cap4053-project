@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
+    
     public PlayerItems CurrentItem;
     public Boolean newPickup;
     public float StartFirerate;
@@ -43,4 +44,5 @@ public class ItemHolder : MonoBehaviour
             newPickup = false;
         }
     }
+    
 }
