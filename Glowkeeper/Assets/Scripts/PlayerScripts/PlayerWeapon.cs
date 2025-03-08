@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -11,17 +12,39 @@ public class PlayerWeapon : MonoBehaviour
     public GameObject bullet;
     public Transform BulletOrigin;
     private float lastShotTime = 0f;
-    public int damage = 2;
-    public float firerate = 1;
-    public float numProjectiles = 1;
-    public float spread = 5;
-    public float projectileSpeed = 5;
-    public float projectileSize = 1;
+    public float baseDamage = 2;
+    public float baseFirerate = 1;
+    public int baseProjectiles = 1;
+    public float baseSpread = 5;
+    public float baseProjectileSpeed = 5;
+    public float baseProjectileSize = 1;
+
+    public float damage;
+    public float firerate;
+    public int numProjectiles;
+    public float spread;
+    public float projectileSpeed;
+    public float projectileSize;
+
+    public float damageFlat;
+    public float firerateFlat;
+    public int numProjectilesFlat;
+    public float spreadFlat;
+    public float projectileSpeedFlat;
+    public float projectileSizeFlat;
+
+    public float damageScalar;
+    public float firerateScalar;
+    public float spreadScalar;
+    public float projectileSpeedScalar;
+    public float projectileSizeScalar;
+
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        UpdateStats();
     }
 
     // Update is called once per frame
@@ -68,6 +91,16 @@ public class PlayerWeapon : MonoBehaviour
 
         //start cooldown
         lastShotTime = Time.time;
+    }
+
+    //Runs stat calculations, call whenever the stats change
+    void UpdateStats() {
+        damage = Mathf.Min((baseDamage + damageFlat) * damageScalar, .5f);
+        firerate = Mathf.Clamp((baseFirerate + firerateFlat) * firerateScalar, .05f, 10);
+        numProjectiles = Mathf.Min((baseProjectiles + numProjectilesFlat), 1);
+        spread = Mathf.Clamp((baseSpread + spreadFlat) * spreadScalar, 0, 180);
+        projectileSpeed = Mathf.Min((baseProjectileSpeed + projectileSpeedFlat) * projectileSpeedScalar, 0.5f);
+        projectileSize = Mathf.Min((baseProjectileSize + projectileSizeFlat) * projectileSizeScalar, 0.1f, 3);
     }
 }
 
