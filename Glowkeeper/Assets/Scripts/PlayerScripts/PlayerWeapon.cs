@@ -97,9 +97,9 @@ public class PlayerWeapon : MonoBehaviour
 
     //Runs stat calculations, call whenever the stats change
     public void UpdateStats() {
-        damage = Mathf.Min((baseDamage + damageFlat) * damageScalar, .5f);
+        damage = Mathf.Max((baseDamage + damageFlat) * damageScalar, .5f);
         firerate = Mathf.Clamp((baseFirerate + firerateFlat) * firerateScalar, .05f, 10);
-        numProjectiles = Mathf.Min((baseProjectiles + numProjectilesFlat), 1);
+        numProjectiles = Mathf.Max((baseProjectiles + numProjectilesFlat), 1);
         spread = Mathf.Clamp((baseSpread + spreadFlat) * spreadScalar, 0, 180);
         projectileSpeed = Mathf.Clamp((baseProjectileSpeed + projectileSpeedFlat) * projectileSpeedScalar, 0.5f, 15);
         projectileSize = Mathf.Clamp((baseProjectileSize + projectileSizeFlat) * projectileSizeScalar, 0.1f, 3);

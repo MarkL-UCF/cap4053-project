@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float baseMoveSpeed = 3f;
 
-    private float movespeed;
+    public float movespeed;
 
     public float movespeedFlat = 0;
     public float movespeedScalar = 1;
@@ -68,6 +68,6 @@ public class PlayerController : MonoBehaviour
 
     void UpdateStats()
     {
-        movespeed = Mathf.Min((baseMoveSpeed + movespeedFlat) * movespeedScalar, 0.5f, 7);
+        movespeed = Mathf.Clamp((baseMoveSpeed + movespeedFlat) * movespeedScalar, 0.5f, 10);
     }
 }
