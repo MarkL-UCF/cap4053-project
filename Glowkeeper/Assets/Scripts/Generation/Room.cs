@@ -22,25 +22,25 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.up)
         {
             topDoor.SetActive(true);
-            topWall.SetActive(false);  // Ensure wall is deactivated when door is open
+            topWall.SetActive(true);  // Ensure wall is deactivated when door is open
         }
 
         if (direction == Vector2Int.down)
         {
             bottomDoor.SetActive(true);
-            bottomWall.SetActive(false);
+            bottomWall.SetActive(true);
         }
 
         if (direction == Vector2Int.left)
         {
             leftDoor.SetActive(true);
-            leftWall.SetActive(false);
+            leftWall.SetActive(true);
         }
 
         if (direction == Vector2Int.right)
         {
             rightDoor.SetActive(true);
-            rightWall.SetActive(false);
+            rightWall.SetActive(true);
         }
     }
 
@@ -48,10 +48,10 @@ public class Room : MonoBehaviour
     public void ActivateWallsWithoutDoors()
     {
         // Activate walls only if corresponding doors are not active
-        if (!topDoor.activeSelf) topWall.SetActive(true);
-        if (!bottomDoor.activeSelf) bottomWall.SetActive(true);
-        if (!leftDoor.activeSelf) leftWall.SetActive(true);
-        if (!rightDoor.activeSelf) rightWall.SetActive(true);
+        if (!topDoor.activeSelf) topWall.SetActive(false);
+        if (!bottomDoor.activeSelf) bottomWall.SetActive(false);
+        if (!leftDoor.activeSelf) leftWall.SetActive(false);
+        if (!rightDoor.activeSelf) rightWall.SetActive(false);
     }
 }
 
