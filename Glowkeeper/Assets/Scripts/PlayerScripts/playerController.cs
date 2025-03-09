@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        UpdateStats();
+        
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat(_horizontal, moveInput.x);
         animator.SetFloat(_vertical, moveInput.y);
+
+    }
 
     void UpdateStats()
     {

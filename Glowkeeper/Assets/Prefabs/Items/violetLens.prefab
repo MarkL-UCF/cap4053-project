@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6997948572820523584}
   m_Layer: 0
   m_Name: violetLens
-  m_TagString: Untagged
+  m_TagString: Passive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScript: {fileID: 11400000, guid: 71235257cb0e69c4da172deb60371b42, type: 2}
+  pickUpText: {fileID: 0}
+  statsText: {fileID: 0}

@@ -6,13 +6,16 @@ using UnityEngine.AI;
 public class ShadowSplitter : MonoBehaviour
 {
     public GameObject smallerSplitterPrefab; // The weaker version
-    public float enemyHealth = 4f;
+    public float enemyHealth;
+    public float maxEnemyHealth = 4f;
     private bool hasSplit = false;
     private Transform player;
     private NavMeshAgent agent;
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;

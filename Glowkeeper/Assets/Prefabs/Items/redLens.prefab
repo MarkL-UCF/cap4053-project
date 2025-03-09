@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3559532735694683066}
   m_Layer: 0
   m_Name: redLens
-  m_TagString: Untagged
+  m_TagString: Passive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScript: {fileID: 11400000, guid: 6bab530865f539748a88ec0423254d61, type: 2}
+  pickUpText: {fileID: 0}
+  statsText: {fileID: 0}

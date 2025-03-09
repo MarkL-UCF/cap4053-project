@@ -47,12 +47,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4219328329492726958, guid: 80f1d4e354f93b04eb601854b9eddcbf, type: 3}
   BulletOrigin: {fileID: 6109787847050635117}
+  baseDamage: 2
+  baseFirerate: 1
+  baseProjectiles: 1
+  baseSpread: 5
+  baseProjectileSpeed: 5
+  baseProjectileSize: 1
   damage: 2
   firerate: 1
   numProjectiles: 1
   spread: 5
   projectileSpeed: 5
   projectileSize: 1
+  damageFlat: 0
+  firerateFlat: 0
+  numProjectilesFlat: 0
+  spreadFlat: 0
+  projectileSpeedFlat: 0
+  projectileSizeFlat: 0
+  damageScalar: 1
+  firerateScalar: 1
+  spreadScalar: 1
+  projectileSpeedScalar: 1
+  projectileSizeScalar: 1
 --- !u!1 &1405832945968565066
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +413,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede24c9c1622ca040b5397e654938dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  baseMoveSpeed: 3
+  movespeed: 0
+  movespeedFlat: 0
+  movespeedScalar: 1
 --- !u!114 &-1251975644720218028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,12 +470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentItem: {fileID: 0}
+  Items: []
   newPickup: 0
-  StartFirerate: 1
-  StartNumProjectiles: 1
-  StartSpread: 5
-  StartProjectileSpeed: 5
-  StartProjectileSize: 1
 --- !u!95 &5452591398271837611
 Animator:
   serializedVersion: 5

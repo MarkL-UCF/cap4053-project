@@ -22,6 +22,8 @@ TagManager:
   - Weapon
   - Atlas (Item)
   - Item Spawner
+  - Ability
+  - Passive
   layers:
   - Default
   - TransparentFX

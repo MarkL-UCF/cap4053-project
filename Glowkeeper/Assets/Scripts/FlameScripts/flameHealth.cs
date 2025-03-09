@@ -26,6 +26,8 @@ public class flameHealth : MonoBehaviour
         FlameStats = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
         LLM = GameObject.FindGameObjectWithTag("Flame").GetComponent<LightLevelManager>();
 
+        fuelBar = FlameStats.fuelBar;
+
         //import stored stats into instantiated object
         flameFuel = FlameStats.flameFuel;
         maxFlameFuel = FlameStats.maxFlameFuel;
@@ -38,7 +40,7 @@ public class flameHealth : MonoBehaviour
     void Update()
     {
         //Unless the fuel bar is active as an UI element, do not uncomment this or it will break a lot of things
-       // fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
+       fuelBar.fillAmount = Mathf.Clamp(flameFuel / maxFlameFuel, 0, 1);
 
         if(flameFuel != prevFuel)
         {

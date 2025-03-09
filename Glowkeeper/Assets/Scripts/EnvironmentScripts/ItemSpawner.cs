@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
     public ItemAtlas itemAtlas;
 
     public ArrayList passiveItemDeck;
+
+    public TextMeshProUGUI pickUpText;
+    public TextMeshProUGUI statsText;
 
     float[] chances = {.69f, .20f, .10f, .1f};
     //69% chance of nothing spawning
@@ -30,6 +35,17 @@ public class ItemSpawner : MonoBehaviour
         {
             passiveItemDeck.Add(i);
         }
+    }
+
+    private void Update()
+    {
+        GameObject.FindGameObjectWithTag("Ability").GetComponent<AbilityPickup>().pickUpText = pickUpText;
+        GameObject.FindGameObjectWithTag("Ability").GetComponent<AbilityPickup>().statsText = statsText;
+
+        GameObject.FindGameObjectWithTag("Passive").GetComponent<WeaponPickup>().pickUpText = pickUpText;
+        GameObject.FindGameObjectWithTag("Passive").GetComponent<WeaponPickup>().statsText = statsText;
+
+
     }
 
     public void RollForDrops()
@@ -122,6 +138,7 @@ public class ItemSpawner : MonoBehaviour
             result = Random.Range(0, itemAtlas.abAtlas.Length);
 
             spawnedItem = Instantiate(itemAtlas.abAtlas[result]);
+
             Debug.Log("Ability of ID:" + result + " rolled");
         }
         else //passive
@@ -136,6 +153,7 @@ public class ItemSpawner : MonoBehaviour
                 result = Random.Range(0, passiveItemDeck.Count - 1);
 
                 spawnedItem = Instantiate(itemAtlas.piAtlas[result]);
+
                 storedID = result;
 
                 Debug.Log("Passive item of ID:" + result + " rolled");

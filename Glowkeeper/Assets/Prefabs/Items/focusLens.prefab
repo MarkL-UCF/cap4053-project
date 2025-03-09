@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6049061460550442802}
   m_Layer: 0
   m_Name: focusLens
-  m_TagString: Untagged
+  m_TagString: Passive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScript: {fileID: 11400000, guid: a2f17e4533d779045b32ef9f4b91698f, type: 2}
+  pickUpText: {fileID: 0}
+  statsText: {fileID: 0}
