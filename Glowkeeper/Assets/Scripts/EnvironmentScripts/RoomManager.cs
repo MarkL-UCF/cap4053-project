@@ -30,6 +30,7 @@ public class RoomManager : MonoBehaviour
     public WaveAtlas waveAtlas;
     public flameHealth flameHP;
     public FlameStatTracker flameStatTracker;
+    public ItemSpawner itemSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class RoomManager : MonoBehaviour
         flameStatTracker = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
         flameAnchor = gameObject.transform.Find("Anchors").transform.Find("Flame Anchor").gameObject;
         trigger = this.GetComponent<BoxCollider2D>();
+        itemSpawner = GameObject.FindGameObjectWithTag("Item Spawner").GetComponent<ItemSpawner>();
     }
 
     // Update is called once per frame
@@ -289,6 +291,9 @@ public class RoomManager : MonoBehaviour
             DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
             doorScript.UnlockDoor();
         }
+
+        //roll for a drop
+        itemSpawner.GetComponent<ItemSpawner>().RollForDrops();
 
         Debug.Log("Room Complete");
 
