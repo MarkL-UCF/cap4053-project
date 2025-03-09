@@ -11,12 +11,12 @@ public class RedItem : PlayerItems
     public override void Info()
     {
         Name = "RedLens";
-        StatDescription = "+Damage<br>-Fire Rate<br>-Speed<br>+Size<br>";
+        StatDescription = "-Projectile Speed<br>+Projectile Size<br>";
     }
     public override void Activate(GameObject parent) 
     {
         Name = "RedLens";
-        StatDescription = "+Damage<br>-Fire Rate<br>-Speed<br>+Size<br>";
+        StatDescription = "-Projectile Speed<br>+Projectile Size<br>";
 
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
 
