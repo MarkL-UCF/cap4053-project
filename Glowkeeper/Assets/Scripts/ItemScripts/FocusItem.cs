@@ -20,7 +20,7 @@ public class FocusItem : PlayerItems
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
         Weapon.damageFlat += 1;
         Weapon.spreadFlat -= 4;
-        Weapon.projectileSizeFlat -= 0.25f;
+        Weapon.projectileSizeFlat -= 0.50f; //increased to make the effect more drastic
         Weapon.UpdateStats();
 
     }
