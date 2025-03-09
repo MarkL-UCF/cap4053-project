@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
+        UpdateStats();
     }
 
     //Update is called once per frame
@@ -65,10 +65,10 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat(_horizontal, moveInput.x);
         animator.SetFloat(_vertical, moveInput.y);
-
     }
 
-    void UpdateStats()
+    public void UpdateStats()
+
     {
         movespeed = Mathf.Clamp((baseMoveSpeed + movespeedFlat) * movespeedScalar, 0.5f, 10);
     }
