@@ -710,6 +710,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Atlas
       objectReference: {fileID: 0}
+    - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
+      propertyPath: eAtlas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
+      propertyPath: eAtlas.Array.data[1]
+      value: 
+      objectReference: {fileID: 7683727218981278669, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
+    - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
+      propertyPath: eAtlas.Array.data[2]
+      value: 
+      objectReference: {fileID: 7869933524185208323, guid: 95645172545964c95b5bbae3b0f03da5, type: 3}
+    - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
+      propertyPath: eAtlas.Array.data[3]
+      value: 
+      objectReference: {fileID: 7869933524185208323, guid: 9b4e61381555d4548a9a2c186cfd4a38, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
