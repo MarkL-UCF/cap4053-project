@@ -20,6 +20,8 @@ TagManager:
   - EnemyPlayerR
   - EnemyPlayer
   - Weapon
+  - Atlas (Item)
+  - Item Spawner
   layers:
   - Default
   - TransparentFX
