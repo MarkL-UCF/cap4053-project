@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 0
-  maxEnemyHealth: 10
+  maxEnemyHealth: 5
   moveSpeed: 0.8
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
   fireRate: 4

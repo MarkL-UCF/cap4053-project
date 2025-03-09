@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7481712017496877175}
   m_Layer: 0
-  m_Name: Environment
+  m_Name: NavMeshEnvironment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
