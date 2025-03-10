@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 5548494699515737117, guid: b7e3acfe1b46c274d9d2a02834703c5d, type: 3}
   startRoomPrefab: {fileID: 8181821865277091195, guid: c32b0894829b6b646bb7b0ed8894d8ed, type: 3}
+  endRoomPrefab: {fileID: 4282757136910099758, guid: a3a2c099a4e2c4b48aa62b49cd5bfbc0, type: 3}
   maxRooms: 5
   minRooms: 4
   roomWidth: 15
@@ -228,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.01669449
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -236,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.96527547
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
