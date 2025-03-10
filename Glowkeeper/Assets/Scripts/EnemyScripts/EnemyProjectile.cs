@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public float lifetime = 3f; // Destroy after 5 seconds
-    public float damage = 30f;
+    public int damage = 30;
 
     void Start()
     {
