@@ -8,6 +8,7 @@ public class PlayerProjectile : MonoBehaviour
     private Rigidbody2D rb;
 
     public float projectileSize = 1;
+    public float damage = 2;
     private float timer;
 
     // Start is called before the first frame update
@@ -47,14 +48,33 @@ public class PlayerProjectile : MonoBehaviour
         // added tag to the enemy object
 
         //Enemy Shadow Close
-        if (collision.gameObject.CompareTag("Enemy"))
+       if (collision.gameObject.CompareTag("Enemy"))
         {
-            // destroy the enemy when hit by a projectile
-            Destroy(gameObject);
+            // for all the enemies with the tag enemy
+            ShadowSplitter shadowEnemy = collision.gameObject.GetComponent<ShadowSplitter>();
+            EnemyScript normalEnemy = collision.gameObject.GetComponent<EnemyScript>();
+            SmallerSplitter smallEnemy = collision.gameObject.GetComponent<SmallerSplitter>();
 
-            // destroy the projectile as well
-            EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
-            enemy.EnemyDamage(2);
+            // Apply damage if the enemy script exists
+            if (shadowEnemy != null)
+            {
+                shadowEnemy.EnemyDamage(damage);
+            }
+            else if (normalEnemy != null)
+            {
+                normalEnemy.EnemyDamage(damage);
+            }
+            else if (smallEnemy != null)
+            {
+                smallEnemy.EnemyDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("Enemy tagged object found, but no valid enemy script attached!");
+            }
+
+            // Destroy the projectile after applying damage
+            Destroy(gameObject);
         }
         //Enemy Shadow Range
         if (collision.gameObject.CompareTag("EnemyRange"))
@@ -64,7 +84,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             Enemy2 enemy = collision.gameObject.GetComponent<Enemy2>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //Enemy Player Close
         if (collision.gameObject.CompareTag("EnemyPlayer"))
@@ -74,7 +94,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             enemy_player_attack enemy = collision.gameObject.GetComponent<enemy_player_attack>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //Enemy Player Range
         if (collision.gameObject.CompareTag("EnemyPlayerR"))
@@ -84,7 +104,7 @@ public class PlayerProjectile : MonoBehaviour
 
             // destroy the projectile as well
             enemy_range_player enemy = collision.gameObject.GetComponent<enemy_range_player>();
-            enemy.EnemyDamage(2);
+            enemy.EnemyDamage(damage);
         }
         //tag enemy projectile object
         else if(collision.gameObject.CompareTag("EnemyProjectile"))//if two opposing projectiles collide, they cancel each other

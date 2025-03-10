@@ -19,7 +19,11 @@ TagManager:
   - EnemyRange
   - EnemyPlayerR
   - EnemyPlayer
-  - Metrics
+  - Weapon
+  - Atlas (Item)
+  - Item Spawner
+  - Ability
+  - Passive
   layers:
   - Default
   - TransparentFX
@@ -71,4 +75,7 @@ TagManager:
     locked: 0
   - name: Light
     uniqueID: 2314786403
+    locked: 0
+  - name: UIObjects
+    uniqueID: 4094259707
     locked: 0

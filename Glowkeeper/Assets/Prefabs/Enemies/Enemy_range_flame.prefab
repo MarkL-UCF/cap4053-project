@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3674361035135512281}
   - component: {fileID: 7232912345465446280}
   - component: {fileID: 4869802284587117363}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy_range_flame
   m_TagString: EnemyRange
   m_Icon: {fileID: 0}
@@ -28,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7869933524185208323}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.17, y: 0.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8788, y: 0.6061, z: 0}
+  m_LocalScale: {x: 0.17988145, y: 0.13438354, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 3.61, y: 13.54}
   m_EdgeRadius: 0
 --- !u!50 &7232912345465446280
 Rigidbody2D:
@@ -172,8 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 0
-  maxEnemyHealth: 10
+  maxEnemyHealth: 5
   moveSpeed: 0.8
   projectilePrefab: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
   fireRate: 4
   projectileSpeed: 2
+  avoidLightRadius: 3

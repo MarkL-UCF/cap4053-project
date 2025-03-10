@@ -10,19 +10,32 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
 
     private Vector2 moveInput;
+
+    private Animator animator;
+
+    private const string _horizontal = "Horizontal";
+    private const string _vertical = "Vertical";
     
 
     [SerializeField]
-    private float moveSpeed = 3f;
-    //Note: could change move speed through items in the future
+
+    public float baseMoveSpeed = 3f;
+
+    public float movespeed;
+
+    public float movespeedFlat = 0;
+    public float movespeedScalar = 1;
+
 
     //Start is called before the first frame update
     void Start()
     {
+        UpdateStats();
+        
         //instantiate components
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
-        
+        animator = GetComponent<Animator>();
+        UpdateStats();
     }
 
     //Update is called once per frame
@@ -34,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Apply the input to velocity
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * movespeed;
     }
 
     //Handles the player's movement inputs
@@ -46,19 +59,17 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal"); // X input
         moveInput.y = Input.GetAxisRaw("Vertical"); // Y input
 
-        //Handle which direction the sprite faces
-        if(moveInput.x > 0) //Face right
-        {
-            sprite.flipX = false;
-        }
-        else if(moveInput.x < 0) //Face left
-        {
-            sprite.flipX = true;
-        }
-        //No horizontal movement just uses whatever the set direction was last
-
         //Prevent weird behavior causing fast diagonal movement
         //Effectively turns the input vector into a unit vector that only stores direction and not magnitude
         moveInput.Normalize();
+
+        animator.SetFloat(_horizontal, moveInput.x);
+        animator.SetFloat(_vertical, moveInput.y);
+    }
+
+    public void UpdateStats()
+
+    {
+        movespeed = Mathf.Clamp((baseMoveSpeed + movespeedFlat) * movespeedScalar, 0.5f, 10);
     }
 }

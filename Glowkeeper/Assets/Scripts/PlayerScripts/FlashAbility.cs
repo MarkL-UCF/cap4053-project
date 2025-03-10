@@ -7,15 +7,20 @@ using UnityEngine.Rendering.Universal;
 public class FlashAbility : PlayerAbility
 {
 
+    public GameObject flashPrefab;
     private GameObject[] EnemiesClose;
     private GameObject[] EnemiesRange;
     private GameObject[] EnemiesPlayer;
     private GameObject[] EnemiesPlayerR;
 
+    public override void Info()
+    {
+        Name = "Flash Bang";
+        StatDescription = "Press Spacebar to Activate<br>Stuns enemies and damages shadow monsters";
+    }
     public override void Activate(GameObject parent)
     {
         Debug.Log("Ability Activated!");
-
         Light2D Flash = GameObject.FindGameObjectWithTag("Flash").GetComponent<Light2D>();
         var flashScript = GameObject.FindGameObjectWithTag("Flash").GetComponent<FlashScript>();
         EnemiesClose = GameObject.FindGameObjectsWithTag("Enemy");

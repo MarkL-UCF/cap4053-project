@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133320618576855177}
   - component: {fileID: 8760053133113983754}
+  - component: {fileID: 7359520763573998524}
   m_Layer: 0
   m_Name: Light 50%
   m_TagString: Light Ring (50%)
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_LightType: 2
+  m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.8971891, b: 0.5801887, a: 1}
@@ -66,8 +67,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 2.53125, y: 1.53125, z: 0}
+    m_Center: {x: -0.00024998188, y: -0.000100016594, z: 0}
+    m_Extent: {x: 1.00045, y: 1.0009, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -82,6 +83,41 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!58 &7359520763573998524
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822637765468169186}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2994603673418251164
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3739149243872060360}
   - component: {fileID: 8447610619320554617}
+  - component: {fileID: 5711760031065681352}
   m_Layer: 0
   m_Name: Light 25%
   m_TagString: Light Ring (25%)
@@ -164,6 +201,41 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!58 &5711760031065681352
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994603673418251164}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 9.02
 --- !u!1 &3226329926131424544
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6551405828333128515}
   - component: {fileID: 4948515273043907140}
+  - component: {fileID: 6478843675860376768}
   m_Layer: 0
   m_Name: Light 75%
   m_TagString: Light Ring (75%)
@@ -246,6 +319,41 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!58 &6478843675860376768
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226329926131424544}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6.12
 --- !u!1 &7043194760107580043
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +368,7 @@ GameObject:
   - component: {fileID: 4607980876541714375}
   - component: {fileID: 4960277548807244074}
   - component: {fileID: 6182074088904927938}
+  - component: {fileID: 5611678089956445039}
   m_Layer: 0
   m_Name: PHFlame
   m_TagString: Flame
@@ -352,7 +461,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -387,7 +496,7 @@ MonoBehaviour:
   flameFuel: 1000
   prevFuel: 0
   maxFlameFuel: 1000
-  fuelBar: {fileID: 0}
+  fuelBar: {fileID: 2969274965352715010, guid: db82e438310920f44b1f0793601d976f, type: 3}
   LLM: {fileID: 0}
   roomManager: {fileID: 0}
   FlameStats: {fileID: 0}
@@ -430,3 +539,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5dea9b91bb59340b07b163526b168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5611678089956445039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043194760107580043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408aed00629aad44a822cc1d7ad96be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooterOn: 0
+  bullet: {fileID: 4219328329492726958, guid: 80f1d4e354f93b04eb601854b9eddcbf, type: 3}
+  fireRate: 2
+  projectileSpeed: 5

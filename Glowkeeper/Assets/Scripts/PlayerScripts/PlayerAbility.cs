@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerAbility : ScriptableObject
 {
-    public new string name;
+    public string Name;
     public float cooldownTime;
     public float activeTime;
+    public string StatDescription;
+
+    public virtual void Info() { }
 
     public virtual void Activate(GameObject parent){}
 

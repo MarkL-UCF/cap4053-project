@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ public class RoomManager : MonoBehaviour
     public WaveAtlas waveAtlas;
     public flameHealth flameHP;
     public FlameStatTracker flameStatTracker;
+    public ItemSpawner itemSpawner;
 
     public Metrics metrics;
 
@@ -41,7 +43,11 @@ public class RoomManager : MonoBehaviour
         flameStatTracker = GameObject.FindGameObjectWithTag("Global Stat Tracker (Flame)").GetComponent<FlameStatTracker>();
         flameAnchor = gameObject.transform.Find("Anchors").transform.Find("Flame Anchor").gameObject;
         trigger = this.GetComponent<BoxCollider2D>();
+
         metrics = GameObject.FindGameObjectWithTag("Metrics").GetComponent<Metrics>();
+
+        itemSpawner = GameObject.FindGameObjectWithTag("Item Spawner").GetComponent<ItemSpawner>();
+
     }
 
     // Update is called once per frame
@@ -121,8 +127,8 @@ public class RoomManager : MonoBehaviour
         }
 
 
-
-        yield return new WaitForSeconds(3);
+        if(activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
         //Debug.Log("3 seconds have passed, starting encounter now...");
 
         foreach (GameObject warning in activeWarnings)
@@ -189,8 +195,8 @@ public class RoomManager : MonoBehaviour
             activeWarnings.Add(warn);
         }
 
-
-        yield return new WaitForSeconds(3);
+        if (activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
 
         foreach (GameObject warning in activeWarnings)
         {
@@ -253,7 +259,8 @@ public class RoomManager : MonoBehaviour
             activeWarnings.Add(warn);
         }
 
-        yield return new WaitForSeconds(3);
+        if (activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
 
         foreach (GameObject warning in activeWarnings)
         {
@@ -294,6 +301,9 @@ public class RoomManager : MonoBehaviour
             DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
             doorScript.UnlockDoor();
         }
+
+        //roll for a drop
+        itemSpawner.GetComponent<ItemSpawner>().RollForDrops();
 
         Debug.Log("Room Complete");
 

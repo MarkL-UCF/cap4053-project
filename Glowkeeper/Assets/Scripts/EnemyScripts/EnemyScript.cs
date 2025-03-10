@@ -14,8 +14,6 @@ public class EnemyScript : MonoBehaviour
     private Transform flame; // Reference to the player
     private float nextDamageTime = 0f; // Timer for damage application
 
-    [SerializeField] Transform target;
-
     NavMeshAgent agent;
 
     void Start()
@@ -31,10 +29,10 @@ public class EnemyScript : MonoBehaviour
         agent.speed = moveSpeed;
 
         // Find the player GameObject by tag
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
-        if (playerObj != null)
+        GameObject flameObj = GameObject.FindGameObjectWithTag("Flame");
+        if (flameObj != null)
         {
-            flame = playerObj.transform;
+            flame = flameObj.transform;
         }
         else
         {
@@ -51,7 +49,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    public void EnemyDamage(int amount)
+    public void EnemyDamage(float amount)
     {
         enemyHealth -= amount;
 

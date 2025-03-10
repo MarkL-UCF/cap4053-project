@@ -6,6 +6,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FireShootAbility : PlayerAbility
 {
+
+    public override void Info()
+    {
+        Name = "Fire Shooter";
+        StatDescription = "Press Spacebar to Activate<br>Shoots Projectiles from the Flame, but drains fuel";
+    }
     public override void Activate(GameObject parent)
     {
         //apply change
