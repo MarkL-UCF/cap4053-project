@@ -13,18 +13,20 @@ public class AbilityPickup : MonoBehaviour
 
     private void Start()
     {
-        pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
-        statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
+        //pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
+        //statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
         pickupAllowed = false;
         pickUpText.gameObject.SetActive(false);
     }
     private void Update()
     {
-        pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
-        statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
+        
 
         if (pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
+            pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
+            statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
+
             AbilityHolder abilityHold = GameObject.FindGameObjectWithTag("Player").GetComponent<AbilityHolder>();
             abilityHold.newAbility = abilityScript;
             abilityHold.newAbilityPickup = true;

@@ -135,6 +135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522804080407112676, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
+      propertyPath: m_Name
+      value: Heart(3)
+      objectReference: {fileID: 0}
     - target: {fileID: 695640084788328840, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -271,9 +275,17 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6311764123750304126, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
+      propertyPath: m_Name
+      value: Heart(1)
+      objectReference: {fileID: 0}
     - target: {fileID: 6457328400097983419, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684016077603712308, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
+      propertyPath: m_Name
+      value: Heart(2)
       objectReference: {fileID: 0}
     - target: {fileID: 7141299893501053017, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_text
@@ -310,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 8679095247831735458, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679095247831735458, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
       objectReference: {fileID: 0}
     - target: {fileID: 8949933743656571766, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_text

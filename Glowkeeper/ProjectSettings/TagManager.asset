@@ -24,6 +24,8 @@ TagManager:
   - Item Spawner
   - Ability
   - Passive
+  - Metrics
+  - PickUp
   layers:
   - Default
   - TransparentFX
