@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] GameObject topDoor;
-    [SerializeField] GameObject bottomDoor;
-    [SerializeField] GameObject leftDoor;
-    [SerializeField] GameObject rightDoor;
+    [SerializeField] public GameObject topDoor;
+    [SerializeField] public GameObject bottomDoor;
+    [SerializeField] public GameObject leftDoor;
+    [SerializeField] public GameObject rightDoor;
 
     [SerializeField] GameObject topWall;
     [SerializeField] GameObject bottomWall;
@@ -46,6 +46,36 @@ public class Room : MonoBehaviour
 
 
     }
+public GameObject GetDoor(Vector2Int direction)
+{
+    GameObject doorParent = null;
+
+    if (direction == Vector2Int.up) doorParent = topDoor;
+    if (direction == Vector2Int.down) doorParent = bottomDoor;
+    if (direction == Vector2Int.left) doorParent = leftDoor;
+    if (direction == Vector2Int.right) doorParent = rightDoor;
+
+    if (doorParent != null)
+    {
+        Transform activeDoor = doorParent.transform.Find("Active Door"); // Find the child object
+
+        if (activeDoor != null)
+        {
+            return activeDoor.gameObject; // Return Active Door instead of the parent
+        }
+    }
+
+    return null;
+}
+
+public GameObject GetCamera(Vector2Int direction)
+{
+    Transform cameraAnchor = transform.Find("Anchors/Camera Anchor");
+    return cameraAnchor != null ? cameraAnchor.gameObject : null;
+
+}
+
+
 
     // Activates walls if doors did not activate
     public void ActivateWallsWithoutDoors()
@@ -55,10 +85,10 @@ public class Room : MonoBehaviour
         //if (!bottomDoor.activeSelf) bottomWall.SetActive(true);
         //if (!leftDoor.activeSelf) leftWall.SetActive(true);
         //if (!rightDoor.activeSelf) rightWall.SetActive(true);
-            Debug.Log($"Top Wall Active: {topWall?.activeSelf}");
-    Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
-    Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
-    Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
+    //         Debug.Log($"Top Wall Active: {topWall?.activeSelf}");
+    // Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
+    // Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
+    // Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
         if (topWall.activeSelf)
             topDoor.SetActive(false);
 
@@ -74,6 +104,12 @@ public class Room : MonoBehaviour
     // Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
     // Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
     // Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
+    Debug.Log($"Top Door Active: {topDoor?.activeSelf}");
+    Debug.Log($"Bottom Door Active: {bottomDoor?.activeSelf}");
+    Debug.Log($"Left Door Active: {leftDoor?.activeSelf}");
+    Debug.Log($"Right Door Active: {rightDoor?.activeSelf}");
+
+    
 
     
     }
