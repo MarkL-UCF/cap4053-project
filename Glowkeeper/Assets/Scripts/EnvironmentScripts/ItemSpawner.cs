@@ -23,10 +23,12 @@ public class ItemSpawner : MonoBehaviour
     public GameObject spawnedItem;
     public int storedID = -1;
 
+    public Metrics metrics;
     // Start is called before the first frame update
     void Start()
     {
         itemAtlas = GameObject.FindGameObjectWithTag("Atlas (Item)").GetComponent<ItemAtlas>();
+        metrics = GameObject.FindGameObjectWithTag("Metrics").GetComponent<Metrics>();
 
         for (int i = 0; i < itemAtlas.piAtlas.Length; ++i)
         {
@@ -139,6 +141,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 Debug.Log("Deck empty");
                 SpawnCandy();
+                metrics.foundItem(-1);
             }
             else //deck isn't empty, draw from it
             {
@@ -149,6 +152,7 @@ public class ItemSpawner : MonoBehaviour
                 storedID = result;
 
                 Debug.Log("Passive item of ID:" + result + " rolled");
+                metrics.foundItem(result);
             }
         }
     }
@@ -157,6 +161,7 @@ public class ItemSpawner : MonoBehaviour
     {
         spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
         Debug.Log("Candy rolled");
+        metrics.foundItem(-1);
     }
 
     public void DespawnItem()
