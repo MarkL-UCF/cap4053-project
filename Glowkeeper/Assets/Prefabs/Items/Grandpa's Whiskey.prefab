@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScript: {fileID: 11400000, guid: b37129c5669720d4b93dcb16352178b2, type: 2}
-  pickUpText: {fileID: 0}
-  statsText: {fileID: 0}
+  pickUpText: {fileID: 3193714578083418365, guid: b51bf61397426184f924888a80058d8f, type: 3}
+  statsText: {fileID: 2628625179505656999, guid: f34dbccf5b818dc4c8c2b04768e2f19e, type: 3}

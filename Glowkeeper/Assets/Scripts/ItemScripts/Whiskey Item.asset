@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecb36c0e3b85df4aada3bd6193c5909, type: 3}
   m_Name: Whiskey Item
   m_EditorClassIdentifier: 
-  Name: 
-  StatDescription: 
+  Name: Grandpa'sWhiskey
+  StatDescription: Seeing double...

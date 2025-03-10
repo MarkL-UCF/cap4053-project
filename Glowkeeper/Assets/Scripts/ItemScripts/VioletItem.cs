@@ -10,14 +10,10 @@ public class VioletItem : PlayerItems
     //Note: this item's counterpart is the Red Lens
     public override void Info()
     {
-        Name = "VioletLens";
-        StatDescription = "+Projectile Speed<br>-Projectile Size<br>";
+        
     }
     public override void Activate(GameObject parent) 
     {
-        Name = "VioletLens";
-        StatDescription = "+Projectile Speed<br>-Projectile Size<br>";
-
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
 
         //Weapon.firerateFlat -= .33f; //removed for too many changed stats

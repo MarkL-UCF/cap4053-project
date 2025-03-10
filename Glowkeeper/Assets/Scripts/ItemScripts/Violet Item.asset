@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe50b5f2028ee442bc13a1f08ebf0a0, type: 3}
   m_Name: Violet Item
   m_EditorClassIdentifier: 
+  Name: VioletLens
+  StatDescription: High Frequency!

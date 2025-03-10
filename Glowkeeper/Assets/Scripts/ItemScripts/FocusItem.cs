@@ -9,14 +9,10 @@ public class FocusItem : PlayerItems
 
     public override void Info()
     {
-        Name = "FocusLens";
-        StatDescription = "+Damage<br>+Accuracy<br>-Size<br>";
+
     }
     public override void Activate(GameObject parent)
     {
-        Name = "FocusLens";
-        StatDescription = "+Damage<br>+Accuracy<br>-Size<br>";
-
         var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
         Weapon.damageFlat += 1;
         Weapon.spreadFlat -= 4;

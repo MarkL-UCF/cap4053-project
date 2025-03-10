@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df986e27b2a0c034c9ba066404fddd31, type: 3}
   m_Name: Slowfuel Item
   m_EditorClassIdentifier: 
-  Name: 
-  StatDescription: 
+  Name: Slow-Burn Fuel
+  StatDescription: Savor the Light

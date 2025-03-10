@@ -28,6 +28,8 @@ public class AbilityHolder : MonoBehaviour
 
     private void Start()
     {
+        CoolDownBar = GameObject.Find("CoolDownBar").GetComponent<Image>();
+        CoolLabel = GameObject.Find("CoolDown Label").GetComponent<Image>();
         CoolDownBar.enabled = false;
         CoolLabel.enabled = false;
         newAbilityPickup = false;

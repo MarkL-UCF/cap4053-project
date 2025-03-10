@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2640a3a7e477fb84c9b405ad14fd8d8f, type: 3}
   m_Name: Pepper Item
   m_EditorClassIdentifier: 
-  Name: 
-  StatDescription: 
+  Name: SpicyPepper
+  StatDescription: Feel the heat!

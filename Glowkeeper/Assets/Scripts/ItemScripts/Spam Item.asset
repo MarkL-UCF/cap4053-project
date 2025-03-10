@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3298342bf55657e46b5a555712bb84a4, type: 3}
   m_Name: Spam Item
   m_EditorClassIdentifier: 
-  Name: 
-  StatDescription: 
+  Name: Spicy Ham
+  StatDescription: Quantity over quality!

@@ -15,7 +15,7 @@ public class FlameStatTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        fuelBar = GameObject.Find("Fuel Bar UI").GetComponent<Image>();
     }
 
     // Update is called once per frame

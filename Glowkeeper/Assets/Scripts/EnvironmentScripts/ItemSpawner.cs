@@ -39,12 +39,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        GameObject.FindGameObjectWithTag("Ability").GetComponent<AbilityPickup>().pickUpText = pickUpText;
-        GameObject.FindGameObjectWithTag("Ability").GetComponent<AbilityPickup>().statsText = statsText;
-
-        GameObject.FindGameObjectWithTag("Passive").GetComponent<WeaponPickup>().pickUpText = pickUpText;
-        GameObject.FindGameObjectWithTag("Passive").GetComponent<WeaponPickup>().statsText = statsText;
-
+        
 
     }
 

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1663377667917c04bb041457bd41e277, type: 3}
   m_Name: FlashAbility
   m_EditorClassIdentifier: 
-  name: 
+  Name: Flash Bang
   cooldownTime: 10
   activeTime: 4
+  StatDescription: Press Spacebar to Activate<br>Stuns enemies and damages shadow
+    monsters
+  flashPrefab: {fileID: 7199095775820569140, guid: a20e88609ece83149bc1f7d6ccbc526d, type: 3}

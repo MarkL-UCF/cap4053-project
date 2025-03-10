@@ -17,6 +17,8 @@ public class WeaponPickup : MonoBehaviour
 
     private void Start()
     {
+        pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
+        statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
         pickupAllowed = false;
         pickUpText.gameObject.SetActive(false);
         
@@ -24,12 +26,17 @@ public class WeaponPickup : MonoBehaviour
 
     private void Update()
     {
+        pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
+        statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
+
         if (pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
             ItemHolder item = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemHolder>();
             item.CurrentItem = itemScript;
             item.newPickup = true;
             Destroy(gameObject);
+            pickUpText.text = "";
+            statsText.text = "";
             pickUpText.gameObject.SetActive(false);
             statsText.gameObject.SetActive(false);
         }
@@ -40,6 +47,7 @@ public class WeaponPickup : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             itemScript.Info();
+            pickUpText.text = "Press 'E' to pick up";
             statsText.text = itemScript.Name + ":<br>" + itemScript.StatDescription;
             pickUpText.gameObject.SetActive(true);
             statsText.gameObject.SetActive(true);
@@ -52,6 +60,8 @@ public class WeaponPickup : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            pickUpText.text = "";
+            statsText.text = "";
             pickUpText.gameObject.SetActive(false);
             statsText.gameObject.SetActive(false);
             pickupAllowed = false;
