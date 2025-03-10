@@ -496,7 +496,7 @@ MonoBehaviour:
   flameFuel: 1000
   prevFuel: 0
   maxFlameFuel: 1000
-  fuelBar: {fileID: 0}
+  fuelBar: {fileID: 2969274965352715010, guid: db82e438310920f44b1f0793601d976f, type: 3}
   LLM: {fileID: 0}
   roomManager: {fileID: 0}
   FlameStats: {fileID: 0}
