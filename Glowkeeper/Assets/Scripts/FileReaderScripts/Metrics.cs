@@ -35,7 +35,7 @@ public class Metrics : MonoBehaviour
 
     public void foundItem(int itemID)
     {
-        File.AppendAllText(filePath, "[" + (Time.time - creationTime) + "s] Item found of ID #" + itemID + "\n");
+        File.AppendAllText(filePath, "[" + (Time.time - creationTime) + "s] Item spawned with ID #" + itemID + "\n");
     }
 
     public void playerDied()

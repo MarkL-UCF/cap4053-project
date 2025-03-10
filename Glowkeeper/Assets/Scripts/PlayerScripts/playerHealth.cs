@@ -16,6 +16,8 @@ public class playerHealth : MonoBehaviour
     public Sprite fullHeart;
     public Image[] hearts;
 
+    public Metrics metrics;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class playerHealth : MonoBehaviour
         hearts[1] = GameObject.Find("Heart(1)").GetComponent<Image>();
         hearts[2] = GameObject.Find("Heart(2)").GetComponent<Image>();
         hearts[3] = GameObject.Find("Heart(3)").GetComponent<Image>();
-
+        metrics = GameObject.FindGameObjectWithTag("Metrics").GetComponent<Metrics>();
     }
 
     // Update is called once per frame
@@ -69,6 +71,7 @@ public class playerHealth : MonoBehaviour
         if (health <= 0)
         {
             Update();
+            metrics.playerDied();
             Destroy(gameObject);//destroys player object
         }
     }
