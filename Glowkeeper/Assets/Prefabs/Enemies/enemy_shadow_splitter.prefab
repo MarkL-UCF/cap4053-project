@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallerSplitterPrefab: {fileID: 7692503108576976680, guid: b5580b94e8de74388aac3e8cd1323f62, type: 3}
   enemyHealth: 4
+  maxEnemyHealth: 4
 --- !u!195 &5513155404579427072
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.36
-  m_Speed: 0.3
+  m_Speed: 0.6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
