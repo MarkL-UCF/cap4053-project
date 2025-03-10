@@ -6,6 +6,8 @@ public class DungeonManager : MonoBehaviour
 
 {
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] GameObject startRoomPrefab;
+
     [SerializeField] private int maxRooms = 20;
     [SerializeField] private int minRooms = 18;
 
@@ -64,7 +66,7 @@ public class DungeonManager : MonoBehaviour
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        var initialRoom = Instantiate(startRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
         roomObjects.Add(initialRoom);
@@ -94,13 +96,12 @@ public class DungeonManager : MonoBehaviour
         roomCount++;
 
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        if(roomCount == 1){
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
         OpenDoors(newRoom, x, y);
-        }
+        
 
 
         return true;
