@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -118,8 +119,8 @@ public class RoomManager : MonoBehaviour
         }
 
 
-
-        yield return new WaitForSeconds(3);
+        if(activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
         //Debug.Log("3 seconds have passed, starting encounter now...");
 
         foreach (GameObject warning in activeWarnings)
@@ -186,8 +187,8 @@ public class RoomManager : MonoBehaviour
             activeWarnings.Add(warn);
         }
 
-
-        yield return new WaitForSeconds(3);
+        if (activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
 
         foreach (GameObject warning in activeWarnings)
         {
@@ -250,7 +251,8 @@ public class RoomManager : MonoBehaviour
             activeWarnings.Add(warn);
         }
 
-        yield return new WaitForSeconds(3);
+        if (activeWarnings.Count > 0)
+            yield return new WaitForSeconds(3);
 
         foreach (GameObject warning in activeWarnings)
         {

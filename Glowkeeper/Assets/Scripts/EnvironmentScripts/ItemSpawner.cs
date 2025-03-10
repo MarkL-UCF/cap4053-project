@@ -8,7 +8,7 @@ public class ItemSpawner : MonoBehaviour
 {
     public ItemAtlas itemAtlas;
 
-    public ArrayList passiveItemDeck;
+    public ArrayList passiveItemDeck = new ArrayList();
 
     public TextMeshProUGUI pickUpText;
     public TextMeshProUGUI statsText;
@@ -108,18 +108,18 @@ public class ItemSpawner : MonoBehaviour
 
             if(result == 1) //half heart
             {
-                spawnedItem = Instantiate(itemAtlas.puAtlas[1]);
+                spawnedItem = Instantiate(itemAtlas.puAtlas[1], gameObject.transform.position, gameObject.transform.rotation);
                 Debug.Log("Half heart rolled");
             }
             else //full heart
             {
-                spawnedItem = Instantiate(itemAtlas.puAtlas[2]);
+                spawnedItem = Instantiate(itemAtlas.puAtlas[2], gameObject.transform.position, gameObject.transform.rotation);
                 Debug.Log("Full heart rolled");
             }
         }
         else //fuel
         {
-            spawnedItem = Instantiate(itemAtlas.puAtlas[3]);
+            spawnedItem = Instantiate(itemAtlas.puAtlas[3], gameObject.transform.position, gameObject.transform.rotation);
             Debug.Log("Fuel rolled)");
         }
     }
@@ -132,7 +132,7 @@ public class ItemSpawner : MonoBehaviour
         {
             result = Random.Range(0, itemAtlas.abAtlas.Length);
 
-            spawnedItem = Instantiate(itemAtlas.abAtlas[result]);
+            spawnedItem = Instantiate(itemAtlas.abAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
 
             Debug.Log("Ability of ID:" + result + " rolled");
         }
@@ -147,7 +147,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 result = Random.Range(0, passiveItemDeck.Count - 1);
 
-                spawnedItem = Instantiate(itemAtlas.piAtlas[result]);
+                spawnedItem = Instantiate(itemAtlas.piAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
 
                 storedID = result;
 
@@ -158,7 +158,7 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnCandy()
     {
-        spawnedItem = Instantiate(itemAtlas.puAtlas[0]);
+        spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
         Debug.Log("Candy rolled");
     }
 
