@@ -10,9 +10,6 @@ public class ItemSpawner : MonoBehaviour
 
     public ArrayList passiveItemDeck = new ArrayList();
 
-    public TextMeshProUGUI pickUpText;
-    public TextMeshProUGUI statsText;
-
     float[] chances = {.69f, .20f, .10f, .1f};
     //69% chance of nothing spawning
     //20% chance of a health/fuel item spawning
