@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public float lifetime = 3f; // Destroy after 5 seconds
+    public float damage = 30f;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class ProjectileScript : MonoBehaviour
             Debug.Log("Flame hit!");
             // TODO: Implement Flame damage logic
             flameHealth Flame = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
-            Flame.FlameDamage(100);
+            Flame.FlameDamage(damage);
             Destroy(gameObject); // Destroy the projectile on impact
         }
         else if(collision.CompareTag("Player")){
