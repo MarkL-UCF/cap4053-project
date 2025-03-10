@@ -282,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedTeleportSpot: {fileID: 0}
+  MainCamera: {fileID: 0}
+  CameraAnchor: {fileID: 0}
 --- !u!61 &3886414395857379982
 BoxCollider2D:
   m_ObjectHideFlags: 0

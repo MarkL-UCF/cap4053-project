@@ -94,11 +94,14 @@ public class DungeonManager : MonoBehaviour
         roomCount++;
 
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        if(roomCount == 1){
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
         OpenDoors(newRoom, x, y);
+        }
+
 
         return true;
     }

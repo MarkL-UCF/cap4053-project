@@ -22,36 +22,62 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.up)
         {
             topDoor.SetActive(true);
-            topWall.SetActive(true);  // Ensure wall is deactivated when door is open
+            topWall.SetActive(false);  // Ensure wall is deactivated when door is open
         }
 
         if (direction == Vector2Int.down)
         {
             bottomDoor.SetActive(true);
-            bottomWall.SetActive(true);
+            bottomWall.SetActive(false);
         }
 
         if (direction == Vector2Int.left)
         {
             leftDoor.SetActive(true);
-            leftWall.SetActive(true);
+            leftWall.SetActive(false);
         }
 
         if (direction == Vector2Int.right)
         {
             rightDoor.SetActive(true);
-            rightWall.SetActive(true);
+            rightWall.SetActive(false);
         }
+
+
+
     }
 
     // Activates walls if doors did not activate
     public void ActivateWallsWithoutDoors()
     {
         // Activate walls only if corresponding doors are not active
-        if (!topDoor.activeSelf) topWall.SetActive(false);
-        if (!bottomDoor.activeSelf) bottomWall.SetActive(false);
-        if (!leftDoor.activeSelf) leftWall.SetActive(false);
-        if (!rightDoor.activeSelf) rightWall.SetActive(false);
+        //if (!topDoor.activeSelf) topWall.SetActive(true);
+        //if (!bottomDoor.activeSelf) bottomWall.SetActive(true);
+        //if (!leftDoor.activeSelf) leftWall.SetActive(true);
+        //if (!rightDoor.activeSelf) rightWall.SetActive(true);
+            Debug.Log($"Top Wall Active: {topWall?.activeSelf}");
+    Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
+    Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
+    Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
+        if (topWall.activeSelf)
+            topDoor.SetActive(false);
+
+        if (bottomWall.activeSelf)
+         bottomDoor.SetActive(false);
+
+     if (leftWall.activeSelf)
+         leftDoor.SetActive(false);
+
+     if (rightWall.activeSelf)
+         rightDoor.SetActive(false);
+    // Debug.Log($"Top Wall Active: {topWall?.activeSelf}");
+    // Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
+    // Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
+    // Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
+
+    
     }
+
+    
 }
 
