@@ -13,10 +13,9 @@ public class AbilityPickup : MonoBehaviour
 
     private void Start()
     {
-        //pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
-        //statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
+        pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
+        statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
         pickupAllowed = false;
-        pickUpText.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -24,17 +23,13 @@ public class AbilityPickup : MonoBehaviour
 
         if (pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
-            pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
-            statsText = GameObject.Find("StatsDisplay").GetComponent<TextMeshProUGUI>();
-
+ 
             AbilityHolder abilityHold = GameObject.FindGameObjectWithTag("Player").GetComponent<AbilityHolder>();
             abilityHold.newAbility = abilityScript;
             abilityHold.newAbilityPickup = true;
             Destroy(gameObject);
             pickUpText.text = "";
             statsText.text = "";
-            pickUpText.gameObject.SetActive(false);
-            statsText.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,8 +39,6 @@ public class AbilityPickup : MonoBehaviour
             abilityScript.Info();
             pickUpText.text = "Press 'E' to pick up";
             statsText.text = abilityScript.Name + ":<br>" + abilityScript.StatDescription;
-            pickUpText.gameObject.SetActive(true);
-            statsText.gameObject.SetActive(true);
             pickupAllowed = true;
 
         }
@@ -57,8 +50,6 @@ public class AbilityPickup : MonoBehaviour
         {
             pickUpText.text = "";
             statsText.text = "";
-            pickUpText.gameObject.SetActive(false);
-            statsText.gameObject.SetActive(false);
             pickupAllowed = false;
         }
     }

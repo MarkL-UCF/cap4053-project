@@ -45,7 +45,7 @@ public class AbilityHolder : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                if(newAbilityPickup)
+                if(newAbilityPickup == true)
                 {
                     ability = newAbility;
                     newAbilityPickup=false;
@@ -82,11 +82,7 @@ public class AbilityHolder : MonoBehaviour
                     state = AbilityState.ready;
                     CoolDownBar.enabled = false;
                     CoolLabel.enabled= false;
-                    if(newAbilityPickup)
-                    {
-                        ability = newAbility;
-                        newAbilityPickup = false;
-                    }
+
                 }
                 break;
 
