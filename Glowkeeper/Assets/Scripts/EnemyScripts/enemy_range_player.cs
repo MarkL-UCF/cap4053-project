@@ -12,21 +12,23 @@ public class enemy_range_player : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
 
-    public float avoidLightRadius = 3f; 
+    public float avoidLightRadius = 3f;
     public float moveSpeed = 1.5f;
-    private Vector2 targetPosition; 
+    private Vector2 targetPosition;
     private bool isMovingToShadow = false;
-    private float targetResetCooldown = 2f;
-    private float lastTargetTime = 0f;
+    private bool inLight = false;
 
-    // 🔊 Audio + Flashing
     public AudioClip hitSound;
     public AudioClip deathSound;
     private AudioSource audioSource;
+
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public float flashDuration = 0.2f;
     private bool isDead = false;
+
+    public GameObject hitLightObject;
+    public float lightDuration = 0.2f;
 
     void Start()
     {
@@ -41,11 +43,13 @@ public class enemy_range_player : MonoBehaviour
 
         InvokeRepeating("Shoot", 1f, fireRate);
 
-        // Audio + visuals
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
             originalColor = spriteRenderer.color;
+
+        if (hitLightObject != null)
+            hitLightObject.SetActive(false);
     }
 
     public void EnemyDamage(float amount)
@@ -54,19 +58,27 @@ public class enemy_range_player : MonoBehaviour
 
         enemyHealth -= amount;
 
-        // Play hit sound
         if (audioSource != null && hitSound != null)
             audioSource.PlayOneShot(hitSound);
 
-        // Flash red
         if (spriteRenderer != null)
             StartCoroutine(FlashRed());
+
+        if (hitLightObject != null)
+            StartCoroutine(FlashLight());
 
         if (enemyHealth <= 0)
         {
             isDead = true;
             StartCoroutine(PlayDeathSoundAndDie());
         }
+    }
+
+    IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
     }
 
     IEnumerator PlayDeathSoundAndDie()
@@ -80,11 +92,11 @@ public class enemy_range_player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator FlashRed()
+    IEnumerator FlashLight()
     {
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.color = originalColor;
+        hitLightObject.SetActive(true);
+        yield return new WaitForSeconds(lightDuration);
+        hitLightObject.SetActive(false);
     }
 
     void Shoot()
@@ -101,16 +113,22 @@ public class enemy_range_player : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Light Ring (75%)"))
+        if ((other.CompareTag("Light Ring (75%)") || other.CompareTag("Light Ring (50%)") || other.CompareTag("Light Ring (25%)")) && !isMovingToShadow)
         {
-            if (!isMovingToShadow && Time.time > lastTargetTime + targetResetCooldown)
-            {
-                targetPosition = GetRandomPointOutsideLight(other.transform.position, avoidLightRadius);
-                isMovingToShadow = true;
-                lastTargetTime = Time.time;
-            }
+            targetPosition = GetShadowPosition(other.transform.position);
+            isMovingToShadow = true;
+            inLight = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Light Ring (75%)") || other.CompareTag("Light Ring (50%)") || other.CompareTag("Light Ring (25%)"))
+        {
+            isMovingToShadow = false;
+            inLight = false;
         }
     }
 
@@ -125,10 +143,10 @@ public class enemy_range_player : MonoBehaviour
         }
     }
 
-    private Vector2 GetRandomPointOutsideLight(Vector2 lightPosition, float radius)
+    private Vector2 GetShadowPosition(Vector2 lightPosition)
     {
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        float randomDistance = Random.Range(radius, radius * 2);
-        return lightPosition + (randomDirection * randomDistance);
+        Vector2 directionAwayFromLight = (transform.position - (Vector3)lightPosition).normalized;
+        float randomDistance = Random.Range(avoidLightRadius, avoidLightRadius * 2);
+        return (Vector2)transform.position + (directionAwayFromLight * randomDistance);
     }
 }

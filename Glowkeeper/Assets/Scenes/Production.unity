@@ -835,6 +835,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2281069105462617255, guid: 191afacf16048e043934006a16d4644a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281069105462617255, guid: 191afacf16048e043934006a16d4644a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3379473689306521995, guid: 191afacf16048e043934006a16d4644a, type: 3}
       propertyPath: m_Name
       value: Testing Room
@@ -3666,17 +3674,21 @@ PrefabInstance:
       value: Enemy Atlas
       objectReference: {fileID: 0}
     - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
-      propertyPath: eAtlas.Array.data[3]
+      propertyPath: eAtlas.Array.data[2]
       value: 
-      objectReference: {fileID: 7683727218981278669, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
+      objectReference: {fileID: 7732151221809748223, guid: 20d584369ffef44bb9661977bd8b6d31, type: 3}
     - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
-      propertyPath: eAtlas.Array.data[4]
+      propertyPath: eAtlas.Array.data[3]
       value: 
       objectReference: {fileID: 7869933524185208323, guid: 95645172545964c95b5bbae3b0f03da5, type: 3}
     - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
+      propertyPath: eAtlas.Array.data[4]
+      value: 
+      objectReference: {fileID: 6654952026287138282, guid: 0cb166c36887d478fa3b8ccab8df5258, type: 3}
+    - target: {fileID: 8416556018525106919, guid: 60059957dea3528409678b1b1d6ce616, type: 3}
       propertyPath: eAtlas.Array.data[5]
       value: 
-      objectReference: {fileID: 7732151221809748223, guid: 20d584369ffef44bb9661977bd8b6d31, type: 3}
+      objectReference: {fileID: 7683727218981278669, guid: b3386df27e1bf43249ff03c081f4cdd4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

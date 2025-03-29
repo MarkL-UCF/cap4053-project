@@ -29,6 +29,8 @@ public class EnemyScript : MonoBehaviour
 
     private bool isDead = false;
 
+    private Transform player;
+
     void Start()
     {
         enemyHealth = maxEnemyHealth;
@@ -50,6 +52,14 @@ public class EnemyScript : MonoBehaviour
             Debug.LogError("Flame not found! Make sure the flame has the 'Flame' tag.");
         }
 
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+
+
         // Audio + visuals
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,6 +74,10 @@ public class EnemyScript : MonoBehaviour
         if (flame != null)
         {
             agent.SetDestination(flame.position);
+        }
+        else if (player != null)
+        {
+            agent.SetDestination(player.position);
         }
     }
 
@@ -123,6 +137,17 @@ public class EnemyScript : MonoBehaviour
                 flameScript.FlameDamage(damageAmount);
                 Debug.Log("Enemy is draining the flame's health!");
                 nextDamageTime = Time.time + damageRate;
+            }
+        }
+
+        else if (collision.gameObject.CompareTag("Player") && Time.time >= nextDamageTime)
+        {
+            playerHealth playerScript = collision.gameObject.GetComponent<playerHealth>();
+            if (playerScript != null)
+            {
+                playerScript.PlayerDamage(damageAmount);
+                Debug.Log("Enemy is draining the player's health!");
+                nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
             }
         }
     }

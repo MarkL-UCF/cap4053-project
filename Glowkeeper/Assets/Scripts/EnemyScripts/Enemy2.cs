@@ -29,19 +29,32 @@ public class Enemy2 : MonoBehaviour
 
     private bool isDead = false;
 
+    //light when hit/dies
+    public GameObject hitLightObject; // Assign the light in the inspector
+    public float lightDuration = 0.2f;
+
+
+    private Transform player;
+
     void Start()
     {
         enemyHealth = maxEnemyHealth;
         rb = GetComponent<Rigidbody2D>();
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Flame");
-        if (playerObj != null)
+        GameObject Flame = GameObject.FindGameObjectWithTag("Flame");
+        if (Flame != null)
         {
-            flame = playerObj.transform;
+            flame = Flame.transform;
         }
         else
         {
             Debug.LogError("Flame not found! Make sure the player has the 'Flame' tag.");
+        }
+
+         GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        if (Player != null)
+        {
+            player = Player.transform;
         }
 
         InvokeRepeating("Shoot", 1f, fireRate);
@@ -71,6 +84,12 @@ public class Enemy2 : MonoBehaviour
             StartCoroutine(FlashRed());
         }
 
+        if (hitLightObject != null)
+        {
+            StartCoroutine(FlashLight());
+            StartCoroutine(FlashLight());
+        }
+
         if (enemyHealth <= 0)
         {
             isDead = true;
@@ -96,11 +115,20 @@ public class Enemy2 : MonoBehaviour
         Destroy(gameObject);
     }
 
+    IEnumerator FlashLight()
+    {
+        hitLightObject.SetActive(true);
+        yield return new WaitForSeconds(lightDuration);
+        hitLightObject.SetActive(false);
+    }
     void Shoot()
     {
-        if (flame != null)
+
+        Transform target = flame != null ? flame : player;
+
+        if (target != null)
         {
-            Vector2 shootDirection = (flame.position - transform.position).normalized;
+            Vector2 shootDirection = (target.position - transform.position).normalized;
             Vector3 spawnPosition = transform.position + new Vector3(shootDirection.x * 0.5f, shootDirection.y * 0.5f, 0);
             GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
             Rigidbody2D projRb = projectile.GetComponent<Rigidbody2D>();
