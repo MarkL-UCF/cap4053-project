@@ -8,27 +8,38 @@ public class EnemyScript : MonoBehaviour
 {
     public float enemyHealth;
     public float maxEnemyHealth;
-    public float moveSpeed; // Speed of the enemy, adjusted for a slower movement
-    public int damageAmount = 10; // Damage per second
-    public float damageRate = 1f; // Time between damage ticks
-    private Transform flame; // Reference to the player
-    private float nextDamageTime = 0f; // Timer for damage application
+    public float moveSpeed;
+    public int damageAmount = 10;
+    public float damageRate = 1f;
 
-    NavMeshAgent agent;
+    private Transform flame;
+    private float nextDamageTime = 0f;
+
+    private NavMeshAgent agent;
+
+    // Audio + Flashing
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.2f;
+
+
+    private bool isDead = false;
 
     void Start()
     {
         enemyHealth = maxEnemyHealth;
 
-        // Set up the NavMeshAgent
+        // NavMesh setup
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
-        // Adjust the agent's speed based on the moveSpeed variable
         agent.speed = moveSpeed;
 
-        // Find the player GameObject by tag
+        // Target flame
         GameObject flameObj = GameObject.FindGameObjectWithTag("Flame");
         if (flameObj != null)
         {
@@ -38,29 +49,70 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.LogError("Flame not found! Make sure the flame has the 'Flame' tag.");
         }
+
+        // Audio + visuals
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
+        if (isDead) return; 
+
         if (flame != null)
         {
-            // Set the destination to the flame's position using the NavMeshAgent
             agent.SetDestination(flame.position);
         }
     }
 
     public void EnemyDamage(float amount)
     {
+
+        if (isDead) return; 
+
         enemyHealth -= amount;
 
-        //checks if player is dead
+
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
+        // Flash red
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FlashRed());
+        }
+
         if (enemyHealth <= 0)
         {
-            Destroy(gameObject);//destroys player object
+            isDead = true;
+            agent.enabled = false;
+            StartCoroutine(PlayDeathSoundAndDie());
         }
     }
 
-    // Continuously damage the flame while touching it
+    IEnumerator PlayDeathSoundAndDie()
+{
+    if (audioSource != null && deathSound != null)
+    {
+        audioSource.PlayOneShot(deathSound);
+        yield return new WaitForSeconds(deathSound.length); // wait before destroying
+    }
+
+    Destroy(gameObject);
+}
+
+    IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Flame") && Time.time >= nextDamageTime)
@@ -70,7 +122,7 @@ public class EnemyScript : MonoBehaviour
             {
                 flameScript.FlameDamage(damageAmount);
                 Debug.Log("Enemy is draining the flame's health!");
-                nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
+                nextDamageTime = Time.time + damageRate;
             }
         }
     }

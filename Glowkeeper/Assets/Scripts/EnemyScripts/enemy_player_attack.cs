@@ -17,6 +17,19 @@ public class enemy_player_attack : MonoBehaviour
 
     NavMeshAgent agent;
 
+        // Audio + Flashing
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.2f;
+
+
+    private bool isDead = false;
+
+
     void Start()
     {
         enemyHealth = maxEnemyHealth;
@@ -38,17 +51,60 @@ public class enemy_player_attack : MonoBehaviour
         {
             Debug.LogError("Player not found! Make sure the flame has the 'Player' tag.");
         }
+
+        // Audio + visuals
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
+
+
     }
 
     public void EnemyDamage(float amount)
     {
+
+        if (isDead) return; 
+
+        // Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
+        // Flash red
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FlashRed());
+        }
+
         enemyHealth -= amount;
 
         //checks if player is dead
         if (enemyHealth <= 0)
         {
-            Destroy(gameObject);//destroys player object
+            isDead = true;
+            agent.enabled = false;
+            StartCoroutine(PlayDeathSoundAndDie());
         }
+    }
+
+
+    IEnumerator PlayDeathSoundAndDie()
+    {
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+            yield return new WaitForSeconds(deathSound.length); // wait before destroying
+        }
+
+        Destroy(gameObject);
+    }
+        IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
     }
 
     void Update()

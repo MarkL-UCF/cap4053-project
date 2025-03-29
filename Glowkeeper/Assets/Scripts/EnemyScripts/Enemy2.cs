@@ -13,10 +13,21 @@ public class Enemy2 : MonoBehaviour
     private Transform flame;
     private Rigidbody2D rb;
 
-    public float avoidLightRadius = 3f; 
+    public float avoidLightRadius = 3f;
     private Vector2 targetPosition;
-    private bool isMovingToShadow = false; 
-    private bool inLight = false; 
+    private bool isMovingToShadow = false;
+    private bool inLight = false;
+
+    // 🔊 Audio + Flashing
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.2f;
+
+    private bool isDead = false;
 
     void Start()
     {
@@ -34,15 +45,55 @@ public class Enemy2 : MonoBehaviour
         }
 
         InvokeRepeating("Shoot", 1f, fireRate);
+
+        // Audio + visuals
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
     }
 
     public void EnemyDamage(float amount)
     {
+        if (isDead) return;
+
         enemyHealth -= amount;
+
+        //  Play hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
+        //  Flash red
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FlashRed());
+        }
+
         if (enemyHealth <= 0)
         {
-            Destroy(gameObject);
+            isDead = true;
+            StartCoroutine(PlayDeathSoundAndDie());
         }
+    }
+
+    IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
+
+    IEnumerator PlayDeathSoundAndDie()
+    {
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+            yield return new WaitForSeconds(deathSound.length);
+        }
+
+        Destroy(gameObject);
     }
 
     void Shoot()
@@ -61,7 +112,6 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
-    // **🔥 Detect Light and Move to Shadows**
     private void OnTriggerEnter2D(Collider2D other)
     {
         if ((other.CompareTag("Light Ring (75%)") || other.CompareTag("Light Ring (50%)") || other.CompareTag("Light Ring (25%)")) && !isMovingToShadow)
@@ -74,7 +124,6 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
-    // **🔥 Reset When Leaving Light**
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Light Ring (75%)") || other.CompareTag("Light Ring (50%)") || other.CompareTag("Light Ring (25%)"))
@@ -91,7 +140,6 @@ public class Enemy2 : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
 
-            // Stop moving if close enough
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
                 Debug.Log("Enemy2 reached shadow. Stopping movement.");
@@ -100,11 +148,10 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
-    // **🚨 Fix: Get a Position Outside the Light Instead of Near It**
     private Vector2 GetShadowPosition(Vector2 lightPosition)
     {
-        Vector2 directionAwayFromLight = (transform.position - (Vector3)lightPosition).normalized; // Move away
-        float randomDistance = Random.Range(avoidLightRadius, avoidLightRadius * 2); 
+        Vector2 directionAwayFromLight = (transform.position - (Vector3)lightPosition).normalized;
+        float randomDistance = Random.Range(avoidLightRadius, avoidLightRadius * 2);
         return (Vector2)transform.position + (directionAwayFromLight * randomDistance);
     }
 }

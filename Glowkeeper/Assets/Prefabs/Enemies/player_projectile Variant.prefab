@@ -8,25 +8,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5032597304497399891, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 993890905922406049, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_Name
       value: player_projectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4330137656098155089, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5896
       objectReference: {fileID: 0}
     - target: {fileID: 4330137656098155089, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5548
       objectReference: {fileID: 0}
     - target: {fileID: 4330137656098155089, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.796
+      value: 0.5498
       objectReference: {fileID: 0}
     - target: {fileID: 4330137656098155089, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5981
+      value: 1.8608
       objectReference: {fileID: 0}
     - target: {fileID: 4330137656098155089, guid: 883a86e70f7d849a894c76ddebc4c4a7, type: 3}
       propertyPath: m_LocalPosition.z

@@ -5,12 +5,22 @@ using UnityEngine.AI;
 
 public class ShadowSplitter : MonoBehaviour
 {
-    public GameObject smallerSplitterPrefab; // The weaker version
+    public GameObject smallerSplitterPrefab;
     public float enemyHealth;
     public float maxEnemyHealth = 4f;
+
     private bool hasSplit = false;
     private Transform player;
     private NavMeshAgent agent;
+
+    // Audio + Flashing
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.2f;
 
     void Start()
     {
@@ -25,6 +35,11 @@ public class ShadowSplitter : MonoBehaviour
         {
             player = playerObj.transform;
         }
+
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
     }
 
     void Update()
@@ -37,16 +52,27 @@ public class ShadowSplitter : MonoBehaviour
 
     public void EnemyDamage(float amount)
     {
+        if (enemyHealth <= 0 || hasSplit) return;
+
         enemyHealth -= amount;
+
+        // Hit sound
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
+        // Flash red
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FlashRed());
+        }
 
         if (enemyHealth <= 0 && !hasSplit)
         {
             SplitIntoSmallerVersions();
-            Destroy(gameObject);
         }
-
     }
-
 
     void SplitIntoSmallerVersions()
     {
@@ -54,12 +80,23 @@ public class ShadowSplitter : MonoBehaviour
 
         Debug.Log("Shadow Splitter is splitting!");
 
-        // Spawn two smaller versions at slight offsets
-        GameObject split1 = Instantiate(smallerSplitterPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
-        GameObject split2 = Instantiate(smallerSplitterPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+        // Death sound
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
 
-        // Destroy this original enemy
-        Destroy(gameObject);
+        // Spawn two smaller versions
+        Instantiate(smallerSplitterPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+        Instantiate(smallerSplitterPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.identity);
+
+        Destroy(gameObject, deathSound != null ? deathSound.length : 0f);
     }
 
+    IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
 }
