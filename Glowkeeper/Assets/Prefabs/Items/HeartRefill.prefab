@@ -134,3 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmt: 1
+  shopItem: 0
+  canBuy: 0
+  canPickup: 0
+  cost: 10
+  priceText: {fileID: 0}
+  pickUpText: {fileID: 0}
