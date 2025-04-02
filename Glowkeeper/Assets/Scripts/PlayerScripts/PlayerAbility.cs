@@ -8,6 +8,7 @@ public class PlayerAbility : ScriptableObject
     public float cooldownTime;
     public float activeTime;
     public string StatDescription;
+    public bool shopItem;
 
     public virtual void Info() { }
 
