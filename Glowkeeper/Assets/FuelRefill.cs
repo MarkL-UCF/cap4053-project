@@ -27,10 +27,10 @@ public class FuelRefill : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canPickup && canBuy)
+        if (Input.GetKeyDown(KeyCode.E) && canBuy && canPickup)
         {
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
-            currency.spendCoins(cost);
+            currency.SpendCoins(cost);
             flameHealth Fuel = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
             Fuel.flameFuel += fuelAmt;
 
@@ -38,6 +38,7 @@ public class FuelRefill : MonoBehaviour
             {
                 Fuel.flameFuel = Fuel.maxFlameFuel;
             }
+
             Destroy(gameObject);
         }
     }
@@ -45,6 +46,8 @@ public class FuelRefill : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !shopItem)
         {
+            playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
+            currency.SpendCoins(cost);
             flameHealth Fuel = GameObject.FindGameObjectWithTag("Flame").GetComponent<flameHealth>();
             Fuel.flameFuel += fuelAmt;
 
@@ -57,13 +60,15 @@ public class FuelRefill : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player") && shopItem)
         {
+            canPickup = true;
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
             pickUpText = GameObject.Find("PickUp").GetComponent<TextMeshProUGUI>();
             priceText = GameObject.Find("PriceDisplay").GetComponent<TextMeshProUGUI>();
             pickUpText.text = "Press 'E' to purchase";
 
-            if (currency.checkCoins(cost))
+            if (currency.CheckCoins(cost))
             {
+                canBuy = canPickup;
                 priceText.faceColor = Color.green;
                 priceText.text = "Buy for " + cost;
 

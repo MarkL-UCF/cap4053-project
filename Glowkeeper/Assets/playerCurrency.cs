@@ -21,19 +21,20 @@ public class playerCurrency : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         currencyDisplay.text = "x" + coins;
 
     }
 
-    public void receiveCoins(int amount)
+    public void ReceiveCoins(int amount)
     {
         coins += amount;
     }
-    public bool checkCoins(int amount)
+    public bool CheckCoins(int amount)
     {
         return coins >= amount;
     }
-    public void spendCoins(int amount)
+    public void SpendCoins(int amount)
     {
         coins -= amount;
     }

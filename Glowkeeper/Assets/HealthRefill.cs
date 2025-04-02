@@ -16,9 +16,13 @@ public class HealthRefill : MonoBehaviour
 
     private void Start()
     {
-        if (shopItem)
+        if (shopItem && healAmt == 1)
         {
             cost = 10;
+        }
+        else if (shopItem && healAmt ==.5)
+        {
+            cost = 5;
         }
         canBuy = false;
         canPickup = false;
@@ -26,10 +30,10 @@ public class HealthRefill : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && canBuy && canPickup)
         {
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
-            currency.spendCoins(cost);
+            currency.SpendCoins(cost);
             playerHealth Health = GameObject.FindGameObjectWithTag("Player").GetComponent<playerHealth>();
             Health.health += healAmt;
 
@@ -63,9 +67,9 @@ public class HealthRefill : MonoBehaviour
             priceText = GameObject.Find("PriceDisplay").GetComponent<TextMeshProUGUI>();
             pickUpText.text = "Press 'E' to purchase";
 
-            if (currency.checkCoins(cost))
+            if (currency.CheckCoins(cost))
             {
-                canBuy |= canPickup;
+                canBuy = canPickup;
                 priceText.faceColor = Color.green;
                 priceText.text = "Buy for " + cost;
 

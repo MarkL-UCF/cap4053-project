@@ -32,7 +32,7 @@ public class CoinScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerCurrency Currency = collision.gameObject.GetComponent<playerCurrency>();
-            Currency.receiveCoins(amt);
+            Currency.ReceiveCoins(amt);
 
             Destroy(gameObject);
         }

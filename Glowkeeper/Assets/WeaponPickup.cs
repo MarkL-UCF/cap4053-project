@@ -47,7 +47,7 @@ public class WeaponPickup : MonoBehaviour
         else if (pickupAllowed && Input.GetKeyDown(KeyCode.E) && shopItem && canBuy)
         {
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
-            currency.spendCoins(cost);
+            currency.SpendCoins(cost);
             ItemHolder item = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemHolder>();
             item.CurrentItem = itemScript;
             item.newPickup = true;
@@ -78,7 +78,7 @@ public class WeaponPickup : MonoBehaviour
             statsText.text = itemScript.Name + ":<br>" + itemScript.StatDescription;
             pickupAllowed = true;
 
-            if (currency.checkCoins(cost))
+            if (currency.CheckCoins(cost))
             {
                 priceText.faceColor = Color.green;
                 priceText.text = "Buy for " + cost;

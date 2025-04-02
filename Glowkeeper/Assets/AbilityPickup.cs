@@ -44,7 +44,7 @@ public class AbilityPickup : MonoBehaviour
         else if (pickupAllowed && Input.GetKeyDown(KeyCode.E) && shopItem && canBuy)
         {
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
-            currency.spendCoins(cost);
+            currency.SpendCoins(cost);
             AbilityHolder abilityHold = GameObject.FindGameObjectWithTag("Player").GetComponent<AbilityHolder>();
             abilityHold.newAbility = abilityScript;
             abilityHold.newAbilityPickup = true;
@@ -73,7 +73,7 @@ public class AbilityPickup : MonoBehaviour
             statsText.text = abilityScript.Name + ":<br>" + abilityScript.StatDescription;
             pickupAllowed = true;
 
-            if (currency.checkCoins(cost))
+            if (currency.CheckCoins(cost))
             {
                 priceText.faceColor = Color.green;
                 priceText.text = "Buy for " + cost;
