@@ -10,14 +10,14 @@ public class ItemSpawner : MonoBehaviour
 
     public ArrayList passiveItemDeck = new ArrayList();
 
-    float[] chances = {.69f, .20f, .10f, .1f};
-    //69% chance of nothing spawning
-    //20% chance of a health/fuel item spawning
-    //10% for health
-    //10% for fuel
-    //10% chance of an ability or passive item spawning
-    //7.5% for a passive item
-    //2.5% for an ability
+    float[] chances = {.64f, .25f, .15f, .1f};
+    //59% chance of nothing spawning
+    //25% chance of a health/fuel item spawning
+        //12.5% for health
+        //12.5% for fuel
+    //15% chance of an ability or passive item spawning
+    //11.25% for a passive item
+    //3.75% for an ability
     //1% for a rare candy to spawn
 
     public GameObject spawnedItem;
