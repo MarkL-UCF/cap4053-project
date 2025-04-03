@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 2873931767256247762, guid: dd3772371ef0b4f4f802acb74a38b164, type: 3}
   - {fileID: 7294402242942677029, guid: 39b264f2c34ae5440bfa77f04fe6fa58, type: 3}
   - {fileID: 781624744381423228, guid: 6b65b824843a2474db062190e7aa815c, type: 3}
+  - {fileID: 1704187381649574083, guid: f9dacb7520c54e1489ad79e1cd92df1a, type: 3}
   abAtlas:
   - {fileID: 54853224398176565, guid: cb737779e42df0641bbfa4494bf4579e, type: 3}
   - {fileID: 6422885534181057960, guid: 232303bb36882354386c7a453bbfbde2, type: 3}
