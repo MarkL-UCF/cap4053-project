@@ -57,16 +57,46 @@ public GameObject GetDoor(Vector2Int direction)
 
     if (doorParent != null)
     {
-        Transform activeDoor = doorParent.transform.Find("Active Door"); // Find the child object
+        // This issue is that the script is using itself and not the doorParent object so only looks for the child if the script is attached 
+        Transform TeleportSpot = doorParent.transform.Find("Active Door"); // Find the child object
 
-        if (activeDoor != null)
+        if (TeleportSpot != null)
         {
-            return activeDoor.gameObject; // Return Active Door instead of the parent
+            return TeleportSpot.gameObject; // Return Active Door instead of the parent
         }
     }
 
     return null;
 }
+    public GameObject GetTeleporter(Vector2Int direction)
+    {
+        GameObject doorParent = null;
+
+        // Set door parent based on direction
+        if (direction == Vector2Int.up) doorParent = topDoor;
+        if (direction == Vector2Int.down) doorParent = bottomDoor;
+        if (direction == Vector2Int.left) doorParent = leftDoor;
+        if (direction == Vector2Int.right) doorParent = rightDoor;
+
+        if (doorParent != null)
+        {
+            // Try to find the TeleportSpot under the door
+            Transform teleportSpot = doorParent.transform.Find("TeleportSpot");
+
+            if (teleportSpot != null)
+            {
+                return teleportSpot.gameObject; // Return the TeleportSpot game object
+            }
+            else
+            {
+                Debug.LogWarning($"TeleportSpot not found under {doorParent.name} in {gameObject.name}");
+            }
+        }
+
+        return null; // Return null if no TeleportSpot is found
+    }
+
+
 
 public GameObject GetCamera(Vector2Int direction)
 {
