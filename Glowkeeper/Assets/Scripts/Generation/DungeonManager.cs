@@ -74,6 +74,9 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
     GameObject doorB = roomB.GetDoor(-direction);  // Opposite direction
     GameObject TeleportSpotA = roomA.GetTeleporter(direction);
     GameObject TeleportSpotB = roomB.GetTeleporter(-direction);
+    GameObject CameraAnchorA =  roomA.GetCamera();
+    GameObject CameraAnchorB =  roomB.GetCamera();
+
 
     Debug.Log(doorA);
     Debug.Log(doorB);
@@ -83,14 +86,18 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
     {
         DoorTeleporter teleA = doorA.GetComponent<DoorTeleporter>();
         DoorTeleporter teleB = doorB.GetComponent<DoorTeleporter>();
+
         
 
         if (teleA != null && teleB != null)
         {
             //This is the active door
             teleA.connectedTeleportSpot = TeleportSpotB;
-            
             teleB.connectedTeleportSpot = TeleportSpotA;
+            teleA.CameraAnchor = CameraAnchorB;
+            teleB.CameraAnchor = CameraAnchorA;
+
+
 
             Debug.Log($"[ConnectTeleporters] Connected {roomA.name} door to {roomB.name} door");
         }

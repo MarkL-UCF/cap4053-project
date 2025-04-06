@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] public GameObject RoomManager;
     [SerializeField] public GameObject topDoor;
     [SerializeField] public GameObject bottomDoor;
     [SerializeField] public GameObject leftDoor;
@@ -98,9 +100,12 @@ public GameObject GetDoor(Vector2Int direction)
 
 
 
-public GameObject GetCamera(Vector2Int direction)
+public GameObject GetCamera()
 {
-    Transform cameraAnchor = transform.Find("Anchors/Camera Anchor");
+
+    //GameObject cameraAnchor = RoomManager.gameObject.child
+    var RoomManager = GameObject.Find("Room Encounter Manager");
+    var cameraAnchor = RoomManager.transform.GetChild(1).GetChild(0);
     return cameraAnchor != null ? cameraAnchor.gameObject : null;
 
 }
