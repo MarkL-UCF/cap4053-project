@@ -63,35 +63,43 @@ public class DungeonManager : MonoBehaviour
     }
 
 
+// 4/5/2025 AI-Tag
+// This was created with assistance from Muse, a Unity Artificial Intelligence product
+
 void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
 {
     if (roomA == null || roomB == null) return;
 
     GameObject doorA = roomA.GetDoor(direction);
     GameObject doorB = roomB.GetDoor(-direction);  // Opposite direction
-    GameObject CameraA = roomA.GetCamera(direction);
-    GameObject CameraB = roomB.GetCamera(-direction);  // Opposite direction
+    GameObject TeleportSpotA = roomA.GetTeleporter(direction);
+    GameObject TeleportSpotB = roomB.GetTeleporter(-direction);
+    GameObject CameraAnchorA =  roomA.GetCamera();
+    GameObject CameraAnchorB =  roomB.GetCamera();
+
+
+    Debug.Log(doorA);
+    Debug.Log(doorB);
+
 
     if (doorA != null && doorB != null)
     {
         DoorTeleporter teleA = doorA.GetComponent<DoorTeleporter>();
         DoorTeleporter teleB = doorB.GetComponent<DoorTeleporter>();
 
-        if (teleA != null && teleB != null)
-        {
-            teleA.connectedTeleportSpot = doorB;
-            teleB.connectedTeleportSpot = doorA;
-        }
-    }
-        if (CameraA != null && CameraB != null)
-    {
-        DoorTeleporter teleA = doorA.GetComponent<DoorTeleporter>();
-        DoorTeleporter teleB = doorB.GetComponent<DoorTeleporter>();
+        
 
         if (teleA != null && teleB != null)
         {
-            teleA.CameraAnchor = CameraB;
-            teleB.CameraAnchor = CameraA;
+            //This is the active door
+            teleA.connectedTeleportSpot = TeleportSpotB;
+            teleB.connectedTeleportSpot = TeleportSpotA;
+            teleA.CameraAnchor = CameraAnchorB;
+            teleB.CameraAnchor = CameraAnchorA;
+
+
+
+            Debug.Log($"[ConnectTeleporters] Connected {roomA.name} door to {roomB.name} door");
         }
     }
 }

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1818078603893900547}
   - component: {fileID: 7037457733494507094}
   - component: {fileID: 1090962883009604277}
+  - component: {fileID: 8385594984516080191}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -115,8 +116,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 853648356338957974}
   - {fileID: 3015479411195800171}
+  - {fileID: 853648356338957974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7037457733494507094
@@ -183,6 +184,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb0118b114ad064d937183ba69aaaa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8385594984516080191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424040489452075431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e2a98d1935ea84294e9ab37792782f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedTeleportSpot: {fileID: 0}
+  MainCamera: {fileID: 0}
+  CameraAnchor: {fileID: 0}
+  itemSpawner: {fileID: 0}
+  ItemAnchor: {fileID: 0}
 --- !u!1 &7564522130946099389
 GameObject:
   m_ObjectHideFlags: 0
