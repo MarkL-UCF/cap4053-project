@@ -135,33 +135,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1297493019388402451, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -233.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1297493019388402451, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 147.6
-      objectReference: {fileID: 0}
     - target: {fileID: 1807394341987510796, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_Name
       value: BaseUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336823810126423588, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 250.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336823810126423588, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 46.594
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336823810126423588, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -234.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336823810126423588, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 201.97
       objectReference: {fileID: 0}
     - target: {fileID: 6240805676545522791, guid: 9fe37d71f05690942ae566278ce911af, type: 3}
       propertyPath: m_Camera
@@ -4264,10 +4240,6 @@ PrefabInstance:
     - target: {fileID: 6422885534181057960, guid: 232303bb36882354386c7a453bbfbde2, type: 3}
       propertyPath: m_Name
       value: FlashAbilityPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 8413197708394891474, guid: 232303bb36882354386c7a453bbfbde2, type: 3}
-      propertyPath: shopItem
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8431528392179580378, guid: 232303bb36882354386c7a453bbfbde2, type: 3}
       propertyPath: m_LocalPosition.x
