@@ -62,7 +62,7 @@ public class RoomManager : MonoBehaviour
         if(collider.CompareTag("Player"))
         {
             Debug.Log("Encounter triggered");
-            trigger.enabled = false; //remove collider for runtime efficiency
+            gameObject.GetComponent<BoxCollider2D>().enabled = false; //remove collider for runtime efficiency
             StartCoroutine(DoEncounter());
         }
     }
