@@ -70,6 +70,8 @@ public class RoomManager : MonoBehaviour
     //Perform the actual encounter
     IEnumerator DoEncounter()
     {
+        yield return null; 
+
         metrics.newRoom(); //print to metrics file
 
         //lock all doors
