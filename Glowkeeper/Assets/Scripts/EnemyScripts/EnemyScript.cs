@@ -23,6 +23,7 @@ public class EnemyScript : MonoBehaviour
     public AudioClip deathSound;
     private AudioSource audioSource;
 
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public float flashDuration = 0.2f;
@@ -35,7 +36,8 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         enemyHealth = maxEnemyHealth;
-        GetComponent<Animator>().speed = 0.1f;
+        animator = GetComponent<Animator>();
+        animator.speed = 0.1f;
 
         // NavMesh setup
         agent = GetComponent<NavMeshAgent>();
@@ -76,10 +78,12 @@ public class EnemyScript : MonoBehaviour
         if (PauseController.IsGamePaused)
         {
             agent.speed = 0;
+            animator.enabled = false;
         }
         else
         {
             agent.speed = moveSpeed;
+            animator.enabled = true;
         }
 
             if (flame != null)

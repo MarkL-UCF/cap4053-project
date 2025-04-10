@@ -22,6 +22,7 @@ public class enemy_player_attack : MonoBehaviour
     public AudioClip deathSound;
     private AudioSource audioSource;
 
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public float flashDuration = 0.2f;
@@ -32,7 +33,8 @@ public class enemy_player_attack : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Animator>().speed = 0.1f;
+        animator = GetComponent<Animator>();
+        animator.speed = 0.1f;
 
         enemyHealth = maxEnemyHealth;
         // Set up the NavMeshAgent
@@ -120,10 +122,12 @@ public class enemy_player_attack : MonoBehaviour
         if (PauseController.IsGamePaused)
         {
             agent.speed = 0;
+            animator.enabled = false;
         }
         else
         {
             agent.speed = moveSpeed;
+            animator.enabled = true;
         }
     }
 
