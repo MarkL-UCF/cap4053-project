@@ -69,9 +69,18 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return; 
+        if (isDead) return;
 
-        if (flame != null)
+        if (PauseController.IsGamePaused)
+        {
+            agent.speed = 0;
+        }
+        else
+        {
+            agent.speed = moveSpeed;
+        }
+
+            if (flame != null)
         {
             agent.SetDestination(flame.position);
         }
@@ -132,7 +141,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Flame") && Time.time >= nextDamageTime)
         {
             flameHealth flameScript = collision.gameObject.GetComponent<flameHealth>();
-            if (flameScript != null)
+            if (flameScript != null && !PauseController.IsGamePaused)
             {
                 flameScript.FlameDamage(damageAmount);
                 Debug.Log("Enemy is draining the flame's health!");
@@ -143,7 +152,7 @@ public class EnemyScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player") && Time.time >= nextDamageTime)
         {
             playerHealth playerScript = collision.gameObject.GetComponent<playerHealth>();
-            if (playerScript != null)
+            if (playerScript != null && !PauseController.IsGamePaused)
             {
                 playerScript.PlayerDamage(damageAmount);
                 Debug.Log("Enemy is draining the player's health!");

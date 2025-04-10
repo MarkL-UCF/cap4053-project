@@ -37,55 +37,58 @@ public class AbilityHolder : MonoBehaviour
     }
     void Update()
     {
-       if(newAbilityPickup && ability == null)
-       {
-            ability = newAbility;
-            newAbilityPickup=false;
-       }
-        switch (state)
+        if (!PauseController.IsGamePaused)
         {
-            case AbilityState.ready:
-                if(newAbilityPickup == true)
-                {
-                    ability = newAbility;
-                    newAbilityPickup=false;
-                }
-                if (Input.GetKeyDown(key) && timer <= 0)
-                {
-                    ability.Activate(gameObject);
-                    state = AbilityState.active;
-                    activeTime = ability.activeTime;
-                }
-                break;
-            case AbilityState.active:
-                if (activeTime > 0)
-                {
-                    activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    ability.BeginCooldown(gameObject);
-                    state = AbilityState.cooldown;
-                    CoolDownBar.enabled = true;
-                    CoolLabel.enabled= true;
-                    cooldownTime = ability.cooldownTime;
-                    timer = cooldownTime;
-                    
-                }
-                break;
-            case AbilityState.cooldown:
-                
-                CoolDownBar.fillAmount = Mathf.Clamp((timer/cooldownTime), 0, 1);
-                timer -= Time.deltaTime;
-                if (timer <= 0)
-                {
-                    state = AbilityState.ready;
-                    CoolDownBar.enabled = false;
-                    CoolLabel.enabled= false;
+            if (newAbilityPickup && ability == null)
+            {
+                ability = newAbility;
+                newAbilityPickup = false;
+            }
+            switch (state)
+            {
+                case AbilityState.ready:
+                    if (newAbilityPickup == true)
+                    {
+                        ability = newAbility;
+                        newAbilityPickup = false;
+                    }
+                    if (Input.GetKeyDown(key) && timer <= 0 && !PauseController.IsGamePaused)
+                    {
+                        ability.Activate(gameObject);
+                        state = AbilityState.active;
+                        activeTime = ability.activeTime;
+                    }
+                    break;
+                case AbilityState.active:
+                    if (activeTime > 0)
+                    {
+                        activeTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        ability.BeginCooldown(gameObject);
+                        state = AbilityState.cooldown;
+                        CoolDownBar.enabled = true;
+                        CoolLabel.enabled = true;
+                        cooldownTime = ability.cooldownTime;
+                        timer = cooldownTime;
 
-                }
-                break;
+                    }
+                    break;
+                case AbilityState.cooldown:
 
+                    CoolDownBar.fillAmount = Mathf.Clamp((timer / cooldownTime), 0, 1);
+                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        state = AbilityState.ready;
+                        CoolDownBar.enabled = false;
+                        CoolLabel.enabled = false;
+
+                    }
+                    break;
+
+            }
         }
     }
 }

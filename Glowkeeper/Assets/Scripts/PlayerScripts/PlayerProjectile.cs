@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Vector2 savedVelocity;
 
     public float projectileSize = 1;
     public float damage = 2;
@@ -25,7 +26,10 @@ public class PlayerProjectile : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        savedVelocity = rb.velocity;
+
+
     }
 
     private void Update()
@@ -36,6 +40,19 @@ public class PlayerProjectile : MonoBehaviour
         if (timer > 7)
         {
             Destroy(gameObject);
+        }
+
+        if (PauseController.IsGamePaused)
+        {
+            if (rb.velocity != Vector2.zero)
+            {
+                savedVelocity = rb.velocity;
+            }
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            rb.velocity = savedVelocity;
         }
     }
 

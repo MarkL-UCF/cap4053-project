@@ -53,7 +53,7 @@ public class PlayerWeapon : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //Get the mouse position
 
         //Left click to fire, check that enough time has passed since last
-        if (Input.GetMouseButton(0) && Time.time > lastShotTime + firerate)
+        if (Input.GetMouseButton(0) && Time.time > lastShotTime + firerate && !PauseController.IsGamePaused)
         {
             Fire();
         }

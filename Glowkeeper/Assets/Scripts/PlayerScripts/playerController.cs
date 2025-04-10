@@ -41,6 +41,18 @@ public class PlayerController : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
+        
+        if(PauseController.IsGamePaused)
+        {
+            movespeed = 0;
+            animator.enabled = false;
+
+        }
+        else
+        {
+            animator.enabled = true;
+            UpdateStats();
+        }
         MovementInputHandler();
     }
 
