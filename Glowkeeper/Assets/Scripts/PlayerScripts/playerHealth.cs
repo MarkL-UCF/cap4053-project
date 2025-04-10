@@ -72,7 +72,9 @@ public class playerHealth : MonoBehaviour
         {
             Update();
             metrics.playerDied();
+            GameObject.Find("BaseUI").GetComponent<MenuController>().PlayerDied();
             Destroy(gameObject);//destroys player object
+            
         }
     }
 }

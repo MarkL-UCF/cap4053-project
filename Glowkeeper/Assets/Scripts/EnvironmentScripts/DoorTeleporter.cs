@@ -94,12 +94,14 @@ public class DoorTeleporter : MonoBehaviour
     public GameObject CameraAnchor;
     public GameObject itemSpawner;
     public GameObject ItemAnchor;
+    [SerializeField] PolygonCollider2D mapBoundry;
 
     // Start is called before the first frame update
     void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         itemSpawner = GameObject.FindGameObjectWithTag("Item Spawner");
+        mapBoundry = GameObject.Find("Walls").GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame

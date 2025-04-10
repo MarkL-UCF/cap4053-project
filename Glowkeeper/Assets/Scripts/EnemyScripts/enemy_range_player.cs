@@ -103,7 +103,7 @@ public class enemy_range_player : MonoBehaviour
 
     void Shoot()
     {
-        if (player != null)
+        if (player != null && !PauseController.IsGamePaused)
         {
             Vector2 shootDirection = (player.position - transform.position).normalized;
             Vector3 spawnPosition = transform.position + new Vector3(shootDirection.x * 0.5f, shootDirection.y * 0.5f, 0);
@@ -136,7 +136,7 @@ public class enemy_range_player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isMovingToShadow)
+        if (isMovingToShadow && !PauseController.IsGamePaused)
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
 

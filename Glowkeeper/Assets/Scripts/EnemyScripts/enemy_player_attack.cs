@@ -116,6 +116,15 @@ public class enemy_player_attack : MonoBehaviour
             // Set the destination to the flame's position using the NavMeshAgent
             agent.SetDestination(player.position);
         }
+
+        if (PauseController.IsGamePaused)
+        {
+            agent.speed = 0;
+        }
+        else
+        {
+            agent.speed = moveSpeed;
+        }
     }
 
     // Continuously damage the flame while touching it
@@ -124,7 +133,7 @@ public class enemy_player_attack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && Time.time >= nextDamageTime)
         {
             playerHealth playerScript = collision.gameObject.GetComponent<playerHealth>();
-            if (playerScript != null)
+            if (playerScript != null && !PauseController.IsGamePaused)
             {
                 playerScript.PlayerDamage(damageAmount);
                 Debug.Log("Enemy is draining the player's health!");
