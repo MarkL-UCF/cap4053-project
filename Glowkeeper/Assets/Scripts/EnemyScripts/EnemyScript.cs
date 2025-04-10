@@ -34,6 +34,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         enemyHealth = maxEnemyHealth;
+        GetComponent<Animator>().speed = 0.1f;
 
         // NavMesh setup
         agent = GetComponent<NavMeshAgent>();

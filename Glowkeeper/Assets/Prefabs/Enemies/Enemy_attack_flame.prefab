@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2219586422794260493}
   - component: {fileID: 1686588742972575529}
   - component: {fileID: 376490857403170523}
+  - component: {fileID: 3337438476326896256}
   m_Layer: 0
   m_Name: Enemy_attack_flame
   m_TagString: Enemy
@@ -31,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 7869933524185208323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.17, y: 0.41, z: 0}
-  m_LocalScale: {x: 1.2100087, y: 1.1674756, z: 1}
+  m_LocalPosition: {x: -0.285, y: 0.207, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 2128252873
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 551d1d778534d45548c59c60793039d0, type: 3}
+  m_Sprite: {fileID: 3745167887507905886, guid: 584e465145a78c048a001e2f74545d53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,18 +122,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.046367317, y: 0.49165568}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.6857143, y: -0.71999997}
+    oldSize: {x: 0.546875, y: 0.390625}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.7327346, y: 0.43298715}
   m_EdgeRadius: 0
 --- !u!50 &7232912345465446280
 Rigidbody2D:
@@ -223,7 +224,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0086315
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -299,3 +300,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3337438476326896256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7869933524185208323}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 6090763419713521378, guid: 584e465145a78c048a001e2f74545d53, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
