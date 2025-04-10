@@ -234,11 +234,18 @@ void OpenDoors(GameObject room, int x, int y)
     void ActivateWallsForAllRooms()
     {
         // After all doors have been set, activate walls where no doors are present
+        PolygonCollider2D savedMapBoundary = GameObject.Find("StartRoom").GetComponent<PolygonCollider2D>();
         foreach (GameObject roomObject in roomObjects)
         {
             Room roomScript = roomObject.GetComponent<Room>();
             roomScript.ActivateWallsWithoutDoors();
+            
+            PolygonCollider2D boundary =  roomScript.GetComponent<PolygonCollider2D>();
+            
+            MapController.Instance?.populateMapBounds(boundary);
+            
         }
+        MapController.Instance?.GenerateMap(savedMapBoundary);
     }
 
     Room GetRoomScriptAt(Vector2Int index)
