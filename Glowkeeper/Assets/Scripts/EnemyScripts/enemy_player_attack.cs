@@ -32,6 +32,8 @@ public class enemy_player_attack : MonoBehaviour
 
     void Start()
     {
+        GetComponent<Animator>().speed = 0.1f;
+
         enemyHealth = maxEnemyHealth;
         // Set up the NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
