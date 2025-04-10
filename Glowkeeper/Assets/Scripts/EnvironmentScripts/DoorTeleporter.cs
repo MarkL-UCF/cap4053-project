@@ -118,7 +118,6 @@ public class DoorTeleporter : MonoBehaviour
             itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
             itemSpawner.transform.SetPositionAndRotation(ItemAnchor.transform.position, ItemAnchor.transform.rotation);
             MainCamera.transform.SetPositionAndRotation(CameraAnchor.transform.position, CameraAnchor.transform.rotation);
-            MapController.Instance?.UpdateCurrentArea(mapBoundry.name);
         }
     }
 }

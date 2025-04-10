@@ -239,13 +239,7 @@ void OpenDoors(GameObject room, int x, int y)
         {
             Room roomScript = roomObject.GetComponent<Room>();
             roomScript.ActivateWallsWithoutDoors();
-            
-            PolygonCollider2D boundary =  roomScript.GetComponent<PolygonCollider2D>();
-            
-            MapController.Instance?.populateMapBounds(boundary);
-            
         }
-        MapController.Instance?.GenerateMap(savedMapBoundary);
     }
 
     Room GetRoomScriptAt(Vector2Int index)
