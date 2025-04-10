@@ -30,6 +30,8 @@ public class enemy_range_player : MonoBehaviour
     public GameObject hitLightObject;
     public float lightDuration = 0.2f;
 
+
+
     void Start()
     {
         enemyHealth = maxEnemyHealth;

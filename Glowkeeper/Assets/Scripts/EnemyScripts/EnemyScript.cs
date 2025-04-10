@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public float maxEnemyHealth;
     public float moveSpeed;
     public int damageAmount = 10;
+    public float playerdamageAmount = 0.3f;
     public float damageRate = 1f;
 
     private Transform flame;
@@ -146,7 +147,7 @@ public class EnemyScript : MonoBehaviour
             playerHealth playerScript = collision.gameObject.GetComponent<playerHealth>();
             if (playerScript != null)
             {
-                playerScript.PlayerDamage(damageAmount);
+                playerScript.PlayerDamage(playerdamageAmount);
                 Debug.Log("Enemy is draining the player's health!");
                 nextDamageTime = Time.time + damageRate; // Set the next allowed damage time
             }
