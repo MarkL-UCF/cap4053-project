@@ -117,7 +117,15 @@ public class DoorTeleporter : MonoBehaviour
             collision.gameObject.transform.SetPositionAndRotation(connectedTeleportSpot.transform.position, collision.gameObject.transform.rotation); //teleport player
             itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
             itemSpawner.transform.SetPositionAndRotation(ItemAnchor.transform.position, ItemAnchor.transform.rotation);
+        if (MainCamera != null && CameraAnchor != null)
+        {
             MainCamera.transform.SetPositionAndRotation(CameraAnchor.transform.position, CameraAnchor.transform.rotation);
+            Debug.Log($"[DoorTeleporter] Camera moved to: {CameraAnchor.name}");
+        }
+        else
+        {
+            Debug.LogError("[DoorTeleporter] MainCamera or CameraAnchor is missing!");
+        }
         }
     }
 }
