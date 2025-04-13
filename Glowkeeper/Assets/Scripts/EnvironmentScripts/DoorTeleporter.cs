@@ -114,10 +114,16 @@ public class DoorTeleporter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Vector3 anchorPos = CameraAnchor.transform.position;
+
+            // For 2D: use anchor's x and y, but force z = -10 (or your default cam z)
+            Vector3 targetPos = new Vector3(anchorPos.x, anchorPos.y, -10f);
+            MainCamera.transform.position = targetPos;
+
             collision.gameObject.transform.SetPositionAndRotation(connectedTeleportSpot.transform.position, collision.gameObject.transform.rotation); //teleport player
             itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
             itemSpawner.transform.SetPositionAndRotation(ItemAnchor.transform.position, ItemAnchor.transform.rotation);
-            MainCamera.transform.SetPositionAndRotation(CameraAnchor.transform.position, CameraAnchor.transform.rotation);
+
         }
     }
 }
