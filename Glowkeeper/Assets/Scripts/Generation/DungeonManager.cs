@@ -50,12 +50,12 @@ public class DungeonManager : MonoBehaviour
         }
         else if (roomCount < minRooms)
         {
-            Debug.Log("roomCount was less than the minimum amount of rooms. trying again");
+        //    Debug.Log("roomCount was less than the minimum amount of rooms. trying again");
             RegenerateRooms();
         }
         else if (!generationComplete)
         {
-            Debug.Log($"Generation complete, {roomCount} rooms created");
+      //      Debug.Log($"Generation complete, {roomCount} rooms created");
             ActivateWallsForAllRooms();
             ConnectAllTeleporters();
             generationComplete = true;
@@ -78,8 +78,8 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
     GameObject CameraAnchorB =  roomB.GetCamera();
 
 
-    Debug.Log(doorA);
-    Debug.Log(doorB);
+    Debug.Log(CameraAnchorA);
+    Debug.Log(CameraAnchorB);
 
 
     if (doorA != null && doorB != null)
@@ -94,8 +94,8 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
             //This is the active door
             teleA.connectedTeleportSpot = TeleportSpotB;
             teleB.connectedTeleportSpot = TeleportSpotA;
-            teleA.CameraAnchor = CameraAnchorA;
-            teleB.CameraAnchor = CameraAnchorB;
+            teleA.CameraAnchor = CameraAnchorB;
+            teleB.CameraAnchor = CameraAnchorA;
 
 
 
@@ -122,7 +122,7 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
         if (bottomRoom != null) ConnectTeleporters(room, bottomRoom, Vector2Int.down);
     }
 
-    Debug.Log("[DungeonManager] Finished connecting all teleporters!");
+    //Debug.Log("[DungeonManager] Finished connecting all teleporters!");
 }
 
 

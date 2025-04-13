@@ -114,18 +114,32 @@ public class DoorTeleporter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Vector3 anchorPos = CameraAnchor.transform.position;
+
+            // For 2D: use anchor's x and y, but force z = -10 (or your default cam z)
+            Vector3 targetPos = new Vector3(anchorPos.x, anchorPos.y, -10f);
+
+            Debug.Log(MainCamera);
+            Debug.Log(CameraAnchor);
+
+                        Debug.Log("Hello");
+            MainCamera.transform.transform.position = targetPos;
+            Debug.Log($"[DoorTeleporter] Camera moved to: {CameraAnchor.name}");
+
+
             collision.gameObject.transform.SetPositionAndRotation(connectedTeleportSpot.transform.position, collision.gameObject.transform.rotation); //teleport player
+            Debug.Log($"[DoorTeleporter] Teleported player to: {connectedTeleportSpot.name}");
             itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
             itemSpawner.transform.SetPositionAndRotation(ItemAnchor.transform.position, ItemAnchor.transform.rotation);
-        if (MainCamera != null && CameraAnchor != null)
-        {
+            Debug.Log("Hello");
+                        Debug.Log("Hello");
+                                    Debug.Log("Hello");
+                                                Debug.Log("Hello");
+                                                            Debug.Log("Hello");
             MainCamera.transform.SetPositionAndRotation(CameraAnchor.transform.position, CameraAnchor.transform.rotation);
             Debug.Log($"[DoorTeleporter] Camera moved to: {CameraAnchor.name}");
-        }
-        else
-        {
-            Debug.LogError("[DoorTeleporter] MainCamera or CameraAnchor is missing!");
-        }
+
+
         }
     }
 }
