@@ -94,8 +94,8 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
             //This is the active door
             teleA.connectedTeleportSpot = TeleportSpotB;
             teleB.connectedTeleportSpot = TeleportSpotA;
-            teleA.CameraAnchor = CameraAnchorA;
-            teleB.CameraAnchor = CameraAnchorB;
+            teleA.CameraAnchor = CameraAnchorB;
+            teleB.CameraAnchor = CameraAnchorA;
 
 
 
