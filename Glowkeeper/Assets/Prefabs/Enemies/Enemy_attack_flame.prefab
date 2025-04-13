@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1839, y: -0.7871, z: 0}
-  m_LocalScale: {x: 2.2503638, y: 2.4795184, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -178,6 +178,7 @@ MonoBehaviour:
   maxEnemyHealth: 4
   moveSpeed: 0.8
   damageAmount: 10
+  playerdamageAmount: 0.3
   damageRate: 1
   hitSound: {fileID: 8300000, guid: 655e96e1d00f54d9a9fe48915b3bea7a, type: 3}
   deathSound: {fileID: 8300000, guid: c02d83088cba946f4aa0bc2220104e09, type: 3}

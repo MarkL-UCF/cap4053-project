@@ -34,6 +34,8 @@ public class enemy_range_player : MonoBehaviour
 
     void Start()
     {
+        GetComponent<Animator>().speed = 0.1f;
+
         enemyHealth = maxEnemyHealth;
         rb = GetComponent<Rigidbody2D>();
 

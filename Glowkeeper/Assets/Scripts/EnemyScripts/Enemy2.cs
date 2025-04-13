@@ -38,6 +38,8 @@ public class Enemy2 : MonoBehaviour
 
     void Start()
     {
+        GetComponent<Animator>().speed = 0.1f;
+
         enemyHealth = maxEnemyHealth;
         rb = GetComponent<Rigidbody2D>();
 
