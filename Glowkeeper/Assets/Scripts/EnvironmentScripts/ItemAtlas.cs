@@ -7,6 +7,7 @@ public class ItemAtlas : MonoBehaviour
     public GameObject[] puAtlas;
     public GameObject[] piAtlas;
     public GameObject[] abAtlas;
+    public GameObject[] coinAtlas;
 
     // Start is called before the first frame update
     void Start()

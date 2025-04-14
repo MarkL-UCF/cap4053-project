@@ -61,3 +61,7 @@ MonoBehaviour:
   abAtlas:
   - {fileID: 54853224398176565, guid: cb737779e42df0641bbfa4494bf4579e, type: 3}
   - {fileID: 6422885534181057960, guid: 232303bb36882354386c7a453bbfbde2, type: 3}
+  coinAtlas:
+  - {fileID: 3437401913022686529, guid: d754f2f2148e2414bbc2bdc8a3e5de74, type: 3}
+  - {fileID: 193644092407283610, guid: 4717044e06488e04e9d65760755612f6, type: 3}
+  - {fileID: 7647911020268164687, guid: bd4f047aa5a09ba4aa6ce57bd16c3f98, type: 3}

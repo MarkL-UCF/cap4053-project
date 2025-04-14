@@ -10,15 +10,17 @@ public class ItemSpawner : MonoBehaviour
 
     public ArrayList passiveItemDeck = new ArrayList();
 
-    float[] chances = {.64f, .25f, .15f, .1f};
-    //59% chance of nothing spawning
+    float[] chances = {.59f, .25f, .15f, .1f};
+    //59% chance of coins (previously nothing) spawning
     //25% chance of a health/fuel item spawning
-        //12.5% for health
-        //12.5% for fuel
+    //12.5% for health
+    //12.5% for fuel
     //15% chance of an ability or passive item spawning
     //11.25% for a passive item
     //3.75% for an ability
     //1% for a rare candy to spawn
+
+    float[] coinChances = { .50f, .35f, .15f };
 
     public GameObject spawnedItem;
     public int storedID = -1;
@@ -50,7 +52,8 @@ public class ItemSpawner : MonoBehaviour
         {
             //Spawn nothing
             case 0:
-                Debug.Log("Nothing Rolled");
+                //Debug.Log("Nothing Rolled");
+                SpawnCoin();
                 break;
 
             //spawn a health or fuel pickup
@@ -95,6 +98,24 @@ public class ItemSpawner : MonoBehaviour
             }
         }
         return probs.Length - 1;
+    }
+
+    void SpawnCoin()
+    {
+        int result = Choose(coinChances);
+
+        if (result == 0) //1$
+        {
+            spawnedItem = Instantiate(itemAtlas.coinAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
+        }
+        else if (result == 1) //5$
+        {
+            spawnedItem = Instantiate(itemAtlas.coinAtlas[1], gameObject.transform.position, gameObject.transform.rotation);
+        }
+        else if (result == 2) //10$
+        {
+            spawnedItem = Instantiate(itemAtlas.coinAtlas[2], gameObject.transform.position, gameObject.transform.rotation);
+        }
     }
 
     void SpawnHealth()
