@@ -239,7 +239,7 @@ void OpenDoors(GameObject room, int x, int y)
             roomScript.ActivateWallsWithoutDoors();
         }
         // After all doors have been set, activate walls where no doors are present
-        PolygonCollider2D savedMapBoundary = GameObject.Find("StartRoom").GetComponent<PolygonCollider2D>();
+        PolygonCollider2D savedMapBoundary = GameObject.Find("Room-1").GetComponent<PolygonCollider2D>();
 
     }
 
