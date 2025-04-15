@@ -106,14 +106,18 @@ public class ItemSpawner : MonoBehaviour
 
         if (result == 0) //1$
         {
+
+            Debug.Log("1$ spawned");
             spawnedItem = Instantiate(itemAtlas.coinAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
         }
         else if (result == 1) //5$
         {
+            Debug.Log("5$ spawned");
             spawnedItem = Instantiate(itemAtlas.coinAtlas[1], gameObject.transform.position, gameObject.transform.rotation);
         }
         else if (result == 2) //10$
         {
+            Debug.Log("10$ spawned");
             spawnedItem = Instantiate(itemAtlas.coinAtlas[2], gameObject.transform.position, gameObject.transform.rotation);
         }
     }
