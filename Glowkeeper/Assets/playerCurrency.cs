@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class playerCurrency : MonoBehaviour
 {
     public int coins;
-    public Image coinIcon;
     public TextMeshProUGUI currencyDisplay;
 
     // Start is called before the first frame update
@@ -15,7 +14,6 @@ public class playerCurrency : MonoBehaviour
     {
         coins = 0;
         currencyDisplay = GameObject.Find("CurrencyDisplay").GetComponent<TextMeshProUGUI>();
-        coinIcon = GameObject.Find("CoinIcon").GetComponent<Image>();
     }
 
     // Update is called once per frame
