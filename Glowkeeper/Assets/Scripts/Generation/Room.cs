@@ -106,6 +106,12 @@ public GameObject GetCamera()
     return cameraAnchor != null ? cameraAnchor.gameObject : null;
 }
 
+public GameObject GetItem()
+{
+    var cameraAnchor = transform.Find("Room Encounter Manager/Anchors/Item Anchor");
+    return cameraAnchor != null ? cameraAnchor.gameObject : null;
+}
+
 
 
     // Activates walls if doors did not activate
