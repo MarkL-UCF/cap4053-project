@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 3415201235581177163}
   - component: {fileID: 5452591398271837611}
   - component: {fileID: 6940177005625337443}
+  - component: {fileID: 1370901361327846475}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -271,7 +272,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7265714216335294904}
@@ -320,12 +321,12 @@ SpriteRenderer:
   m_SortingLayerID: 2128252873
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1472620606, guid: 58efd56f66bf7594ca3e1b4fe8e6d81c, type: 3}
+  m_Sprite: {fileID: -125183287, guid: 790fd72ed28735d48aa6524638a49de6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -394,8 +395,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8285714, y: 1.8285714}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -497,6 +498,21 @@ Animator:
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6940177005625337443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7425270538560333250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84fb95a00bc5d0e46bd813409ff011e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 0
+  coinIcon: {fileID: 0}
+  currencyDisplay: {fileID: 0}
+--- !u!114 &1370901361327846475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
