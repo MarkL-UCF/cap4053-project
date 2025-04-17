@@ -207,6 +207,83 @@ public class ItemSpawner : MonoBehaviour
 
     public void ShopSpawnItem()
     {
+        int result = Random.Range(1, 4);
+        int candyResult = Random.Range(1, 100);
+        if (candyResult <= 95)
+        {
+            if (result == 4) //ability
+            {
+                result = Random.Range(0, itemAtlas.abAtlas.Length);
 
+                spawnedItem = Instantiate(itemAtlas.abAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
+                spawnedItem.GetComponent<AbilityPickup>().shopItem = true;
+
+                Debug.Log("(Shop) Ability of ID:" + result + " rolled");
+            }
+            else //passive
+            {
+                if (passiveItemDeck.Count == 0) //empty deck, spawn candy
+                {
+                    Debug.Log("(Shop) Deck empty");
+                    SpawnCandy();
+                    spawnedItem.GetComponent<CandyItem>().shopItem = true;
+                    metrics.foundItem(-1);
+                }
+                else //deck isn't empty, draw from it
+                {
+                    result = Random.Range(0, passiveItemDeck.Count - 1);
+
+                    spawnedItem = Instantiate(itemAtlas.piAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
+                    spawnedItem.GetComponent<WeaponPickup>().shopItem = true;
+
+                    //storedID = result;
+
+                    Debug.Log("(Shop) passive item of ID:" + result + " rolled");
+                    metrics.foundItem(result);
+                }
+            }
+        }
+        else //5% chance of a candy item replacing an item spawn
+        {
+            SpawnCandy();
+            Debug.Log("(Shop) Candy replaced item");
+            spawnedItem.GetComponent<CandyItem>().shopItem = true;
+        }
+    }
+
+    public void ShopSpawnPickup()
+    {
+        int result = Random.Range(1, 2);
+        int candyResult = Random.Range(1, 100);
+
+        if (candyResult <= 90)
+        {
+            if (result == 1) //hearts
+            {
+                result = Random.Range(1, 2);
+
+                if (result == 1) //half heart
+                {
+                    spawnedItem = Instantiate(itemAtlas.puAtlas[1], gameObject.transform.position, gameObject.transform.rotation);
+                    Debug.Log("(Shop) Half heart rolled");
+                }
+                else //full heart
+                {
+                    spawnedItem = Instantiate(itemAtlas.puAtlas[2], gameObject.transform.position, gameObject.transform.rotation);
+                    Debug.Log("(Shop) Full heart rolled");
+                }
+            }
+            else //fuel
+            {
+                spawnedItem = Instantiate(itemAtlas.puAtlas[3], gameObject.transform.position, gameObject.transform.rotation);
+                Debug.Log("(Shop) Fuel rolled");
+            }
+        }
+        else //10% chance of a candy replacing a shop pickup spawn
+        {
+            SpawnCandy();
+            Debug.Log("(Shop) Candy replaced pickup");
+            spawnedItem.GetComponent<CandyItem>().shopItem = true;
+        }
     }
 }
