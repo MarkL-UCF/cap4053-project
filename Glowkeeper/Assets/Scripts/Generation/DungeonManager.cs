@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
-
 {
     [SerializeField] GameObject roomPrefab;
     [SerializeField] GameObject startRoomPrefab;
     [SerializeField] GameObject endRoomPrefab;
 
+    [SerializeField] GameObject TreasureandShopRoomPrefab;
 
     [SerializeField] private int maxRooms = 20;
     [SerializeField] private int minRooms = 18;
@@ -56,78 +56,86 @@ public class DungeonManager : MonoBehaviour
         else if (!generationComplete)
         {
             Debug.Log($"Generation complete, {roomCount} rooms created");
+
+            // Replace the last room with the end room
+            if (roomObjects.Count > 0)
+            {
+                GameObject lastRoom = roomObjects[roomObjects.Count - 1];
+                Vector2Int index = lastRoom.GetComponent<Room>().RoomIndex;
+                Vector3 position = lastRoom.transform.position;
+
+                Destroy(lastRoom);
+                roomObjects.RemoveAt(roomObjects.Count - 1);
+
+                GameObject endRoom = Instantiate(endRoomPrefab, position, Quaternion.identity);
+                endRoom.name = $"Room-{roomCount} (End)";
+                endRoom.GetComponent<Room>().RoomIndex = index;
+                roomObjects.Add(endRoom);
+
+                OpenDoors(endRoom, index.x, index.y);
+            }
+
             ActivateWallsForAllRooms();
             ConnectAllTeleporters();
             generationComplete = true;
         }
     }
 
-
-// 4/5/2025 AI-Tag
-// This was created with assistance from Muse, a Unity Artificial Intelligence product
-
-void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
-{
-    if (roomA == null || roomB == null) return;
-
-    GameObject doorA = roomA.GetDoor(direction);
-    GameObject doorB = roomB.GetDoor(-direction);  // Opposite direction
-    GameObject TeleportSpotA = roomA.GetTeleporter(direction);
-    GameObject TeleportSpotB = roomB.GetTeleporter(-direction);
-    GameObject CameraAnchorA =  roomA.GetCamera();
-    GameObject CameraAnchorB =  roomB.GetCamera();
-    GameObject ItemAnchorA =  roomA.GetItem();
-    GameObject ItemAnchorB =  roomB.GetItem();
-
-
-    Debug.Log(doorA);
-    Debug.Log(doorB);
-
-
-    if (doorA != null && doorB != null)
+    void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
     {
-        DoorTeleporter teleA = doorA.GetComponent<DoorTeleporter>();
-        DoorTeleporter teleB = doorB.GetComponent<DoorTeleporter>();
+        if (roomA == null || roomB == null) return;
 
-        
+        GameObject doorA = roomA.GetDoor(direction);
+        GameObject doorB = roomB.GetDoor(-direction);
+        GameObject TeleportSpotA = roomA.GetTeleporter(direction);
+        GameObject TeleportSpotB = roomB.GetTeleporter(-direction);
+        GameObject CameraAnchorA = roomA.GetCamera();
+        GameObject CameraAnchorB = roomB.GetCamera();
+        GameObject ItemAnchorA = roomA.GetItem();
+        GameObject ItemAnchorB = roomB.GetItem();
 
-        if (teleA != null && teleB != null)
+        Debug.Log(doorA);
+        Debug.Log(doorB);
+
+        if (doorA != null && doorB != null)
         {
-            //This is the active door
-            teleA.connectedTeleportSpot = TeleportSpotB;
-            teleB.connectedTeleportSpot = TeleportSpotA;
-            teleA.CameraAnchor = CameraAnchorB;
-            teleB.CameraAnchor = CameraAnchorA;
-            teleA.ItemAnchor = ItemAnchorB;
-            teleB.ItemAnchor = ItemAnchorA;
+            DoorTeleporter teleA = doorA.GetComponent<DoorTeleporter>();
+            DoorTeleporter teleB = doorB.GetComponent<DoorTeleporter>();
 
+            if (teleA != null && teleB != null)
+            {
+                teleA.connectedTeleportSpot = TeleportSpotB;
+                teleB.connectedTeleportSpot = TeleportSpotA;
+                teleA.CameraAnchor = CameraAnchorB;
+                teleB.CameraAnchor = CameraAnchorA;
+                teleA.ItemAnchor = ItemAnchorB;
+                teleB.ItemAnchor = ItemAnchorA;
 
-            Debug.Log($"[ConnectTeleporters] Connected {roomA.name} door to {roomB.name} door");
+                Debug.Log($"[ConnectTeleporters] Connected {roomA.name} door to {roomB.name} door");
+            }
         }
     }
-}
 
     void ConnectAllTeleporters()
-{
-    foreach (GameObject roomObject in roomObjects)
     {
-        Room room = roomObject.GetComponent<Room>();
-        Vector2Int roomIndex = room.RoomIndex;
+        foreach (GameObject roomObject in roomObjects)
+        {
+            Room room = roomObject.GetComponent<Room>();
+            Vector2Int roomIndex = room.RoomIndex;
 
-        Room leftRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x - 1, roomIndex.y));
-        Room rightRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x + 1, roomIndex.y));
-        Room topRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x, roomIndex.y + 1));
-        Room bottomRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x, roomIndex.y - 1));
+            Room leftRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x - 1, roomIndex.y));
+            Room rightRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x + 1, roomIndex.y));
+            Room topRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x, roomIndex.y + 1));
+            Room bottomRoom = GetRoomScriptAt(new Vector2Int(roomIndex.x, roomIndex.y - 1));
 
-        if (leftRoom != null) ConnectTeleporters(room, leftRoom, Vector2Int.left);
-        if (rightRoom != null) ConnectTeleporters(room, rightRoom, Vector2Int.right);
-        if (topRoom != null) ConnectTeleporters(room, topRoom, Vector2Int.up);
-        if (bottomRoom != null) ConnectTeleporters(room, bottomRoom, Vector2Int.down);
+            if (leftRoom != null) ConnectTeleporters(room, leftRoom, Vector2Int.left);
+            if (rightRoom != null) ConnectTeleporters(room, rightRoom, Vector2Int.right);
+            if (topRoom != null) ConnectTeleporters(room, topRoom, Vector2Int.up);
+            if (bottomRoom != null) ConnectTeleporters(room, bottomRoom, Vector2Int.down);
+        }
+
+        Debug.Log("[DungeonManager] Finished connecting all teleporters!");
     }
-
-    Debug.Log("[DungeonManager] Finished connecting all teleporters!");
-}
-
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
@@ -152,12 +160,10 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
         if (roomGrid[x, y] != 0)
             return false;
 
-
         if (roomCount >= maxRooms)
             return false;
         if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
             return false;
-
         if (CountAdjacentRooms(roomIndex) > 1)
             return false;
 
@@ -165,21 +171,12 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var newRoom = gameObject;
-        if(roomCount < maxRooms)
-            newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        else if(roomCount ==maxRooms)
-            newRoom = Instantiate(endRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-
-            
+        var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
         OpenDoors(newRoom, x, y);
-        
-
-
         return true;
     }
 
@@ -196,43 +193,40 @@ void ConnectTeleporters(Room roomA, Room roomB, Vector2Int direction)
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
 
-void OpenDoors(GameObject room, int x, int y)
-{
-    Room newRoomScript = room.GetComponent<Room>();
-
-    Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
-    Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
-    Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
-    Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
-
-    if (x > 0 && roomGrid[x - 1, y] != 0)
+    void OpenDoors(GameObject room, int x, int y)
     {
-        newRoomScript.OpenDoor(Vector2Int.left);
-        leftRoomScript?.OpenDoor(Vector2Int.right);
-        ConnectTeleporters(newRoomScript, leftRoomScript, Vector2Int.left);
-    }
-    if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
-    {
-        newRoomScript.OpenDoor(Vector2Int.right);
-        rightRoomScript?.OpenDoor(Vector2Int.left);
-        ConnectTeleporters(newRoomScript, rightRoomScript, Vector2Int.right);
-    }
-    if (y > 0 && roomGrid[x, y - 1] != 0)
-    {
-        newRoomScript.OpenDoor(Vector2Int.down);
-        bottomRoomScript?.OpenDoor(Vector2Int.up);
-        ConnectTeleporters(newRoomScript, bottomRoomScript, Vector2Int.down);
-    }
-    if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
-    {
-        newRoomScript.OpenDoor(Vector2Int.up);
-        topRoomScript?.OpenDoor(Vector2Int.down);
-        ConnectTeleporters(newRoomScript, topRoomScript, Vector2Int.up);
-    }
-}
+        Room newRoomScript = room.GetComponent<Room>();
 
+        Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
+        Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
+        Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
+        Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
 
-
+        if (x > 0 && roomGrid[x - 1, y] != 0)
+        {
+            newRoomScript.OpenDoor(Vector2Int.left);
+            leftRoomScript?.OpenDoor(Vector2Int.right);
+            ConnectTeleporters(newRoomScript, leftRoomScript, Vector2Int.left);
+        }
+        if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
+        {
+            newRoomScript.OpenDoor(Vector2Int.right);
+            rightRoomScript?.OpenDoor(Vector2Int.left);
+            ConnectTeleporters(newRoomScript, rightRoomScript, Vector2Int.right);
+        }
+        if (y > 0 && roomGrid[x, y - 1] != 0)
+        {
+            newRoomScript.OpenDoor(Vector2Int.down);
+            bottomRoomScript?.OpenDoor(Vector2Int.up);
+            ConnectTeleporters(newRoomScript, bottomRoomScript, Vector2Int.down);
+        }
+        if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
+        {
+            newRoomScript.OpenDoor(Vector2Int.up);
+            topRoomScript?.OpenDoor(Vector2Int.down);
+            ConnectTeleporters(newRoomScript, topRoomScript, Vector2Int.up);
+        }
+    }
 
     void ActivateWallsForAllRooms()
     {
@@ -241,9 +235,8 @@ void OpenDoors(GameObject room, int x, int y)
             Room roomScript = roomObject.GetComponent<Room>();
             roomScript.ActivateWallsWithoutDoors();
         }
-        // After all doors have been set, activate walls where no doors are present
-        PolygonCollider2D savedMapBoundary = GameObject.Find("Room-1").GetComponent<PolygonCollider2D>();
 
+        PolygonCollider2D savedMapBoundary = GameObject.Find("Room-1").GetComponent<PolygonCollider2D>();
     }
 
     Room GetRoomScriptAt(Vector2Int index)
@@ -290,4 +283,3 @@ void OpenDoors(GameObject room, int x, int y)
         }
     }
 }
-
