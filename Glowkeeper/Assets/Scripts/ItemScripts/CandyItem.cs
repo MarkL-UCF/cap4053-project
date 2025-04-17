@@ -26,8 +26,33 @@ public class CandyItem : MonoBehaviour
         {
             playerCurrency currency = GameObject.FindGameObjectWithTag("Player").GetComponent<playerCurrency>();
             currency.SpendCoins(cost);
-            playerHealth Health = GameObject.FindGameObjectWithTag("Player").GetComponent<playerHealth>();
-           
+
+            var Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<PlayerWeapon>();
+
+            int val = UnityEngine.Random.Range(1, 5);
+
+            switch (val)
+            {
+                case 1:
+                    Weapon.damageFlat += 0.25f;
+                    break;
+
+                case 2:
+                    Weapon.firerateFlat -= 0.20f;
+                    break;
+
+                case 3:
+                    Weapon.projectileSpeedFlat += 0.20f;
+                    break;
+
+                case 4:
+                    Weapon.spreadFlat -= 1;
+                    break;
+
+                case 5:
+                    Weapon.projectileSizeFlat += .1f;
+                    break;
+            }
 
             Destroy(gameObject);
         }
