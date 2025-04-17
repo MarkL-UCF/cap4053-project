@@ -121,7 +121,7 @@ public class DoorTeleporter : MonoBehaviour
             MainCamera.transform.position = targetPos;
 
             collision.gameObject.transform.SetPositionAndRotation(connectedTeleportSpot.transform.position, collision.gameObject.transform.rotation); //teleport player
-            itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
+            //itemSpawner.GetComponent<ItemSpawner>().DespawnItem();
             itemSpawner.transform.SetPositionAndRotation(ItemAnchor.transform.position, ItemAnchor.transform.rotation);
 
         }
