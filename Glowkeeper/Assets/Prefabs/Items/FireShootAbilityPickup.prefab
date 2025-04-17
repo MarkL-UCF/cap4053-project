@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityScript: {fileID: 11400000, guid: 3ff65568671fe404b83a4005a08e2281, type: 2}
   shopItem: 0
-  cost: 0
+  cost: 15
   priceText: {fileID: 0}
   pickUpText: {fileID: 3193714578083418365, guid: b51bf61397426184f924888a80058d8f, type: 3}
   statsText: {fileID: 2628625179505656999, guid: f34dbccf5b818dc4c8c2b04768e2f19e, type: 3}
