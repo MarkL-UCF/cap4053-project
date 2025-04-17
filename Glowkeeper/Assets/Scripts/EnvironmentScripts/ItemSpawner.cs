@@ -100,7 +100,7 @@ public class ItemSpawner : MonoBehaviour
         return probs.Length - 1;
     }
 
-    void SpawnCoin()
+    public void SpawnCoin()
     {
         int result = Choose(coinChances);
 
@@ -122,7 +122,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnHealth()
+    public void SpawnHealth()
     {
         int result = Random.Range(1, 2);
 
@@ -148,7 +148,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnPassiveAndAbilities()
+    public void SpawnPassiveAndAbilities()
     {
         int result = Random.Range(1, 4);
 
@@ -182,7 +182,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    void SpawnCandy()
+    public void SpawnCandy()
     {
         spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
         Debug.Log("Candy rolled");
