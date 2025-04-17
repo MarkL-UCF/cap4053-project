@@ -116,4 +116,15 @@ public class CandyItem : MonoBehaviour
 
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            canPickup = false;
+            canBuy = false;
+            priceText.text = "";
+            pickUpText.text = "";
+        }
+    }
 }
