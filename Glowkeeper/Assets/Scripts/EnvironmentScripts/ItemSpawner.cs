@@ -23,7 +23,7 @@ public class ItemSpawner : MonoBehaviour
     float[] coinChances = { .50f, .35f, .15f };
 
     public GameObject spawnedItem;
-    public int storedID = -1;
+    //public int storedID = -1;
 
     public Metrics metrics;
     // Start is called before the first frame update
@@ -174,7 +174,7 @@ public class ItemSpawner : MonoBehaviour
 
                 spawnedItem = Instantiate(itemAtlas.piAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
 
-                storedID = result;
+                //storedID = result;
 
                 Debug.Log("Passive item of ID:" + result + " rolled");
                 metrics.foundItem(result);
@@ -189,6 +189,7 @@ public class ItemSpawner : MonoBehaviour
         metrics.foundItem(-1);
     }
 
+    /*
     public void DespawnItem()
     {
         if(spawnedItem != null)
@@ -201,5 +202,11 @@ public class ItemSpawner : MonoBehaviour
 
             Destroy(spawnedItem);
         }
+    }
+    */
+
+    public void ShopSpawnItem()
+    {
+
     }
 }
