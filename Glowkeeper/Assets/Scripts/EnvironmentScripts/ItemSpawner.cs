@@ -288,31 +288,35 @@ public class ItemSpawner : MonoBehaviour
     }
 
     public void ShopSpawnPickupAt(Vector3 position){
-        int result = Random.Range(1, 2);
+        int result = Random.Range(1, 3);
         int candyResult = Random.Range(1, 100);
         GameObject item = null;
 
 
         if (candyResult <= 90)
         {
-            if (result == 1) //hearts
-            {
-                result = Random.Range(1, 2);
+
 
                 if (result == 1) //half heart
                 {
                     item = Instantiate(itemAtlas.puAtlas[1], position, gameObject.transform.rotation);
+                    item.GetComponent<HealthRefill>().shopItem = true;
+
                     Debug.Log("(Shop) Half heart rolled");
                 }
-                else //full heart
+                else if(result == 2) //full heart
                 {
                     item = Instantiate(itemAtlas.puAtlas[2], position, gameObject.transform.rotation);
+                    item.GetComponent<HealthRefill>().shopItem = true;
+
                     Debug.Log("(Shop) Full heart rolled");
                 }
-            }
-            else //fuel
+            
+            else if(result == 3)  //fuel
             {
                 item = Instantiate(itemAtlas.puAtlas[3], position, gameObject.transform.rotation);
+                item.GetComponent<FuelRefill>().shopItem = true;
+
                 Debug.Log("(Shop) Fuel rolled");
             }
         }

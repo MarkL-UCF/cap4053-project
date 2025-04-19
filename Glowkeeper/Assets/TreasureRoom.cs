@@ -21,9 +21,12 @@ public class TreasureRoom : MonoBehaviour
 
 void SpawnTreasure()
 {
+
     for (int i = 0; i < numberOfItems; i++)
     {
-        Vector3 offset = new Vector3(i * 2.0f, 0, 0);
+        itemSpawner = FindObjectOfType<ItemSpawner>();
+
+        Vector3 offset = new Vector3((i * 2.0f) - 3, 0, 0);
         Vector3 spawnPos = transform.position + offset;
 
         if (i < 2)
