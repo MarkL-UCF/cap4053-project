@@ -290,7 +290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.17395264
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -298,7 +298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.6515482
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8574266962633979513, guid: 4dffadbfdb361d84d92ae71a7fe53e54, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -1011,6 +1011,10 @@ PrefabInstance:
       propertyPath: gridSizeY
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 21190465457952802, guid: e9e2bc4d2aebde249ac54304dcbffafd, type: 3}
+      propertyPath: TreasureandRoomPrefab
+      value: 
+      objectReference: {fileID: 5548494699515737117, guid: d1bd18ecab237cb408aa2cc7453290c2, type: 3}
     - target: {fileID: 2030312594385121828, guid: e9e2bc4d2aebde249ac54304dcbffafd, type: 3}
       propertyPath: m_Name
       value: DungeonManager

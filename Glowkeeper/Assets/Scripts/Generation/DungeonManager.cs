@@ -10,6 +10,8 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField] GameObject TreasureandShopRoomPrefab;
 
+    [SerializeField] GameObject TreasureandRoomPrefab;
+
     [SerializeField] private int maxRooms = 20;
     [SerializeField] private int minRooms = 18;
 
@@ -27,6 +29,9 @@ public class DungeonManager : MonoBehaviour
     private bool generationComplete = false;
 
     private bool treasureRoomPlaced = false;
+
+    private bool shopRoomPlaced = false;
+
 
     private void Start()
     {
@@ -178,9 +183,14 @@ public class DungeonManager : MonoBehaviour
     {
         newRoom = Instantiate(endRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
     }
-    else if (!treasureRoomPlaced && roomCount == 3)
+    else if (!shopRoomPlaced && roomCount == 3)
     {
         newRoom = Instantiate(TreasureandShopRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        shopRoomPlaced = true;
+    }
+    else if (!treasureRoomPlaced && roomCount == 6)
+    {
+        newRoom = Instantiate(TreasureandRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         treasureRoomPlaced = true;
     }
     else

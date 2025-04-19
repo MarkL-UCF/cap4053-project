@@ -48,6 +48,7 @@ public class RoomManager : MonoBehaviour
 
         itemSpawner = GameObject.FindGameObjectWithTag("Item Spawner").GetComponent<ItemSpawner>();
 
+
     }
 
     // Update is called once per frame

@@ -375,5 +375,41 @@ public class ItemSpawner : MonoBehaviour
 
         spawnedItem = item;
     }
+    public void SpawnPassiveAndAbilitiesAt(Vector3 position)
+    {
+        int result = Random.Range(1, 4);
+
+        if (result == 4) //ability
+        {
+            result = Random.Range(0, itemAtlas.abAtlas.Length);
+
+            spawnedItem = Instantiate(itemAtlas.abAtlas[result], position, gameObject.transform.rotation);
+
+            Debug.Log("Ability of ID:" + result + " rolled");
+        }
+        else //passive
+        {
+            if (passiveItemDeck.Count == 0) //empty deck, spawn candy
+            {
+                Debug.Log("Deck empty");
+                SpawnCandy();
+                metrics.foundItem(-1);
+            }
+            else //deck isn't empty, draw from it
+            {
+                result = Random.Range(0, passiveItemDeck.Count - 1);
+                int drawnID = (int)passiveItemDeck[result];
+
+                spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], position, gameObject.transform.rotation);
+
+                passiveItemDeck.RemoveAt(result);
+
+                //storedID = result;
+
+                Debug.Log("Passive item of ID:" + drawnID + " rolled");
+                metrics.foundItem(drawnID);
+            }
+        }
+    }
 
 }
