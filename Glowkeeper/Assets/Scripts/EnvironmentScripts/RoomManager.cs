@@ -81,7 +81,7 @@ public class RoomManager : MonoBehaviour
             doorScript.LockDoor();
         }
 
-        //instantiate flame is it has not been extinguished
+        //instantiate flame if it has not been extinguished
         if(flameStatTracker.isExtinguished == false)
         {
             flame = Instantiate(flamePrefab, flameAnchor.transform.position, flameAnchor.transform.rotation);
@@ -89,6 +89,7 @@ public class RoomManager : MonoBehaviour
             flameHP.roomManager = this;
 
             yield return null; //force the flame to fully instantiate before calling anything on it
+            yield return null; //doubled the amount of frames to wait to fix it again
 
             flameHP.ChangeLights(); //update light level based on previous values
         }
