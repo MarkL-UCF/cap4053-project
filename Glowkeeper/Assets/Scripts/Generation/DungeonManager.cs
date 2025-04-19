@@ -26,6 +26,8 @@ public class DungeonManager : MonoBehaviour
     private int roomCount;
     private bool generationComplete = false;
 
+    private bool treasureRoomPlaced = false;
+
     private void Start()
     {
         roomGrid = new int[gridSizeX, gridSizeY];
@@ -150,35 +152,51 @@ public class DungeonManager : MonoBehaviour
         roomObjects.Add(initialRoom);
     }
 
-    private bool TryGenerateRoom(Vector2Int roomIndex)
+  private bool TryGenerateRoom(Vector2Int roomIndex)
+{
+    int x = roomIndex.x;
+    int y = roomIndex.y;
+
+    if (x >= gridSizeX || y >= gridSizeY || x < 0 || y < 0)
+        return false;
+    if (roomGrid[x, y] != 0)
+        return false;
+    if (roomCount >= maxRooms)
+        return false;
+    if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
+        return false;
+    if (CountAdjacentRooms(roomIndex) > 1)
+        return false;
+
+    roomQueue.Enqueue(roomIndex);
+    roomGrid[x, y] = 1;
+    roomCount++;
+
+    GameObject newRoom;
+    
+    if (roomCount == maxRooms)
     {
-        int x = roomIndex.x;
-        int y = roomIndex.y;
-
-        if (x >= gridSizeX || y >= gridSizeY || x < 0 || y < 0)
-            return false;
-        if (roomGrid[x, y] != 0)
-            return false;
-
-        if (roomCount >= maxRooms)
-            return false;
-        if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
-            return false;
-        if (CountAdjacentRooms(roomIndex) > 1)
-            return false;
-
-        roomQueue.Enqueue(roomIndex);
-        roomGrid[x, y] = 1;
-        roomCount++;
-
-        var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        newRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        newRoom.name = $"Room-{roomCount}";
-        roomObjects.Add(newRoom);
-
-        OpenDoors(newRoom, x, y);
-        return true;
+        newRoom = Instantiate(endRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
     }
+    else if (!treasureRoomPlaced && roomCount == 3)
+    {
+        newRoom = Instantiate(TreasureandShopRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        treasureRoomPlaced = true;
+    }
+    else
+    {
+        newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+    }
+
+    newRoom.GetComponent<Room>().RoomIndex = roomIndex;
+    newRoom.name = $"Room-{roomCount}";
+    roomObjects.Add(newRoom);
+
+    OpenDoors(newRoom, x, y);
+
+    return true;
+}
+
 
     private void RegenerateRooms()
     {

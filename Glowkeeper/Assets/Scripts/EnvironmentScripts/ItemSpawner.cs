@@ -10,7 +10,7 @@ public class ItemSpawner : MonoBehaviour
 
     public ArrayList passiveItemDeck = new ArrayList();
 
-    float[] chances = {.59f, .25f, .15f, .1f};
+    float[] chances = { .59f, .25f, .15f, .1f };
     //59% chance of coins (previously nothing) spawning
     //25% chance of a health/fuel item spawning
     //12.5% for health
@@ -40,7 +40,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        
+
 
     }
 
@@ -48,7 +48,7 @@ public class ItemSpawner : MonoBehaviour
     {
         int result = Choose(chances);
 
-        switch(result)
+        switch (result)
         {
             //Spawn nothing
             case 0:
@@ -130,7 +130,7 @@ public class ItemSpawner : MonoBehaviour
         {
             result = Random.Range(1, 2);
 
-            if(result == 1) //half heart
+            if (result == 1) //half heart
             {
                 spawnedItem = Instantiate(itemAtlas.puAtlas[1], gameObject.transform.position, gameObject.transform.rotation);
                 Debug.Log("Half heart rolled");
@@ -152,7 +152,7 @@ public class ItemSpawner : MonoBehaviour
     {
         int result = Random.Range(1, 4);
 
-        if(result == 4) //ability
+        if (result == 4) //ability
         {
             result = Random.Range(0, itemAtlas.abAtlas.Length);
 
@@ -286,4 +286,84 @@ public class ItemSpawner : MonoBehaviour
             spawnedItem.GetComponent<CandyItem>().shopItem = true;
         }
     }
+
+    public void ShopSpawnPickupAt(Vector3 position){
+        int result = Random.Range(1, 2);
+        int candyResult = Random.Range(1, 100);
+        GameObject item = null;
+
+
+        if (candyResult <= 90)
+        {
+            if (result == 1) //hearts
+            {
+                result = Random.Range(1, 2);
+
+                if (result == 1) //half heart
+                {
+                    item = Instantiate(itemAtlas.puAtlas[1], position, gameObject.transform.rotation);
+                    Debug.Log("(Shop) Half heart rolled");
+                }
+                else //full heart
+                {
+                    item = Instantiate(itemAtlas.puAtlas[2], position, gameObject.transform.rotation);
+                    Debug.Log("(Shop) Full heart rolled");
+                }
+            }
+            else //fuel
+            {
+                item = Instantiate(itemAtlas.puAtlas[3], position, gameObject.transform.rotation);
+                Debug.Log("(Shop) Fuel rolled");
+            }
+        }
+        else //10% chance of a candy replacing a shop pickup spawn
+        {
+            SpawnCandy();
+            Debug.Log("(Shop) Candy replaced pickup");
+            item.GetComponent<CandyItem>().shopItem = true;
+        }
+
+        spawnedItem = item;
+
+    }
+
+
+    public void ShopSpawnItemAt(Vector3 position)
+    {
+        int result = Random.Range(1, 4);
+        int candyResult = Random.Range(1, 100);
+        GameObject item = null;
+
+        if (candyResult <= 95)
+        {
+            if (result == 4) // ability
+            {
+                result = Random.Range(0, itemAtlas.abAtlas.Length);
+                item = Instantiate(itemAtlas.abAtlas[result], position, Quaternion.identity);
+                item.GetComponent<AbilityPickup>().shopItem = true;
+            }
+            else // passive
+            {
+                if (passiveItemDeck.Count == 0)
+                {
+                    item = Instantiate(itemAtlas.puAtlas[0], position, Quaternion.identity);
+                    item.GetComponent<CandyItem>().shopItem = true;
+                }
+                else
+                {
+                    result = Random.Range(0, passiveItemDeck.Count - 1);
+                    item = Instantiate(itemAtlas.piAtlas[result], position, Quaternion.identity);
+                    item.GetComponent<WeaponPickup>().shopItem = true;
+                }
+            }
+        }
+        else
+        {
+            item = Instantiate(itemAtlas.puAtlas[0], position, Quaternion.identity);
+            item.GetComponent<CandyItem>().shopItem = true;
+        }
+
+        spawnedItem = item;
+    }
+
 }
