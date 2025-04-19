@@ -171,13 +171,16 @@ public class ItemSpawner : MonoBehaviour
             else //deck isn't empty, draw from it
             {
                 result = Random.Range(0, passiveItemDeck.Count - 1);
+                int drawnID = (int)passiveItemDeck[result];
 
-                spawnedItem = Instantiate(itemAtlas.piAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
+                spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], gameObject.transform.position, gameObject.transform.rotation);
+
+                passiveItemDeck.RemoveAt(result);
 
                 //storedID = result;
 
-                Debug.Log("Passive item of ID:" + result + " rolled");
-                metrics.foundItem(result);
+                Debug.Log("Passive item of ID:" + drawnID + " rolled");
+                metrics.foundItem(drawnID);
             }
         }
     }
@@ -232,14 +235,17 @@ public class ItemSpawner : MonoBehaviour
                 else //deck isn't empty, draw from it
                 {
                     result = Random.Range(0, passiveItemDeck.Count - 1);
+                    int drawnID = (int)passiveItemDeck[result];
 
-                    spawnedItem = Instantiate(itemAtlas.piAtlas[result], gameObject.transform.position, gameObject.transform.rotation);
+                    spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], gameObject.transform.position, gameObject.transform.rotation);
                     spawnedItem.GetComponent<WeaponPickup>().shopItem = true;
+
+                    passiveItemDeck.RemoveAt(result);
 
                     //storedID = result;
 
-                    Debug.Log("(Shop) passive item of ID:" + result + " rolled");
-                    metrics.foundItem(result);
+                    Debug.Log("(Shop) passive item of ID:" + drawnID + " rolled");
+                    metrics.foundItem(drawnID);
                 }
             }
         }
