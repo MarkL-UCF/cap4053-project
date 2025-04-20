@@ -30,6 +30,7 @@ public class Metrics : MonoBehaviour
 
     public void newRoom()
     {
+        ++roomCounter;
         File.AppendAllText(filePath, "[" + (Time.time - creationTime) + "s] Room encounter #" + roomCounter + " started\n");
     }
 
