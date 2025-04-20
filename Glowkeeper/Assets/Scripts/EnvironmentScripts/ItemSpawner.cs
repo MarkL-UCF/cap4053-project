@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemSpawner : MonoBehaviour
 {
     public ItemAtlas itemAtlas;
 
-    public ArrayList passiveItemDeck = new ArrayList();
+    [SerializeField] public List<int> passiveItemDeck = new List<int>();
 
     float[] chances = { .59f, .25f, .15f, .1f };
     //59% chance of coins (previously nothing) spawning
@@ -170,7 +171,7 @@ public class ItemSpawner : MonoBehaviour
             }
             else //deck isn't empty, draw from it
             {
-                result = Random.Range(0, passiveItemDeck.Count - 1);
+                result = Random.Range(0, passiveItemDeck.Count);
                 int drawnID = (int)passiveItemDeck[result];
 
                 spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], gameObject.transform.position, gameObject.transform.rotation);
@@ -228,13 +229,13 @@ public class ItemSpawner : MonoBehaviour
                 if (passiveItemDeck.Count == 0) //empty deck, spawn candy
                 {
                     Debug.Log("(Shop) Deck empty");
-                    SpawnCandy();
+                    spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
                     spawnedItem.GetComponent<CandyItem>().shopItem = true;
                     metrics.foundItem(-1);
                 }
                 else //deck isn't empty, draw from it
                 {
-                    result = Random.Range(0, passiveItemDeck.Count - 1);
+                    result = Random.Range(0, passiveItemDeck.Count);
                     int drawnID = (int)passiveItemDeck[result];
 
                     spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], gameObject.transform.position, gameObject.transform.rotation);
@@ -251,7 +252,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else //5% chance of a candy item replacing an item spawn
         {
-            SpawnCandy();
+            spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
             Debug.Log("(Shop) Candy replaced item");
             spawnedItem.GetComponent<CandyItem>().shopItem = true;
         }
@@ -287,7 +288,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else //10% chance of a candy replacing a shop pickup spawn
         {
-            SpawnCandy();
+            spawnedItem = Instantiate(itemAtlas.puAtlas[0], gameObject.transform.position, gameObject.transform.rotation);
             Debug.Log("(Shop) Candy replaced pickup");
             spawnedItem.GetComponent<CandyItem>().shopItem = true;
         }
@@ -328,7 +329,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else //10% chance of a candy replacing a shop pickup spawn
         {
-            SpawnCandy();
+            item = Instantiate(itemAtlas.puAtlas[0], position, gameObject.transform.rotation);
             Debug.Log("(Shop) Candy replaced pickup");
             item.GetComponent<CandyItem>().shopItem = true;
         }
@@ -351,6 +352,7 @@ public class ItemSpawner : MonoBehaviour
                 result = Random.Range(0, itemAtlas.abAtlas.Length);
                 item = Instantiate(itemAtlas.abAtlas[result], position, Quaternion.identity);
                 item.GetComponent<AbilityPickup>().shopItem = true;
+                Debug.Log("(Shop) Ability of ID:" + result + " rolled");
             }
             else // passive
             {
@@ -358,12 +360,22 @@ public class ItemSpawner : MonoBehaviour
                 {
                     item = Instantiate(itemAtlas.puAtlas[0], position, Quaternion.identity);
                     item.GetComponent<CandyItem>().shopItem = true;
+                    Debug.Log("(Shop) Deck empty");
                 }
                 else
                 {
-                    result = Random.Range(0, passiveItemDeck.Count - 1);
-                    item = Instantiate(itemAtlas.piAtlas[result], position, Quaternion.identity);
-                    item.GetComponent<WeaponPickup>().shopItem = true;
+                    result = Random.Range(0, passiveItemDeck.Count);
+                    int drawnID = (int)passiveItemDeck[result];
+
+                    spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], position, Quaternion.identity);
+                    spawnedItem.GetComponent<WeaponPickup>().shopItem = true;
+
+                    passiveItemDeck.RemoveAt(result);
+
+                    //storedID = result;
+
+                    Debug.Log("(Shop) passive item of ID:" + drawnID + " rolled");
+                    metrics.foundItem(drawnID);
                 }
             }
         }
@@ -371,6 +383,7 @@ public class ItemSpawner : MonoBehaviour
         {
             item = Instantiate(itemAtlas.puAtlas[0], position, Quaternion.identity);
             item.GetComponent<CandyItem>().shopItem = true;
+            Debug.Log("(Shop) Candy replaced item");
         }
 
         spawnedItem = item;
@@ -392,12 +405,12 @@ public class ItemSpawner : MonoBehaviour
             if (passiveItemDeck.Count == 0) //empty deck, spawn candy
             {
                 Debug.Log("Deck empty");
-                SpawnCandy();
+                spawnedItem = Instantiate(itemAtlas.puAtlas[0], position, gameObject.transform.rotation);
                 metrics.foundItem(-1);
             }
             else //deck isn't empty, draw from it
             {
-                result = Random.Range(0, passiveItemDeck.Count - 1);
+                result = Random.Range(0, passiveItemDeck.Count);
                 int drawnID = (int)passiveItemDeck[result];
 
                 spawnedItem = Instantiate(itemAtlas.piAtlas[drawnID], position, gameObject.transform.rotation);
@@ -412,4 +425,15 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
+    public void PrintDeck()
+    {
+        string deck = "";
+
+        foreach (var item in passiveItemDeck)
+        {
+            deck = deck + item.ToString() + ", ";
+        }
+
+        Debug.Log(deck);
+    }
 }

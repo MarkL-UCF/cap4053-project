@@ -32,9 +32,12 @@ public class DungeonManager : MonoBehaviour
 
     private bool shopRoomPlaced = false;
 
+    public ItemSpawner itemSpawner;
+
 
     private void Start()
     {
+        itemSpawner = FindObjectOfType<ItemSpawner>();
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
 
@@ -85,6 +88,7 @@ public class DungeonManager : MonoBehaviour
             ActivateWallsForAllRooms();
             ConnectAllTeleporters();
             generationComplete = true;
+            itemSpawner.PrintDeck();
         }
     }
 
