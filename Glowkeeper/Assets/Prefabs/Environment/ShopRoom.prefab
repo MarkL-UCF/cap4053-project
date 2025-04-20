@@ -3403,6 +3403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Encounter Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5795483180405717195, guid: 496fb6671af9dba40b8d1dad497a12d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6280133888444476717, guid: 496fb6671af9dba40b8d1dad497a12d6, type: 3}
       propertyPath: m_Enabled
       value: 0
