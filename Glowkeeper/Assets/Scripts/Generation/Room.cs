@@ -112,6 +112,53 @@ public GameObject GetItem()
     return cameraAnchor != null ? cameraAnchor.gameObject : null;
 }
 
+public void LockAllDoors()
+{
+    LockDoorIfExists(topDoor);
+    LockDoorIfExists(bottomDoor);
+    LockDoorIfExists(leftDoor);
+    LockDoorIfExists(rightDoor);
+}
+private void LockDoorIfExists(GameObject door)
+{
+    if (door != null)
+    {
+        var watcher = door.GetComponent<DoorEncounterWatcher>();
+        if (watcher != null)
+        {
+            watcher.LockDoor();
+        }
+        else
+        {
+            Debug.LogWarning($"DoorEncounterWatcher not found on {door.name}");
+        }
+    }
+}
+public void UnlockAllDoors()
+{
+    UnlockDoorIfExists(topDoor);
+    UnlockDoorIfExists(bottomDoor);
+    UnlockDoorIfExists(leftDoor);
+    UnlockDoorIfExists(rightDoor);
+}
+
+private void UnlockDoorIfExists(GameObject door)
+{
+    if (door != null)
+    {
+        var watcher = door.GetComponent<DoorEncounterWatcher>();
+        if (watcher != null)
+        {
+            watcher.UnlockDoor();
+        }
+        else
+        {
+            Debug.LogWarning($"DoorEncounterWatcher not found on {door.name}");
+        }
+    }
+}
+
+
 
 
     // Activates walls if doors did not activate
@@ -126,8 +173,11 @@ public GameObject GetItem()
     // Debug.Log($"Bottom Wall Active: {bottomWall?.activeSelf}");
     // Debug.Log($"Left Wall Active: {leftWall?.activeSelf}");
     // Debug.Log($"Right Wall Active: {rightWall?.activeSelf}");
-        if (topWall.activeSelf)
+    //LockAllDoors();
+        if (topWall.activeSelf){
             topDoor.SetActive(false);
+
+        }
 
         if (bottomWall.activeSelf)
          bottomDoor.SetActive(false);

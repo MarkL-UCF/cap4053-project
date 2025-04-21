@@ -67,6 +67,17 @@ public class RoomManager : MonoBehaviour
             StartCoroutine(DoEncounter());
         }
     }
+    public void UnlockAllDoors()
+{
+    foreach (GameObject door in doors)
+    {
+        DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
+        if (doorScript != null)
+        {
+            doorScript.UnlockDoor();
+        }
+    }
+}
 
     //Perform the actual encounter
     IEnumerator DoEncounter()
@@ -76,11 +87,10 @@ public class RoomManager : MonoBehaviour
         metrics.newRoom(); //print to metrics file
 
         //lock all doors
-        foreach(GameObject door in doors)
-        {
-            DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
-            doorScript.LockDoor();
-        }
+
+        Room roomscript = GetComponentInParent<Room>();
+        roomscript.LockAllDoors();
+        
 
         //instantiate flame if it has not been extinguished
         if(flameStatTracker.isExtinguished == false)
@@ -298,13 +308,13 @@ public class RoomManager : MonoBehaviour
         {
             flameHP.DespawnFlame();
         }
+        
 
         //unlock all doors
-        foreach (GameObject door in doors)
-        {
-            DoorEncounterWatcher doorScript = door.GetComponent<DoorEncounterWatcher>();
-            doorScript.UnlockDoor();
-        }
+
+        Room doorScript =  GetComponentInParent<Room>();
+        doorScript.UnlockAllDoors();
+        
 
         //roll for a drop
         itemSpawner.GetComponent<ItemSpawner>().RollForDrops();

@@ -20,7 +20,7 @@ public class DoorEncounterWatcher : MonoBehaviour
 
     public void LockDoor()
     {
-        ActiveDoor.SetActive(false);
+        try {ActiveDoor.SetActive(false);} catch {}
     }
 
     public void UnlockDoor()
