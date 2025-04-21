@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Slowfuel Item
   m_EditorClassIdentifier: 
   Name: Slow-Burn Fuel
-  StatDescription: Savor the Light
+  StatDescription: +Max Fuel
+  shopItem: 0

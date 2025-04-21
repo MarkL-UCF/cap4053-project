@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Spam Item
   m_EditorClassIdentifier: 
   Name: Spicy Ham
-  StatDescription: Quantity over quality!
+  StatDescription: +Firerate -Damage
+  shopItem: 0

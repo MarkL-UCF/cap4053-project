@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Violet Item
   m_EditorClassIdentifier: 
   Name: VioletLens
-  StatDescription: High Frequency!
+  StatDescription: +Projectile Speed - Projectile Size
+  shopItem: 0

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Red Item
   m_EditorClassIdentifier: 
   Name: RedLens
-  StatDescription: Low Frequency!
+  StatDescription: +Projectile Size -Projectile Speed
+  shopItem: 0

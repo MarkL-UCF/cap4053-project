@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Pepper Item
   m_EditorClassIdentifier: 
   Name: SpicyPepper
-  StatDescription: Feel the heat!
+  StatDescription: +Movespeed +Restore Fuel
+  shopItem: 0

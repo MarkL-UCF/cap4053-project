@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Whiskey Item
   m_EditorClassIdentifier: 
   Name: Grandpa'sWhiskey
-  StatDescription: Seeing double...
+  StatDescription: +Projectile Count -Accuracy
+  shopItem: 0

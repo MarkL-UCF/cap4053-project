@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Focus Item
   m_EditorClassIdentifier: 
   Name: FocusLens
-  StatDescription: Precise!
+  StatDescription: +Damage +Accuracy -Projectile Size
+  shopItem: 0

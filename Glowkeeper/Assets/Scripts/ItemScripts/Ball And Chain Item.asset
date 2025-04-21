@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a64af0b797bdb43aee16ee732ffc69, type: 3}
   m_Name: Ball And Chain Item
   m_EditorClassIdentifier: 
-  Name: 
-  StatDescription: 
+  Name: BallAndChain
+  StatDescription: +Damage -Movespeed
   shopItem: 0
