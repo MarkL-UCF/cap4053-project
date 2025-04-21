@@ -3408,6 +3408,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4232049020169831140, guid: 496fb6671af9dba40b8d1dad497a12d6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962758983644542719, guid: 496fb6671af9dba40b8d1dad497a12d6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5795483180405717195, guid: 496fb6671af9dba40b8d1dad497a12d6, type: 3}
       propertyPath: m_Name
       value: Room Encounter Manager
