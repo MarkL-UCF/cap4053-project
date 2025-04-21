@@ -1,3 +1,3 @@
 # cap4053-project
  
-Private repository for Glowkeeper
+Public repository for Glowkeeper
